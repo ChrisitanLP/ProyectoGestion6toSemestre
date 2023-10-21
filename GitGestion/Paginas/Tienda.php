@@ -2,7 +2,8 @@
     include_once("../Patrones/Template/Plantilla.php");
     include_once("../Patrones/Template/Tienda.php");
     $Pagina = new Tienda;
-    $Pagina -> verificarSesionPaginas(); 
+    $Pagina -> verificarSesionPaginas();
+    $Pagina -> verificarTipoUsuario(FALSE,'../');
 ?>
 <!DOCTYPE html>
     <head>
