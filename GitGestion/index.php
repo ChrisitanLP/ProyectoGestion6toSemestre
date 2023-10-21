@@ -8,7 +8,7 @@
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>Presentacion</title>
+        <title>Cervecería INTI</title>
         
         <link href="Recursos/Imagenes/Logos/blanco.ico" rel="icon">
 
@@ -26,6 +26,8 @@
         
         <!-- Customized Bootstrap Stylesheet -->
         <link href="Recursos/CSS/Style.css" rel="stylesheet">
+        <link href="Recursos/CSS/EstilosCarrusel.css" rel="stylesheet">
+        <link href="Recursos/CSS/EstilosTienda.css" rel="stylesheet">
     </head>
     <body>
         <?php

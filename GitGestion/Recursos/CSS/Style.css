@@ -1,41 +1,11 @@
-/******* Bootstrap Theming ********/
-/*!
- * Bootstrap v4.5.3 (https://getbootstrap.com/)
- * Copyright 2011-2020 The Bootstrap Authors
- * Copyright 2011-2020 Twitter, Inc.
- * Licensed under MIT (https://github.com/twbs/bootstrap/blob/main/LICENSE)
- */
- :root {
-    --blue: #007bff;
-    --indigo: #6610f2;
-    --purple: #6f42c1;
-    --pink: #e83e8c;
-    --red: #dc3545;
-    --orange: #fd7e14;
-    --yellow: #ffc107;
-    --green: #28a745;
-    --teal: #20c997;
-    --cyan: #17a2b8;
-    --white: #fff;
-    --gray: #6c757d;
-    --gray-dark: #343a40;
-    --primary: #DA9F5B;
-    --secondary: #33211D;
-    --success: #28a745;
-    --info: #17a2b8;
-    --warning: #ffc107;
-    --danger: #dc3545;
-    --light: #FFFBF2;
-    --dark: #111111;
-    --breakpoint-xs: 0;
-    --breakpoint-sm: 576px;
-    --breakpoint-md: 768px;
-    --breakpoint-lg: 992px;
-    --breakpoint-xl: 1200px;
-    --font-family-sans-serif: "Montserrat", sans-serif;
-    --font-family-monospace: SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
-  }
-  
+@font-face {
+  font-family:'Asfalto';
+  src:url('../Fuentes/Asfalto.eot');
+  src:url('../Fuentes/Asfalto.woff2') format('woff2'),url('../Fuentes/Asfalto.woff') format('woff'),url('../Fuentes/Asfalto.ttf') format('truetype'),url('../Fuentes/Asfalto.svg#Asfalto') format('svg'),url('../Fuentes/Asfalto.eot?#iefix') format('embedded-opentype');
+  font-weight:normal;
+  font-style:normal
+}  
+
   *,
   *::before,
   *::after {
@@ -61,7 +31,7 @@
     line-height: 1.5;
     color: #555555;
     text-align: left;
-    background-color: #FFFBF2;
+    background-color: #151515;
   }
   
   [tabindex="-1"]:focus:not(:focus-visible) {
@@ -593,17 +563,21 @@
     overflow-y: scroll;
   }
   
-  .container,
   .contenedor-fluido,
+  .container,
   .container-sm,
   .container-md,
   .container-lg,
   .container-xl {
     width: 100%;
-    padding-right: 15px;
-    padding-left: 15px;
     margin-right: auto;
     margin-left: auto;
+  }
+
+  .containerBeer{
+    width: 100%;
+    padding-left: 10%;
+    padding-right: 10%;
   }
   
   @media (min-width: 576px) {
@@ -3671,6 +3645,12 @@
     display: none;
   }
   
+  .container-img{
+    margin-top: -14%;
+    width: 100%;
+    height: 50%;
+  }
+
   .custom-select:-moz-focusring {
     color: transparent;
     text-shadow: 0 0 0 #495057;
@@ -3771,15 +3751,15 @@
   }
   
   .custom-range:focus::-webkit-slider-thumb {
-    box-shadow: 0 0 0 1px #FFFBF2, 0 0 0 0.2rem rgba(218, 159, 91, 0.25);
+    box-shadow: 0 0 0 1px #FFFBF2, 0 0 0 0.2rem rgba(16, 15, 15, 0.25);
   }
   
   .custom-range:focus::-moz-range-thumb {
-    box-shadow: 0 0 0 1px #FFFBF2, 0 0 0 0.2rem rgba(218, 159, 91, 0.25);
+    box-shadow: 0 0 0 1px #FFFBF2, 0 0 0 0.2rem rgba(16, 15, 15, 0.25);
   }
   
   .custom-range:focus::-ms-thumb {
-    box-shadow: 0 0 0 1px #FFFBF2, 0 0 0 0.2rem rgba(218, 159, 91, 0.25);
+    box-shadow: 0 0 0 1px #FFFBF2, 0 0 0 0.2rem rgba(16, 15, 15, 0.25);
   }
   
   .custom-range::-moz-focus-outer {
@@ -5858,6 +5838,7 @@
     display: none;
     float: left;
     width: 100%;
+    height: 80%;
     margin-right: -100%;
     backface-visibility: hidden;
     transition: transform 0.6s ease-in-out;
@@ -5999,6 +5980,12 @@
     transition: opacity 0.6s ease;
   }
   
+  @media (min-width: 1200px) {
+    .container-img{
+      top: 12%;
+    }
+  }
+
   @media (prefers-reduced-motion: reduce) {
     .carousel-indicators li {
       transition: none;
@@ -7594,6 +7581,11 @@
   .pr-5,
   .px-5 {
     padding-right: 3rem !important;
+  }
+
+  .px-6 {
+    padding-left: 12.6rem !important;
+    padding-right: 12.6rem !important;
   }
   
   .pb-5,
@@ -9263,6 +9255,32 @@
   .text-white {
     color: #fff !important;
   }
+
+  .titleMain {
+    font-family: 'Asfalto';
+    font-size: 65px;
+    font-weight: 400;
+    line-height: 91px;
+    letter-spacing: 0em;
+    text-align: center;
+  }
+
+  .titleCarousel {
+    font-family: 'Asfalto';
+    font-size: 120px;
+    font-weight: 1000;
+    line-height: 140px;
+    letter-spacing: 1px;
+    text-align: center;
+  }
+
+  .titleFooter {
+    font-family: 'Asfalto';
+    font-size: 40px;
+    font-weight: 300;
+    line-height: 91px;
+    letter-spacing: 0em;
+  }
   
   .text-primary {
     color: #DA9F5B !important;
@@ -9524,7 +9542,7 @@
   @media (max-width: 991.98px) {
     .contenedor-fluido.nav-bar, .nav-bar.container-sm, .nav-bar.container-md, .nav-bar.container-lg, .nav-bar.container-xl {
       position: relative;
-      background: #33211D;
+      background: #000;
     }
   }
   
@@ -9553,12 +9571,10 @@
   
   .overlay-top::before {
     top: -1px;
-    background: url(../img/overlay-top.png);
   }
   
   .overlay-bottom::after {
     bottom: -1px;
-    background: url(../img/overlay-bottom.png);
   }
   
   .carousel-caption {
@@ -9566,7 +9582,7 @@
     left: 0;
     right: 0;
     bottom: 0;
-    background: rgba(51, 33, 29, 0.7);
+    background: rgba(16, 15, 15, 0.7);
     z-index: 1;
   }
   
@@ -9649,9 +9665,29 @@
   
   .reservation,
   .page-header,
-  .offer,
+  .offer{
+    background: linear-gradient(rgba(16, 15, 15, 0.6), rgba(16, 15, 15, 0.6)), url(../Imagenes/Fondos/nosotros.webp);
+    background-position: top;
+    background-repeat: no-repeat;
+    background-size: cover;
+  }
+
+  .page-headerBeer{
+    background: linear-gradient(rgba(16, 15, 15, 0.6), rgba(16, 15, 15, 0.6)), url(../Imagenes/Fondos/cerveza.jpg);
+    background-position: top;
+    background-repeat: no-repeat;
+    background-size: cover;
+  }
+
+  .page-header-Contact{
+    background: linear-gradient(rgba(16, 15, 15, 0.6), rgba(16, 15, 15, 0.6)), url(../Imagenes/Fondos/VasosFila.jpg);
+    background-position: top;
+    background-repeat: no-repeat;
+    background-size: cover;
+  }
+
   .footer {
-    background: linear-gradient(rgba(51, 33, 29, 0.9), rgba(51, 33, 29, 0.9)), url(../img/bg.jpg);
+    background: linear-gradient(rgba(16, 15, 15, 0.6), rgba(16, 15, 15, 0.6)), url(../Imagenes/Fondos/liquido.jpg);
     background-position: top;
     background-repeat: no-repeat;
     background-size: cover;
