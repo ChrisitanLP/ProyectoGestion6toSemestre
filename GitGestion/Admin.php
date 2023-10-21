@@ -3,7 +3,7 @@
     include_once("Patrones/Template/Admin.php");
     $Pagina = new Admin;
     $Pagina -> verificarSesionIndex();
-    $Pagina -> verificarTipoUsuario();
+    $Pagina -> verificarTipoUsuario(TRUE,'');
 ?>
 <!doctype html>
 <html lang="en">

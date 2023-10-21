@@ -2,7 +2,8 @@
     include_once("../Patrones/Template/Plantilla.php");
     include_once("../Patrones/Template/Contacto.php");
     $Pagina = new Contacto;
-    $Pagina -> verificarSesionPaginas(); 
+    $Pagina -> verificarSesionPaginas();
+    $Pagina -> verificarTipoUsuario(FALSE,'../');
 ?>
 <!DOCTYPE html>
     <head>

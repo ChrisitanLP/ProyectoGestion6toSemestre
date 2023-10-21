@@ -2,7 +2,8 @@
     include_once("../Patrones/Template/Plantilla.php");
     include_once("../Patrones/Template/Usuarios.php");
     $Pagina = new Usuarios;
-    $Pagina -> verificarSesionPaginas(); 
+    $Pagina -> verificarSesionPaginas();
+    $Pagina -> verificarTipoUsuario(TRUE,'../');
 ?>
 <!doctype html>
 <html lang="en">

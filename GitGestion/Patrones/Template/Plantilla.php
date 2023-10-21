@@ -27,13 +27,13 @@
             }
         }
 
-        function verificarTipoUsuario(){
-            session_start();
+        function verificarTipoUsuario($origen,$ruta){
             if (isset($_SESSION['usuario'])) {
                 if($_SESSION['rol'] == 'admin'){
-                    header('Location: Admin.php');
+                    if($origen) return;
+                    header('Location: '.$ruta.'Admin.php');
                 }else{
-                    header('Location: index.php');
+                    if($origen) header('Location: '.$ruta.'index.php');
                 }
             }
         }
