@@ -1,28 +1,30 @@
 <?php
 
-    include_once("../Patrones/Singleton/Conexion.php");
+include_once("../Patrones/Singleton/Conexion.php");
 
-    class Acciones{
-        
-        public static function MostrarUsuarios(){
+class Acciones
+{
 
-            $conexion = Conexion::getInstance() -> getConexion();
-            $consulta = "SELECT * FROM usuarios";
-            $resultado = $conexion -> prepare($consulta);
-            $resultado -> execute();
-            $dato = $resultado->fetchAll(PDO::FETCH_ASSOC);
+    public static function MostrarUsuarios()
+    {
 
-            $acum = 1;
-            $informacion = '';
+        $conexion = Conexion::getInstance()->getConexion();
+        $consulta = "SELECT * FROM usuarios";
+        $resultado = $conexion->prepare($consulta);
+        $resultado->execute();
+        $dato = $resultado->fetchAll(PDO::FETCH_ASSOC);
 
-            foreach ($dato as $respuesta){
-                $informacion.='
+        $acum = 1;
+        $informacion = '';
+
+        foreach ($dato as $respuesta) {
+            $informacion .= '
                     <tr>
-                        <td class="mdl-data-table__cell--non-numeric">'.$acum++.'</td>
-                        <td class="mdl-data-table__cell--non-numeric">'.$respuesta['usuario'].'</td>
-                        <td class="mdl-data-table__cell--non-numeric">'.$respuesta['clave'].'</td>
-                        <td class="mdl-data-table__cell--non-numeric">'.$respuesta['email'].'</td>
-                        <td class="mdl-data-table__cell--non-numeric">'.$respuesta['telefono'].'</td>
+                        <td class="mdl-data-table__cell--non-numeric">' . $acum++ . '</td>
+                        <td class="mdl-data-table__cell--non-numeric">' . $respuesta['usuario'] . '</td>
+                        <td class="mdl-data-table__cell--non-numeric">' . $respuesta['clave'] . '</td>
+                        <td class="mdl-data-table__cell--non-numeric">' . $respuesta['email'] . '</td>
+                        <td class="mdl-data-table__cell--non-numeric">' . $respuesta['telefono'] . '</td>
                         <td class="mdl-data-table__cell">
                             <center>
                                 <button class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect button--colored-teal" id="editar">
@@ -35,31 +37,32 @@
                         </td>
                     </tr>
                 ';
-            }
-            return $informacion;
         }
+        return $informacion;
+    }
 
-        public static function MostrarProductos(){
+    public static function MostrarProductos()
+    {
 
-            $conexion = Conexion::getInstance() -> getConexion();
-            $consulta = "SELECT * FROM productos";
-            $resultado = $conexion -> prepare($consulta);
-            $resultado -> execute();
-            $dato = $resultado->fetchAll(PDO::FETCH_ASSOC);
+        $conexion = Conexion::getInstance()->getConexion();
+        $consulta = "SELECT * FROM productos";
+        $resultado = $conexion->prepare($consulta);
+        $resultado->execute();
+        $dato = $resultado->fetchAll(PDO::FETCH_ASSOC);
 
-            $acum = 0;
-            $informacion = '';
+        $acum = 0;
+        $informacion = '';
 
-            foreach ($dato as $respuesta){
-                $informacion.='
+        foreach ($dato as $respuesta) {
+            $informacion .= '
                     <tr>
-                        <td class="mdl-data-table__cell--non-numeric">'.$respuesta['Cod_Pro'].'</td>
-                        <td class="mdl-data-table__cell--non-numeric">'.$respuesta['Nom_Pro'].'</td>
-                        <td class="mdl-data-table__cell--non-numeric">'.$respuesta['Mar_Pro'].'</td>
-                        <td class="mdl-data-table__cell--non-numeric">'.$respuesta['Gra_Alc_Pro'].'</td>
-                        <td class="mdl-data-table__cell--non-numeric">'.$respuesta['IBU'].'</td>
-                        <td class="mdl-data-table__cell--non-numeric">'.$respuesta['Car_1_Pro'].' - '.$respuesta['Car_2_Pro'].' - '.$respuesta['Car_3_Pro'].'</td>
-                        <td class="mdl-data-table__cell--non-numeric">'.$respuesta['Pre_Pro'].'</td>
+                        <td class="mdl-data-table__cell--non-numeric">' . $respuesta['Cod_Pro'] . '</td>
+                        <td class="mdl-data-table__cell--non-numeric">' . $respuesta['Nom_Pro'] . '</td>
+                        <td class="mdl-data-table__cell--non-numeric">' . $respuesta['Mar_Pro'] . '</td>
+                        <td class="mdl-data-table__cell--non-numeric">' . $respuesta['Gra_Alc_Pro'] . '</td>
+                        <td class="mdl-data-table__cell--non-numeric">' . $respuesta['IBU'] . '</td>
+                        <td class="mdl-data-table__cell--non-numeric">' . $respuesta['Car_1_Pro'] . ' - ' . $respuesta['Car_2_Pro'] . ' - ' . $respuesta['Car_3_Pro'] . '</td>
+                        <td class="mdl-data-table__cell--non-numeric">' . $respuesta['Pre_Pro'] . '</td>
                         <td class="mdl-data-table__cell">
                             <center>
                                 <button class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect button--colored-teal" id="editar">
@@ -72,38 +75,50 @@
                         </td>
                     </tr>
                 ';
-            }
-            return $informacion;
         }
+        return $informacion;
+    }
 
 
-        public static function Insertar($usuario, $contrasena, $email, $telefono){
-            $rol = 'cliente';
+    public static function Insertar($usuario, $contrasena, $email, $telefono)
+    {
+        $rol = 'cliente';
 
-            $conexion = Conexion::getInstance() -> getConexion();
-            $consulta = "SELECT * FROM usuarios where usuario = '$usuario'";
-            $resultado = $conexion -> prepare($consulta);
-            $resultado -> execute();
-            $dato = $resultado->fetch();
-    
-            if ($dato) {
-                header("location:../Paginas/error.php");
-            } else {
-                $consulta = "INSERT INTO usuarios (usuario, clave, email, telefono, rol) VALUES('$usuario','$contrasena', '$email', '$telefono', '$rol')";
-                $resultado = $conexion -> prepare($consulta);
-                $resultado -> execute();
-                header("location:../Paginas/Logeo.php");
-            }
+        $conexion = Conexion::getInstance()->getConexion();
+        $consulta = "SELECT * FROM usuarios where usuario = '$usuario'";
+        $resultado = $conexion->prepare($consulta);
+        $resultado->execute();
+        $dato = $resultado->fetch();
+
+        if ($dato) {
+            header("location:../Paginas/error.php");
+        } else {
+            $consulta = "INSERT INTO usuarios (usuario, clave, email, telefono, rol) VALUES('$usuario','$contrasena', '$email', '$telefono', '$rol')";
+            $resultado = $conexion->prepare($consulta);
+            $resultado->execute();
+            header("location:../Paginas/Logeo.php");
         }
+    }
 
-        public static function Actualizar(){
-            
-        }
+    public static function InsertarUsuario($usuario, $contrasena, $email, $telefono)
+    {
+        $rol = 'cliente';
+        $conexion = Conexion::getInstance()->getConexion();
+        $consulta = "INSERT INTO usuarios (usuario, clave, email, telefono, rol) VALUES('$usuario','$contrasena', '$email', '$telefono', '$rol')";
+        $resultado = $conexion->prepare($consulta);
+        $resultado->execute();
+    }
 
-        public static function Eliminar(){
-            
-        }
+    public static function Actualizar()
+    {
 
     }
+
+    public static function Eliminar()
+    {
+
+    }
+
+}
 
 ?>
