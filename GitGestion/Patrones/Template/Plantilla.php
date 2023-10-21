@@ -27,6 +27,17 @@
             }
         }
 
+        function verificarTipoUsuario(){
+            session_start();
+            if (isset($_SESSION['usuario'])) {
+                if($_SESSION['rol'] == 'admin'){
+                    header('Location: Admin.php');
+                }else{
+                    header('Location: index.php');
+                }
+            }
+        }
+
         public function crearPagina(){
             $this -> crearHeader();
             $this -> crearMain();
