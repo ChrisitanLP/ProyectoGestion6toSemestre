@@ -2,7 +2,8 @@
     include_once("Patrones/Template/Plantilla.php");
     include_once("Patrones/Template/Index.php");
     $Pagina = new Index;
-    $Pagina -> verificarSesionIndex(); 
+    $Pagina -> verificarSesionIndex();
+    $Pagina -> verificarTipoUsuario(FALSE,'');
 ?>
 <!DOCTYPE html>
     <head>

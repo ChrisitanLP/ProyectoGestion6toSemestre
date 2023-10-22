@@ -178,33 +178,32 @@ class Usuarios extends Plantilla
                             <button type="button" class="btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
                         </div> 
                         <div class="modal-body">
-                            <form role="form" action="" method="post" class="registration-form">
+                            <form role="form" action="../Acciones/Rest.php" method="post" class="registration-form">
                                 <div class="form-group">
-                                    <label class="sr-only" for="form-first-name">Cedula: </label>
-                                    <input type="text" name="form-first-name" placeholder="Cedula..." class="form-first-name form-control" id="form-first-name">
+                                    <label class="sr-only" for="form-first-name">Usuario:</label>
+                                    <input type="text" name="usuarioI" placeholder="Usuario..." class="form-first-name form-control" id="form-first-name">
                                 </div>
                                 <br>
                                 <div class="form-group">
-                                    <label class="sr-only" for="form-first-name">Nombre: </label>
-                                    <input type="text" name="form-first-name" placeholder="Nombre..." class="form-first-name form-control" id="form-first-name">
+                                    <label class="sr-only" for="form-first-name">Clave: </label>
+                                    <input type="text" name="claveI" placeholder="Clave..." class="form-first-name form-control" id="form-first-name">
                                 </div>
                                 <br>
                                 <div class="form-group">
-                                    <label class="sr-only" for="form-last-name">Apellido: </label>
-                                    <input type="text" name="form-last-name" placeholder="Apellido..." class="form-last-name form-control" id="form-last-name">
+                                    <label class="sr-only" for="form-last-name">Email: </label>
+                                    <input type="text" name="emailI" placeholder="Email..." class="form-last-name form-control" id="form-last-name">
                                 </div>
                                 <br>
                                 <div class="form-group">
-                                    <label class="sr-only" for="form-email">Edad: </label>
-                                    <input type="text" name="form-email" placeholder="Edad..." class="form-email form-control" id="form-email">
+                                    <label class="sr-only" for="form-email">Teléfono: </label>
+                                    <input type="text" name="telefonoI" placeholder="Teléfono..." class="form-email form-control" id="form-email">
                                 </div>
                                 <br>
-                            
+                                <div class="modal-footer">
+                                <input type="button" class="btn btn-warning" data-bs-dismiss="modal" aria-label="Close" value=" Cancelar ">
+                                <input type="submit" class="btn btn-success" value=" Agregar Usuario ">
+                            </div>
                             </form>
-                        </div>
-                        <div class="modal-footer">
-                            <input type="button" class="btn btn-warning" data-bs-dismiss="modal" aria-label="Close" value=" Cancelar ">
-                            <input type="submit" class="btn btn-success" value=" Agregar Usuario ">
                         </div>
                     </div>
                 </div>
