@@ -107,6 +107,7 @@ class Acciones
         $consulta = "INSERT INTO usuarios (usuario, clave, email, telefono, rol) VALUES('$usuario','$contrasena', '$email', '$telefono', '$rol')";
         $resultado = $conexion->prepare($consulta);
         $resultado->execute();
+        header("location:../Paginas/Usuarios.php");
     }
 
     public static function Actualizar()
