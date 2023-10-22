@@ -1,5 +1,5 @@
 <?php
-	session_start();
+	if (session_status() == PHP_SESSION_NONE)  session_start();
 	if (isset($_SESSION['usuario'])) {
 		if($_SESSION['rol'] == 'admin'){
 			header('Location: ../Admin.php');
@@ -56,23 +56,8 @@
 
 			$authenticator->setAuthStrategy($authenticateDB);
 			$authenticatorUser = $authenticator->authenticateUser($username, $password);
-
-			$rol = $_SESSION["rol"];
-
-			if($authenticatorUser){
-				if($rol == 'admin'){
-					header('Location:../Admin.php');
-				}else{
-					header('Location:../index.php');
-				}
-			}
-			echo "<br>Datos enviados:<br>";
-			/*
-			echo "Username: " . $username . "<br>";
-			echo "Password: " . $password . "<br>";
-			echo $_SESSION["usuario"];
-			header('Location: ../index.php');
-			*/
+			
+			echo "<meta http-equiv='refresh' content='0'>";
 		}
   	?>
 </body>
