@@ -6,7 +6,7 @@
         public abstract function crearFooter();
         
         public function verificarSesionPaginas(){
-            session_start();
+            if (session_status() == PHP_SESSION_NONE) session_start();
 
             if (isset($_SESSION['usuario'])){
                 $_SESSION['usuario'];
@@ -17,7 +17,7 @@
         }
 
         public function verificarSesionIndex(){
-            session_start();
+            if (session_status() == PHP_SESSION_NONE) session_start();
 
             if (isset($_SESSION['usuario'])){
                 $_SESSION['usuario'];
