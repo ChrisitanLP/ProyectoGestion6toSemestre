@@ -134,6 +134,55 @@ class Usuarios extends Plantilla
             </div>
             <script type="text/javascript" src="https://www.jeasyui.com/easyui/jquery.min.js"></script>
     <script type="text/javascript" src="https://www.jeasyui.com/easyui/jquery.easyui.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script>
+      $(document).ready(function () {
+        $(".editar").click(function () {
+          $("#modalCrud").modal("show");
+        });
+        $(".eliminar").click(function () {
+          fila = $(this).closest("tr");
+          nombre_curso = fila.find("td:eq(1)").text();
+          id_curso= fila.find("td:eq(0)").text();
+          $("#modalBorrar").modal("show");
+          $(".contenido").text("Esta seguro de que quiere eliminar el curso de: " + nombre_curso + " con ID " + id_curso);
+        });
+
+        $("#formBorrar").click(function () {
+          id_curso;
+          opcion = 9;
+          $.ajax({
+            url: "../validar.php",
+            type: "POST",
+            data: { id_curso: id_curso, opcion: opcion },
+            success: function (resultado) {
+              alert(cedDocente);
+            }
+          });
+          location.reload();
+        });
+
+        
+
+        $("#formUsuarios").submit(function (e) {
+          e.preventDefault(); //evita que el form mande todo al servidor
+          idcurso = $("#idcurso").val();
+          nomcurso = $("#nomcurso").val();
+          descurso = $("#descurso").val();
+          $.ajax({
+            url: "../validar.php",
+            type: "POST",
+            data: {
+              idcurso : idcurso , nomcurso: nomcurso, descurso: descurso, opcion: opcion
+            },
+            success: function (resultado) {
+              alert(resultado);
+            }
+          });
+          location.reload();
+        });
+      });
+    </script>
             
             <div class="modal fade" id="modalCrud" tabindex="-1" role="dialog" aria-labelledby="modal-register-label" aria-hidden="true">
                 <div class="modal-dialog">
