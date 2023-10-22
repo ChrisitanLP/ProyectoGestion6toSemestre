@@ -28,8 +28,7 @@ class Acciones
                         <td class="mdl-data-table__cell">
                             <center>
                                 <button class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect button--colored-teal" id="editar">
-                                    <i class="material-icons">create</i>Editar
-                                </button> 
+                                    <i class="material-icons">create</i>Editar</button> 
                                 <button class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect button--colored-red" id="eliminar">
                                     <i class="material-icons">cancel</i>Eliminar
                                 </button>
@@ -110,9 +109,13 @@ class Acciones
         header("location:../Paginas/Usuarios.php");
     }
 
-    public static function Actualizar()
+    public static function ActualizarUsuario($usuario, $contrasena, $email, $telefono)
     {
-
+        $conexion = Conexion::getInstance()->getConexion();
+        $consulta = "UPDATE usuarios SET clave='$contrasena', email='$email', telefono='$telefono' WHERE usuario='$usuario'";
+        $resultado = $conexion->prepare($consulta);
+        $resultado->execute();
+        header("location:../Paginas/Usuarios.php");
     }
 
     public static function Eliminar()
