@@ -138,6 +138,13 @@ class Usuarios extends Plantilla
     <script>
       $(document).ready(function () {
         $(".editar").click(function () {
+            fila = $(this).closest("tr");
+            id_curso = fila.find("td:eq(2)").text();
+          nombre_curso = fila.find("td:eq(3)").text();
+          des_curso = fila.find("td:eq(4)").text();
+            $("#claveE").val(id_curso);
+          $("#emailE").val(nombre_curso);
+          $("#telefonoE").val(des_curso);
           $("#modalCrud").modal("show");
         });
         $(".eliminar").click(function () {
@@ -191,28 +198,27 @@ class Usuarios extends Plantilla
                             <button type="button" class="btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
                         </div> 
                         <div class="modal-body">
-                            <form role="form" action="../Acciones/Rest.php" method="put" class="registration-form">
+                            <form role="form" action="../Acciones/Rest.php" method="post" class="registration-form">
                                 <div class="form-group">
-                                    <label class="sr-only" for="form-first-name">Nombre: </label>
-                                    <input type="text" name="form-first-name" placeholder="Nombre..." class="form-first-name form-control" id="form-first-name">
+                                    <label class="sr-only" for="form-first-name">Clave: </label>
+                                    <input type="text" name="claveE"  class="form-first-name form-control" id="claveE">
                                 </div>
                                 <br>
                                 <div class="form-group">
-                                    <label class="sr-only" for="form-last-name">Apellido: </label>
-                                    <input type="text" name="form-last-name" placeholder="Apellido..." class="form-last-name form-control" id="form-last-name">
+                                    <label class="sr-only" for="form-last-name">Email: </label>
+                                    <input type="text" name="emailE"  class="form-last-name form-control" id="emailE">
                                 </div>
                                 <br>
                                 <div class="form-group">
-                                    <label class="sr-only" for="form-email">Edad: </label>
-                                    <input type="text" name="form-email" placeholder="Edad..." class="form-email form-control" id="form-email">
+                                    <label class="sr-only" for="form-email">Teléfono: </label>
+                                    <input type="text" name="telefonoE" class="form-email form-control" id="telefonoE">
                                 </div>
                                 <br>
-                            
-                            </form>
-                        </div>
-                        <div class="modal-footer">
+                                <div class="modal-footer">
                             <input type="button" class="btn btn-warning" data-bs-dismiss="modal" aria-label="Close" value=" Cancelar ">
                             <input type="submit" class="btn btn-success" value=" Editar Usuario ">
+                        </div>
+                            </form>
                         </div>
                     </div>
                 </div>
