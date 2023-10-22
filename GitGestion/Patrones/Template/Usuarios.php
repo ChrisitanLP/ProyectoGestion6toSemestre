@@ -121,14 +121,16 @@ class Usuarios extends Plantilla
                             <p class="modal">Edite los datos del Usuario:</p>
                             <button type="button" class="btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
                         </div> 
+                        <form id="formBorrar">
                         <div class="modal-body">     
-                            <p class="text-white">¿Está seguro de que desea eliminar el Usuario?</p>
+                            <p class="text-white contenido">¿Está seguro de que desea eliminar el Usuario?</p>
                             <p class="text-danger"><small>Esta acción no se puede deshacer.</small></p>
                         </div>
                         <div class="modal-footer">
                             <input type="button" class="btn btn-warning" data-bs-dismiss="modal" aria-label="Close" value=" Cancelar ">
                             <input type="submit" class="btn btn-danger" value=" Eliminar Usuario ">
                         </div>
+                        </form>
                     </div>
                 </div>
             </div>
@@ -150,24 +152,22 @@ class Usuarios extends Plantilla
         });
         $(".eliminar").click(function () {
           fila = $(this).closest("tr");
-          nombre_curso = fila.find("td:eq(1)").text();
-          id_curso= fila.find("td:eq(0)").text();
-          $("#modalBorrar").modal("show");
-          $(".contenido").text("Esta seguro de que quiere eliminar el curso de: " + nombre_curso + " con ID " + id_curso);
+          usuario_val= fila.find("td:eq(1)").text();
+          $("#modalCrudEliminar").modal("show");
+          $(".contenido").text("¿Está seguro de que desea eliminar el Usuario: " + usuario_val + "?");
         });
 
         $("#formBorrar").click(function () {
-          id_curso;
-          opcion = 9;
+            usuario_val;
+          opcion = 3;
           $.ajax({
-            url: "../validar.php",
+            url: "../Acciones/Rest.php",
             type: "POST",
-            data: { id_curso: id_curso, opcion: opcion },
+            data: { usuario_val: usuario_val, opcion: opcion },
             success: function (resultado) {
-              alert(cedDocente);
+                window.location.href = "../Paginas/Usuarios.php";
             }
           });
-          location.reload();
         });
 
         $("#formEditar").submit(function (e) {

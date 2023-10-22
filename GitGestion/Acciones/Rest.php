@@ -25,6 +25,10 @@ switch ($accion) {
                 $telefono = $_POST['telefonoE'];
                 Acciones::ActualizarUsuario($usuario, $contrasena, $email, $telefono);
                 break;
+                case 3:
+                    $usuario = $_POST['usuario_val'];
+                    Acciones::EliminarUsuaio($usuario);
+                    break;
             default:
                 header("location:../Paginas/Usuarios.php");
                 break;

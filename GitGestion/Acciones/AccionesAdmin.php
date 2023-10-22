@@ -29,7 +29,7 @@ class Acciones
                             <center>
                                 <button class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect button--colored-teal editar">
                                     <i class="material-icons">create</i>Editar</button>
-                                <button class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect button--colored-red" id="eliminar">
+                                <button class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect button--colored-red eliminar" >
                                     <i class="material-icons">cancel</i>Eliminar
                                 </button>
                             </center>
@@ -118,9 +118,12 @@ class Acciones
         header("location:../Paginas/Usuarios.php");
     }
 
-    public static function Eliminar()
+    public static function EliminarUsuaio($usuario)
     {
-
+        $conexion= Conexion::getInstance()->getConexion();
+        $consulta="DELETE FROM usuarios where usuario='$usuario'";
+        $resultado=$conexion->prepare($consulta);
+        $resultado->execute();
     }
 
 }
