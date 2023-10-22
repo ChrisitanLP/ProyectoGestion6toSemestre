@@ -139,12 +139,13 @@ class Usuarios extends Plantilla
       $(document).ready(function () {
         $(".editar").click(function () {
             fila = $(this).closest("tr");
-            id_curso = fila.find("td:eq(2)").text();
-          nombre_curso = fila.find("td:eq(3)").text();
-          des_curso = fila.find("td:eq(4)").text();
-            $("#claveE").val(id_curso);
-          $("#emailE").val(nombre_curso);
-          $("#telefonoE").val(des_curso);
+            usuario_valor = fila.find("td:eq(1)").text();
+            clave_valor = fila.find("td:eq(2)").text();
+          email_valor = fila.find("td:eq(3)").text();
+          telefono_valor = fila.find("td:eq(4)").text();
+            $("#claveE").val(clave_valor);
+          $("#emailE").val(email_valor);
+          $("#telefonoE").val(telefono_valor);
           $("#modalCrud").modal("show");
         });
         $(".eliminar").click(function () {
@@ -169,22 +170,23 @@ class Usuarios extends Plantilla
           location.reload();
         });
 
-        $("#formUsuarios").submit(function (e) {
-          e.preventDefault(); //evita que el form mande todo al servidor
-          idcurso = $("#idcurso").val();
-          nomcurso = $("#nomcurso").val();
-          descurso = $("#descurso").val();
+        $("#formEditar").submit(function (e) {
+          e.preventDefault(); 
+          usuario_valor;
+          claveE = $("#claveE").val();
+          emailE = $("#emailE").val();
+          telefonoE = $("#telefonoE").val();
+          opcion=2;
           $.ajax({
-            url: "../validar.php",
+            url: "../Acciones/Rest.php",
             type: "POST",
             data: {
-              idcurso : idcurso , nomcurso: nomcurso, descurso: descurso, opcion: opcion
+              claveE : claveE , emailE: emailE, telefonoE: telefonoE, usuario_valor: usuario_valor, opcion:opcion
             },
             success: function (resultado) {
-              alert(resultado);
+              window.location.href = "../Paginas/Usuarios.php";
             }
           });
-          location.reload();
         });
       });
     </script>
@@ -198,7 +200,7 @@ class Usuarios extends Plantilla
                             <button type="button" class="btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
                         </div> 
                         <div class="modal-body">
-                            <form role="form" action="../Acciones/Rest.php" method="post" class="registration-form">
+                            <form role="form" id="formEditar" class="registration-form">
                                 <div class="form-group">
                                     <label class="sr-only" for="form-first-name">Clave: </label>
                                     <input type="text" name="claveE"  class="form-first-name form-control" id="claveE">

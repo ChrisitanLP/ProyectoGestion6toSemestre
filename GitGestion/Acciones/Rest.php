@@ -18,15 +18,21 @@ switch ($accion) {
                 $telefono = $_POST['telefonoI'];
                 Acciones::InsertarUsuario($usuario, $contrasena, $email, $telefono);
                 break;
-
+            case 2:
+                $usuario = $_POST['usuario_valor'];
+                $contrasena = $_POST['claveE'];
+                $email = $_POST['emailE'];
+                $telefono = $_POST['telefonoE'];
+                Acciones::ActualizarUsuario($usuario, $contrasena, $email, $telefono);
+                break;
             default:
-            header("location:../Paginas/Usuarios.php");
+                header("location:../Paginas/Usuarios.php");
                 break;
         }
         break;
 
     case 'PUT':
-        Acciones::ActualizarUsuario($usuario, $contrasena, $email, $telefono);
+
         break;
 
     case 'DELETE':
