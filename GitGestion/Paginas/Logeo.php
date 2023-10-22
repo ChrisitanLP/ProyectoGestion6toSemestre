@@ -1,5 +1,5 @@
 <?php
-	session_start();
+	if (session_status() == PHP_SESSION_NONE)  session_start();
 	if (isset($_SESSION['usuario'])) {
 		if($_SESSION['rol'] == 'admin'){
 			header('Location: ../Admin.php');
@@ -56,6 +56,8 @@
 
 			$authenticator->setAuthStrategy($authenticateDB);
 			$authenticatorUser = $authenticator->authenticateUser($username, $password);
+      
+			echo "<meta http-equiv='refresh' content='0'>";
 		}
   	?>
 </body>
