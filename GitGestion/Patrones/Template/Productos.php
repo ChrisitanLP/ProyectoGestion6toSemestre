@@ -2,7 +2,7 @@
 include_once("Plantilla.php");
 include("../Acciones/AccionesAdmin.php");
 
-class Usuarios extends Plantilla
+class Productos extends Plantilla
 {
     public function crearHeader()
     {
@@ -52,11 +52,11 @@ class Usuarios extends Plantilla
                                     <i class="material-icons" role="presentation">dashboard</i>
                                     Principal
                                 </a>
-                                <a class="mdl-navigation__link mdl-navigation__link--current" href="Usuarios.php">
+                                <a class="mdl-navigation__link" href="Usuarios.php">
                                     <i class="material-icons" role="presentation">person</i>
                                     Usuarios
                                 </a>
-                                <a class="mdl-navigation__link" href="Productos.php">
+                                <a class="mdl-navigation__link mdl-navigation__link--current" href="Productos.php">
                                     <i class="material-icons" role="presentation">shopping_cart</i>
                                     Productos
                                 </a>
@@ -78,7 +78,7 @@ class Usuarios extends Plantilla
                     <div class="mdl-cell mdl-cell--10-col-desktop mdl-cell--10-col-tablet mdl-cell--4-col-phone">
                         <div class="mdl-card mdl-shadow--1dp">
                             <div class="mdl-card__title">
-                                <h1 class="mdl-card__title-text">Tabla de Usuarios&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</h1>
+                                <h1 class="mdl-card__title-text">Tabla de Productoss&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</h1>
                                     <button class="mdl-button button--colored-teal" id="agregar">
                                         <i class="material-icons">add_box</i>
                                         Agregar
@@ -89,15 +89,17 @@ class Usuarios extends Plantilla
                                     <thead>
                                     <tr>
                                         <th class="mdl-data-table__select">ID</th>
-                                        <th class="mdl-data-table__cell--non-numeric">USUARIO</th>
-                                        <th class="mdl-data-table__cell--non-numeric">CLAVE</th>
-                                        <th class="mdl-data-table__cell--non-numeric">CORREO</th>
-                                        <th class="mdl-data-table__cell--non-numeric">TELEFONO</th>
+                                        <th class="mdl-data-table__cell--non-numeric">PRODUCTO</th>
+                                        <th class="mdl-data-table__cell--non-numeric">MARCA</th>
+                                        <th class="mdl-data-table__cell--non-numeric">GRADO ALCOHOL</th>
+                                        <th class="mdl-data-table__cell--non-numeric">IBU</th>
+                                        <th class="mdl-data-table__cell--non-numeric">INGREDIENTES</th>
+                                        <th class="mdl-data-table__cell--non-numeric">PRECIO</th>
                                         <th class="mdl-data-table__select">ACCION</th>
                                     </tr>
                                     </thead>
                                     <tbody>
-                                        '.Acciones::MostrarUsuarios().'
+                                        '.Acciones::MostrarProductos().'
                                     </tbody>
                                 </table>
                             </div>
@@ -178,32 +180,33 @@ class Usuarios extends Plantilla
                             <button type="button" class="btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
                         </div> 
                         <div class="modal-body">
-                            <form role="form" action="../Acciones/Rest.php" method="post" class="registration-form">
+                            <form role="form" action="" method="post" class="registration-form">
                                 <div class="form-group">
-                                    <label class="sr-only" for="form-first-name">Usuario:</label>
-                                    <input type="text" name="usuarioI" placeholder="Usuario..." class="form-first-name form-control" id="form-first-name">
+                                    <label class="sr-only" for="form-first-name">Cedula: </label>
+                                    <input type="text" name="form-first-name" placeholder="Cedula..." class="form-first-name form-control" id="form-first-name">
                                 </div>
                                 <br>
                                 <div class="form-group">
-                                    <label class="sr-only" for="form-first-name">Clave: </label>
-                                    <input type="text" name="claveI" placeholder="Clave..." class="form-first-name form-control" id="form-first-name">
+                                    <label class="sr-only" for="form-first-name">Nombre: </label>
+                                    <input type="text" name="form-first-name" placeholder="Nombre..." class="form-first-name form-control" id="form-first-name">
                                 </div>
                                 <br>
                                 <div class="form-group">
-                                    <label class="sr-only" for="form-last-name">Email: </label>
-                                    <input type="text" name="emailI" placeholder="Email..." class="form-last-name form-control" id="form-last-name">
+                                    <label class="sr-only" for="form-last-name">Apellido: </label>
+                                    <input type="text" name="form-last-name" placeholder="Apellido..." class="form-last-name form-control" id="form-last-name">
                                 </div>
                                 <br>
                                 <div class="form-group">
-                                    <label class="sr-only" for="form-email">Teléfono: </label>
-                                    <input type="text" name="telefonoI" placeholder="Teléfono..." class="form-email form-control" id="form-email">
+                                    <label class="sr-only" for="form-email">Edad: </label>
+                                    <input type="text" name="form-email" placeholder="Edad..." class="form-email form-control" id="form-email">
                                 </div>
                                 <br>
-                                <div class="modal-footer">
-                                <input type="button" class="btn btn-warning" data-bs-dismiss="modal" aria-label="Close" value=" Cancelar ">
-                                <input type="submit" class="btn btn-success" value=" Agregar Usuario ">
-                            </div>
+                            
                             </form>
+                        </div>
+                        <div class="modal-footer">
+                            <input type="button" class="btn btn-warning" data-bs-dismiss="modal" aria-label="Close" value=" Cancelar ">
+                            <input type="submit" class="btn btn-success" value=" Agregar Usuario ">
                         </div>
                     </div>
                 </div>

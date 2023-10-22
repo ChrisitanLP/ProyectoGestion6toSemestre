@@ -1,7 +1,7 @@
 <?php
     include_once("../Patrones/Template/Plantilla.php");
-    include_once("../Patrones/Template/Usuarios.php");
-    $Pagina = new Usuarios;
+    include_once("../Patrones/Template/Productos.php");
+    $Pagina = new Productos;
     $Pagina -> verificarSesionPaginas();
     $Pagina -> verificarTipoUsuario(TRUE,'../');
 ?>
@@ -11,7 +11,7 @@
         <link rel="icon" type="image/png" href="../Recursos/Imagenes/Logos/blanco.png">
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <title>Administrador - Gestión Usuarios</title>
+        <title>Administrador - Gestión Productos</title>
 
         <link href='https://fonts.googleapis.com/css?family=Roboto:400,500,300,100,700,900' rel='stylesheet'
             type='text/css'>

@@ -56,7 +56,7 @@
 
 			$authenticator->setAuthStrategy($authenticateDB);
 			$authenticatorUser = $authenticator->authenticateUser($username, $password);
-			
+      
 			echo "<meta http-equiv='refresh' content='0'>";
 		}
   	?>
