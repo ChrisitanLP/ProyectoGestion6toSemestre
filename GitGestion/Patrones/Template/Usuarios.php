@@ -132,7 +132,9 @@ class Usuarios extends Plantilla
                     </div>
                 </div>
             </div>
-
+            <script type="text/javascript" src="https://www.jeasyui.com/easyui/jquery.min.js"></script>
+    <script type="text/javascript" src="https://www.jeasyui.com/easyui/jquery.easyui.min.js"></script>
+            
             <div class="modal fade" id="modalCrud" tabindex="-1" role="dialog" aria-labelledby="modal-register-label" aria-hidden="true">
                 <div class="modal-dialog">
                     <div class="modal-content">
@@ -142,7 +144,7 @@ class Usuarios extends Plantilla
                             <button type="button" class="btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
                         </div> 
                         <div class="modal-body">
-                            <form role="form" action="" method="post" class="registration-form">
+                            <form role="form" action="../Acciones/Rest.php" method="put" class="registration-form">
                                 <div class="form-group">
                                     <label class="sr-only" for="form-first-name">Nombre: </label>
                                     <input type="text" name="form-first-name" placeholder="Nombre..." class="form-first-name form-control" id="form-first-name">
@@ -197,7 +199,8 @@ class Usuarios extends Plantilla
                                 <div class="form-group">
                                     <label class="sr-only" for="form-email">Teléfono: </label>
                                     <input type="text" name="telefonoI" placeholder="Teléfono..." class="form-email form-control" id="form-email">
-                                </div>
+                                    <input type="hidden" name="opcion" value="1">
+                                    </div>
                                 <br>
                                 <div class="modal-footer">
                                 <input type="button" class="btn btn-warning" data-bs-dismiss="modal" aria-label="Close" value=" Cancelar ">

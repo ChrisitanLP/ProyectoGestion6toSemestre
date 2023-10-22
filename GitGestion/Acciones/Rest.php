@@ -1,27 +1,36 @@
 <?php
 
-    include_once("AccionesAdmin.php");
+include_once("AccionesAdmin.php");
 
-    $accion = $_SERVER['REQUEST_METHOD'];
-    switch ($accion) {
-        case 'GET':
+$accion = $_SERVER['REQUEST_METHOD'];
+switch ($accion) {
+    case 'GET':
 
-            break;
+        break;
 
-        case 'POST':
-            $usuario = $_POST['usuarioI'];
-            $contrasena = $_POST['claveI'];
-            $email = $_POST['emailI'];
-            $telefono = $_POST['telefonoI'];
-            Acciones::InsertarUsuario($usuario, $contrasena, $email, $telefono);
-            break;
+    case 'POST':
+        $opcion = $_POST['opcion'];
+        switch ($opcion) {
+            case 1:
+                $usuario = $_POST['usuarioI'];
+                $contrasena = $_POST['claveI'];
+                $email = $_POST['emailI'];
+                $telefono = $_POST['telefonoI'];
+                Acciones::InsertarUsuario($usuario, $contrasena, $email, $telefono);
+                break;
 
-        case 'PUT':
-           Acciones::ActualizarUsuario($usuario, $contrasena, $email, $telefono);
-            break;
+            default:
+            header("location:../Paginas/Usuarios.php");
+                break;
+        }
+        break;
 
-        case 'DELETE':
-            break;
-    }
+    case 'PUT':
+        Acciones::ActualizarUsuario($usuario, $contrasena, $email, $telefono);
+        break;
+
+    case 'DELETE':
+        break;
+}
 
 ?>
