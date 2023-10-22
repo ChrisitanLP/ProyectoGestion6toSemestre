@@ -17,7 +17,7 @@
             break;
 
         case 'PUT':
-           
+           Acciones::ActualizarUsuario($usuario, $contrasena, $email, $telefono);
             break;
 
         case 'DELETE':
