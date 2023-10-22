@@ -141,11 +141,7 @@ class Usuarios extends Plantilla
           $("#modalCrud").modal("show");
         });
         $(".eliminar").click(function () {
-          fila = $(this).closest("tr");
-          nombre_curso = fila.find("td:eq(1)").text();
-          id_curso= fila.find("td:eq(0)").text();
-          $("#modalBorrar").modal("show");
-          $(".contenido").text("Esta seguro de que quiere eliminar el curso de: " + nombre_curso + " con ID " + id_curso);
+          $("#modalCrudEliminar").modal("show");
         });
 
         $("#formBorrar").click(function () {

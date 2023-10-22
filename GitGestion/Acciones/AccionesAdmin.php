@@ -29,7 +29,7 @@ class Acciones
                             <center>
                                 <button class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect button--colored-teal editar">
                                     <i class="material-icons">create</i>Editar</button>
-                                <button class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect button--colored-red" id="eliminar">
+                                <button class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect button--colored-red eliminar">
                                     <i class="material-icons">cancel</i>Eliminar
                                 </button>
                             </center>
