@@ -162,8 +162,6 @@ class Usuarios extends Plantilla
           location.reload();
         });
 
-        
-
         $("#formUsuarios").submit(function (e) {
           e.preventDefault(); //evita que el form mande todo al servidor
           idcurso = $("#idcurso").val();
