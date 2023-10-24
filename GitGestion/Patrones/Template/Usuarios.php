@@ -15,7 +15,7 @@ class Usuarios extends Plantilla
                     <!-- Cuenta-->      
                     <div class="avatar-dropdown" id="icon">
                         <span>'.$_SESSION['usuario'].'</span>
-                        <img src="Recursos/Imagenes/Logos/blanco.png">
+                        <img src="../Recursos/Imagenes/Logos/blanco.png">
                     </div>
         
                     <!-- Account dropdawn-->
@@ -121,18 +121,76 @@ class Usuarios extends Plantilla
                             <p class="modal">Edite los datos del Usuario:</p>
                             <button type="button" class="btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
                         </div> 
+                        <form id="formBorrar">
                         <div class="modal-body">     
-                            <p class="text-white">¿Está seguro de que desea eliminar el Usuario?</p>
+                            <p class="text-white contenido">¿Está seguro de que desea eliminar el Usuario?</p>
                             <p class="text-danger"><small>Esta acción no se puede deshacer.</small></p>
                         </div>
                         <div class="modal-footer">
                             <input type="button" class="btn btn-warning" data-bs-dismiss="modal" aria-label="Close" value=" Cancelar ">
                             <input type="submit" class="btn btn-danger" value=" Eliminar Usuario ">
                         </div>
+                        </form>
                     </div>
                 </div>
             </div>
+            <script type="text/javascript" src="https://www.jeasyui.com/easyui/jquery.min.js"></script>
+    <script type="text/javascript" src="https://www.jeasyui.com/easyui/jquery.easyui.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script>
+      $(document).ready(function () {
+        $(".editar").click(function () {
+            fila = $(this).closest("tr");
+            usuario_valor = fila.find("td:eq(1)").text();
+            clave_valor = fila.find("td:eq(2)").text();
+          email_valor = fila.find("td:eq(3)").text();
+          telefono_valor = fila.find("td:eq(4)").text();
+            $("#claveE").val(clave_valor);
+          $("#emailE").val(email_valor);
+          $("#telefonoE").val(telefono_valor);
+          $("#modalCrud").modal("show");
+        });
+        $(".eliminar").click(function () {
+          fila = $(this).closest("tr");
+          usuario_val= fila.find("td:eq(1)").text();
+          $("#modalCrudEliminar").modal("show");
+          $(".contenido").text("¿Está seguro de que desea eliminar el Usuario: " + usuario_val + "?");
+        });
 
+        $("#formBorrar").click(function () {
+            usuario_val;
+          opcion = 3;
+          $.ajax({
+            url: "../Acciones/Rest.php",
+            type: "POST",
+            data: { usuario_val: usuario_val, opcion: opcion },
+            success: function (resultado) {
+                window.location.href = "../Paginas/Usuarios.php";
+            }
+          });
+        });
+
+        $("#formEditar").submit(function (e) {
+          e.preventDefault(); 
+          usuario_valor;
+          claveE = $("#claveE").val();
+          emailE = $("#emailE").val();
+          telefonoE = $("#telefonoE").val();
+          opcion=2;
+          $.ajax({
+            url: "../Acciones/Rest.php",
+            type: "POST",
+            data: {
+              claveE : claveE , emailE: emailE, telefonoE: telefonoE, usuario_valor: usuario_valor, opcion:opcion
+            },
+            success: function (resultado) {
+              window.location.href = "../Paginas/Usuarios.php";
+            }
+          });
+        });
+      });
+    </script>
+            
             <div class="modal fade" id="modalCrud" tabindex="-1" role="dialog" aria-labelledby="modal-register-label" aria-hidden="true">
                 <div class="modal-dialog">
                     <div class="modal-content">
@@ -142,28 +200,27 @@ class Usuarios extends Plantilla
                             <button type="button" class="btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
                         </div> 
                         <div class="modal-body">
-                            <form role="form" action="" method="post" class="registration-form">
+                            <form role="form" id="formEditar" class="registration-form">
                                 <div class="form-group">
-                                    <label class="sr-only" for="form-first-name">Nombre: </label>
-                                    <input type="text" name="form-first-name" placeholder="Nombre..." class="form-first-name form-control" id="form-first-name">
+                                    <label class="sr-only" for="form-first-name">Clave: </label>
+                                    <input type="text" name="claveE"  class="form-first-name form-control" id="claveE">
                                 </div>
                                 <br>
                                 <div class="form-group">
-                                    <label class="sr-only" for="form-last-name">Apellido: </label>
-                                    <input type="text" name="form-last-name" placeholder="Apellido..." class="form-last-name form-control" id="form-last-name">
+                                    <label class="sr-only" for="form-last-name">Email: </label>
+                                    <input type="text" name="emailE"  class="form-last-name form-control" id="emailE">
                                 </div>
                                 <br>
                                 <div class="form-group">
-                                    <label class="sr-only" for="form-email">Edad: </label>
-                                    <input type="text" name="form-email" placeholder="Edad..." class="form-email form-control" id="form-email">
+                                    <label class="sr-only" for="form-email">Teléfono: </label>
+                                    <input type="text" name="telefonoE" class="form-email form-control" id="telefonoE">
                                 </div>
                                 <br>
-                            
-                            </form>
-                        </div>
-                        <div class="modal-footer">
+                                <div class="modal-footer">
                             <input type="button" class="btn btn-warning" data-bs-dismiss="modal" aria-label="Close" value=" Cancelar ">
                             <input type="submit" class="btn btn-success" value=" Editar Usuario ">
+                        </div>
+                            </form>
                         </div>
                     </div>
                 </div>
@@ -197,7 +254,8 @@ class Usuarios extends Plantilla
                                 <div class="form-group">
                                     <label class="sr-only" for="form-email">Teléfono: </label>
                                     <input type="text" name="telefonoI" placeholder="Teléfono..." class="form-email form-control" id="form-email">
-                                </div>
+                                    <input type="hidden" name="opcion" value="1">
+                                    </div>
                                 <br>
                                 <div class="modal-footer">
                                 <input type="button" class="btn btn-warning" data-bs-dismiss="modal" aria-label="Close" value=" Cancelar ">

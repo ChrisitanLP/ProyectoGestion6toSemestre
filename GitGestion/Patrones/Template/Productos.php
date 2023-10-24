@@ -15,7 +15,7 @@ class Productos extends Plantilla
                     <!-- Cuenta-->      
                     <div class="avatar-dropdown" id="icon">
                         <span>'.$_SESSION['usuario'].'</span>
-                        <img src="Recursos/Imagenes/Logos/blanco.png">
+                        <img src="../Recursos/Imagenes/Logos/blanco.png">
                     </div>
         
                     <!-- Account dropdawn-->
