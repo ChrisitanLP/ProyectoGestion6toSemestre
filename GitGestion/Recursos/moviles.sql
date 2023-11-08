@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 21-10-2023 a las 07:24:45
+-- Tiempo de generación: 08-11-2023 a las 20:49:15
 -- Versión del servidor: 10.4.28-MariaDB
 -- Versión de PHP: 8.2.4
 
@@ -20,6 +20,45 @@ SET time_zone = "+00:00";
 --
 -- Base de datos: `moviles`
 --
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `carrito`
+--
+
+CREATE TABLE `carrito` (
+  `Cod_Car` int(11) NOT NULL,
+  `Usu_Car` varchar(50) NOT NULL,
+  `Pro_Car` varchar(50) NOT NULL,
+  `Pre_Car` double NOT NULL,
+  `Ima_Car` varchar(250) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `compras`
+--
+
+CREATE TABLE `compras` (
+  `Cod_Com` int(11) NOT NULL,
+  `Cli_Com` varchar(50) NOT NULL,
+  `Pre_Tot_Com` double NOT NULL,
+  `Fec_Com` date NOT NULL,
+  `Pro_Com` varchar(250) NOT NULL,
+  `Pre_Sub_Com` double NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Volcado de datos para la tabla `compras`
+--
+
+INSERT INTO `compras` (`Cod_Com`, `Cli_Com`, `Pre_Tot_Com`, `Fec_Com`, `Pro_Com`, `Pre_Sub_Com`) VALUES
+(3, 'dallin', 84.672, '2023-11-08', '[\"Pedro Ximenez\",\"u00d6u00f6\",\"Must Kuld\"]', 75.6),
+(4, 'dallin', 47.376, '2023-11-08', '[\"The Last Dark Dawn\",\"WITELA\"]', 42.3),
+(5, 'dallin', 52.752, '2023-11-08', '[\"Palo Cortado\",\"The Last Dark Dawn\"]', 47.1),
+(6, 'dallin', 95.088, '2023-11-08', '[\"Russian Imperial Stout\",\"WITELA\",\"NIGULA\",\"SUMARTu00cc\"]', 84.9);
 
 -- --------------------------------------------------------
 
@@ -85,14 +124,24 @@ CREATE TABLE `usuarios` (
 --
 
 INSERT INTO `usuarios` (`usuario`, `clave`, `email`, `telefono`, `rol`) VALUES
-('admin', 'admin', 'admin', 'admin', 'admin'),
-('dallin', 'dallin123', 'clopez6341@uta.edu.ec', '803536341', 'cliente'),
-('dallin2', 'dallin123', 'clopez6341@uta.edu.ec', '8035363410', 'cliente'),
-('sebastian', '1850876630', '465', 'uj', 'cliente');
+('dallin', 'dallin123', 'dallin@hotmail.com', '0985184605', 'cliente'),
+('admin', 'admin', 'admin@uta.edu.ec', '0985184705', 'admin');
 
 --
 -- Índices para tablas volcadas
 --
+
+--
+-- Indices de la tabla `carrito`
+--
+ALTER TABLE `carrito`
+  ADD PRIMARY KEY (`Cod_Car`);
+
+--
+-- Indices de la tabla `compras`
+--
+ALTER TABLE `compras`
+  ADD PRIMARY KEY (`Cod_Com`);
 
 --
 -- Indices de la tabla `productos`
@@ -103,6 +152,18 @@ ALTER TABLE `productos`
 --
 -- AUTO_INCREMENT de las tablas volcadas
 --
+
+--
+-- AUTO_INCREMENT de la tabla `carrito`
+--
+ALTER TABLE `carrito`
+  MODIFY `Cod_Car` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
+
+--
+-- AUTO_INCREMENT de la tabla `compras`
+--
+ALTER TABLE `compras`
+  MODIFY `Cod_Com` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT de la tabla `productos`
