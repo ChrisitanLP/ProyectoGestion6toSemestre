@@ -1,5 +1,5 @@
 <?php
-    include_once("Patrones/Singleton/Conexion.php");
+    include_once("../Patrones/Singleton/Conexion.php");
     include_once("Comando.php");
     class CarritoCommand implements Command{
         private $producto;
@@ -18,15 +18,9 @@
         {
             // Perform the action here, e.g., insert the data into the database
             $conexion = Conexion::getInstance() -> getConexion();
-            $consulta = "INSERT INTO carrito (comprador, producto, precio, imagen) VALUES (?, ?, ?, ?)";
+            $consulta = "INSERT INTO carrito (Usu_Car, Pro_Car, Pre_Car, Ima_Car) VALUES (?, ?, ?, ?)";
             $resultado = $conexion->prepare($consulta);
             $resultado->execute([$this->usuario, $this->producto, $this->precio, $this->foto]);
-
-            // Print the sent data
-            echo "<br>Datos enviados:<br>";
-            echo "Producto: " . $this->producto . "<br>";
-            echo "Precio: " . $this->precio . "<br>";
-            echo "Foto: " . $this->foto . "<br>";
         }
     }
 ?>
