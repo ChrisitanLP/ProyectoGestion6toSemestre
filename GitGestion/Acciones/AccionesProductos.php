@@ -73,7 +73,7 @@
                             <div class="imgOptions">
                                 <form action="'. $_SERVER['PHP_SELF'] .'" method="POST">
                                     <input type="hidden" name="producto_id" value="'.$respuesta['Cod_Pro'].'">
-                                    <button type="submit" name="agregarcarrito">
+                                    <button type="submit" name="agregarcarrito" class="botonCarrito">
                                         <img src="https://www.cervezaantares.com/assets/images/icons/shop-cart.svg" style="width: 24px;"/>
                                     </button>
                                 </form>
@@ -182,7 +182,9 @@
                         <td>
                             <form action="'. $_SERVER['PHP_SELF'] .'" method="POST">
                                 <input type="hidden" name="borrar" value="'. $resu['Cod_Car'] .'">
-                                <button type="submit" class="normal"><i class="far fa-times-circle"></i></button>
+                                <button type="submit" class="botonRemover">
+                                    <img src="../Recursos/Imagenes/Logos/x.png" style="width: 24px;"/>
+                                </button>
                             </form>
                         </td>
                         <td style="visibility:collapse; display:none;">' . $resu['Cod_Car'] . '</td>

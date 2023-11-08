@@ -22,6 +22,7 @@ class Servicio extends Plantilla
                         <a href="Servicio.php" class="nav-item nav-link active text-uppercase">Servicio</a>
                         <a href="Nosotros.php" class="nav-item nav-link text-uppercase">Nosotros</a>
                         <a href="Contacto.php" class="nav-item nav-link text-uppercase">Contacto</a>
+                        <a href="cerrar.php" class="nav-item nav-link text-uppercase"><i class="far fa-user"></i></a>
                     </div>
                 </div>
             </nav>

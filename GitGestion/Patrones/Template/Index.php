@@ -18,9 +18,10 @@ class Index extends Plantilla
                     <div class="navbar-nav ml-auto p-4">
                         <a href="index.php" class="nav-item nav-link active text-uppercase">Inicio</a>
                         <a href="Paginas/Tienda.php" class="nav-item nav-link text-uppercase">Tienda</a>
-                        <a href="Paginas/cerrar.php" class="nav-item nav-link text-uppercase">Servicio</a>
+                        <a href="Paginas/Servicio.php" class="nav-item nav-link text-uppercase">Servicio</a>
                         <a href="Paginas/Nosotros.php" class="nav-item nav-link text-uppercase">Nosotros</a>
                         <a href="Paginas/Contacto.php" class="nav-item nav-link text-uppercase">Contacto</a>
+                        <a href="Paginas/cerrar.php" class="nav-item nav-link text-uppercase"><i class="far fa-user"></i></a>
                     </div>
                 </div>
             </nav>

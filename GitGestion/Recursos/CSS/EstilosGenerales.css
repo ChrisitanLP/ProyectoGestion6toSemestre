@@ -3611,4 +3611,18 @@
     padding: 10px;
     font-size: 13px;
   }
+
+  .botonCarrito{
+    background: none;
+    background-color: transparent;
+    border: none;
+    border-style: none;
+  }
+
+  .botonRemover{
+    background: none;
+    background-color: transparent;
+    border: none;
+    border-style: none;
+  }
   
