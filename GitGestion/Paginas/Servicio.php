@@ -1,7 +1,7 @@
 <?php
     include_once("../Patrones/Template/Plantilla.php");
-    include_once("../Patrones/Template/Nosotros.php");
-    $Pagina = new Nosotros;
+    include_once("../Patrones/Template/Servicio.php");
+    $Pagina = new Servicio;
     $Pagina -> verificarSesionPaginas();
     $Pagina -> verificarTipoUsuario(FALSE,'../');
 ?>
@@ -9,7 +9,7 @@
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>Nosotros</title>
+        <title>Servicio</title>
         
         <link href="../Recursos/Imagenes/Logos/blanco.ico" rel="icon">
 
@@ -31,6 +31,7 @@
             $Pagina -> crearPagina();
         ?>                                               
         <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+        <script src="../Recursos/JS/Subtotal.js"></script>
         <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.bundle.min.js"></script>
     </body>
 </html>

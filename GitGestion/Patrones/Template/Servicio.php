@@ -1,7 +1,8 @@
 <?php
 include_once("Plantilla.php");
+include_once("../Acciones/AccionesProductos.php");
 
-class Contacto extends Plantilla
+class Servicio extends Plantilla
 {
     public function crearHeader()
     {
@@ -18,9 +19,9 @@ class Contacto extends Plantilla
                     <div class="navbar-nav ml-auto p-4">
                         <a href="../index.php" class="nav-item nav-link text-uppercase">Inicio</a>
                         <a href="Tienda.php" class="nav-item nav-link text-uppercase">Tienda</a>
-                        <a href="Servicio.php" class="nav-item nav-link text-uppercase">Servicio</a>
+                        <a href="Servicio.php" class="nav-item nav-link active text-uppercase">Servicio</a>
                         <a href="Nosotros.php" class="nav-item nav-link text-uppercase">Nosotros</a>
-                        <a href="Contacto.php" class="nav-item nav-link active text-uppercase">Contacto</a>
+                        <a href="Contacto.php" class="nav-item nav-link text-uppercase">Contacto</a>
                     </div>
                 </div>
             </nav>
@@ -30,79 +31,53 @@ class Contacto extends Plantilla
     public function crearMain()
     {
         echo '
-        <div class="contenedor-fluido page-header-Contact mb-5 position-relative overlay-bottom">
+        <div class="contenedor-fluido page-header mb-5 position-relative overlay-bottom">
             <div class="d-flex flex-column align-items-center justify-content-center pt-0 pt-lg-5" style="min-height: 400px">
-                <h1 class="display-4 mb-3 mt-0 mt-lg-5 text-white text-uppercase titleMain">Contacto</h1>
+                <h1 class="display-4 mb-3 mt-0 mt-lg-5 text-white text-uppercase titleMain">Servicio</h1>
                 <div class="d-inline-flex mb-lg-5">
                     <p class="m-0 text-white"><a class="text-white" href="../index.php">Inicio</a></p>
                     <p class="m-0 text-white px-2">/</p>
-                    <p class="m-0 text-white">Contacto</p>
+                    <p class="m-0 text-white">Servicio</p>
                 </div>
             </div>
         </div>
 
+        <section id="cart" class="section-p1">
+            <table width="100%">
+                <thead>
+                    <tr>
+                        <td class="text-primary">Foto</td>
+                        <td class="text-primary">Producto</td>
+                        <td class="text-primary">Precio</td>
+                        <td class="text-primary">Cantidad</td>
+                        <td class="text-primary">Subtotal</td>
+                        <td class="text-primary">Remover</td>
+                        <td style="visibility:collapse; display:none;">id</td>
+                    </tr>
+                </thead>
+                <tbody>
+                    '.Acciones::Carrito().'
+                </tbody>
+            </table>
+        </section>
+        
+        <div style="text-align: center; margin: 20px 0;">
+            <hr class="hr-primary" style="border: 1px solid #da9f5b; width: 80%; margin: 0 auto;">
+            <p style="font-size: 16px; color: #da9f5b; margin: 10px 0;"><strong>Nota:</strong> Las compras se hacen por Six Packs</p>
+            <hr class="hr-primary" style="border: 1px solid #da9f5b; width: 80%; margin: 0 auto;">
+        </div>
 
-        <div class="container-fluid pt-5">
-            <div class="container">
-                <div class="section-title">
-                    <h4 class="text-primary text-uppercase" style="letter-spacing: 5px;">Contactanos</h4>
-                    <h1 class="display-4 text-primary">Siéntase libre de contactarnos</h1>
-                </div>
-                <div class="row px-3 pb-2">
-                    <div class="col-sm-4 text-center mb-3">
-                        <i class="fa fa-2x fa-map-marker-alt mb-3 text-primary"></i>
-                        <h4 class="font-weight-bold text-primary" style="letter-spacing: 3px;">Dirección</h4>
-                        <p class="text-white">Av. Los Chasquis y Río Payamino</p>
-                    </div>
-                    <div class="col-sm-4 text-center mb-3">
-                        <i class="fa fa-2x fa-phone-alt mb-3 text-primary"></i>
-                        <h4 class="font-weight-bold text-primary" style="letter-spacing: 3px;">Telefono</h4>
-                        <p class="text-white">+593 985184705</p>
-                    </div>
-                    <div class="col-sm-4 text-center mb-3">
-                        <i class="far fa-2x fa-envelope mb-3 text-primary"></i>
-                        <h4 class="font-weight-bold text-primary" style="letter-spacing: 3px;">Email</h4>
-                        <p class="text-white">clopez6341@uta.edu.ec</p>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col-md-6">
-                        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d15955.453479846206!2d-78.63983555161404!3d-1.2536033270709372!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x91d381921177aed7%3A0x572fb57acb123a8a!2sAv.%20Los%20Shyris%2016-16%2C%20Ambato%20180202!5e0!3m2!1ses-419!2sec!4v1681778079811!5m2!1ses-419!2sec" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
-                    </div>
-                    <div class="col-md-5 pb-6" style="margin-left:4%;">
-                        <div class="contact-form">
-                            <div id="success"></div>
-                            <form name="sentMessage" id="contactForm" novalidate="novalidate">
-                                <div class="control-group">
-                                    <input type="text" class="form-control bg-transparent p-4" id="name" placeholder="Nombre..."
-                                        required="required" data-validation-required-message="Por favor ingrese su Nombre" />
-                                    <p class="help-block text-danger"></p>
-                                </div>
-                                <div class="control-group">
-                                    <input type="email" class="form-control bg-transparent p-4" id="email" placeholder="Email..."
-                                        required="required" data-validation-required-message="Por favor ingrese su Correo" />
-                                    <p class="help-block text-danger"></p>
-                                </div>
-                                <div class="control-group">
-                                    <input type="text" class="form-control bg-transparent p-4" id="subject" placeholder="Asunto..."
-                                        required="required" data-validation-required-message="Por facor ingrese el Asunto del mensaje" />
-                                    <p class="help-block text-danger"></p>
-                                </div>
-                                <div class="control-group">
-                                    <textarea class="form-control bg-transparent py-3 px-4" rows="5" id="message" placeholder="Mensaje..."
-                                        required="required"
-                                        data-validation-required-message="Por favor ingrese el Mensaje"></textarea>
-                                    <p class="help-block text-danger"></p>
-                                </div>
-                                <div>
-                                    <button class="btn btn-primary font-weight-bold py-3 px-6 text-white" type="submit" id="sendMessageButton">Enviar</button>
-                                </div>
-                            </form>
-                        </div>
-                    </div>
+        <section id="cart-add" class="section-p1">
+            <div id="coupon">
+                <h3>Aplicar Cupon</h3>
+                <div>
+                    <input type="text" placeholder="Ingresa tu cupon">
+                    <button class="btn btn-primary font-weight-bold">Aplicar</button>
                 </div>
             </div>
-        </div>
+            '.Acciones::Pago().'
+        </section>
+
         ';
                     
     }

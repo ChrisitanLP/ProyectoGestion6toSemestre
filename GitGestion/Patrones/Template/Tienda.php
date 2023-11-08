@@ -19,7 +19,7 @@ class Tienda extends Plantilla
                     <div class="navbar-nav ml-auto p-4">
                         <a href="../index.php" class="nav-item nav-link text-uppercase">Inicio</a>
                         <a href="Tienda.php" class="nav-item nav-link active text-uppercase">Tienda</a>
-                        <a href="Servicio.html" class="nav-item nav-link text-uppercase">Servicio</a>
+                        <a href="Servicio.php" class="nav-item nav-link text-uppercase">Servicio</a>
                         <a href="Nosotros.php" class="nav-item nav-link text-uppercase">Nosotros</a>
                         <a href="Contacto.php" class="nav-item nav-link text-uppercase">Contacto</a>
                     </div>
@@ -67,50 +67,6 @@ class Tienda extends Plantilla
         <div class="containerBeer mt-35">
             <div class="row mt-none-30">
                 '.Acciones::Mostrar().'
-            </div>
-        </div>
-        
-
-        <div class="modal fade" id="beerModal29" tabindex="-1" role="dialog" aria-labelledby="beerModalLabel" aria-hidden="true">
-            <div class="modal-dialog modalAlign" role="document" style="max-width: 604px;">
-                <div class="modal-content">
-                    <div class="beer-modal-main-container">
-                        <div class="fabric-modal-body" style="width: 604px; height: auto; flex-direction: row;">
-                            <div class="modalBeer">
-                                <img src="https://s3.amazonaws.com/testcontent.cervezaantares.com/IPA_01_5983fc1c2b.png" alt="" style="height: 163px;">
-                                <div class="d-flex mt-20">
-                                    <div class="d-flex flex-column align-items-center justify-content-between mr-30">
-                                                                            <h6 class="indicatorNumber">58</h6>
-                                                                        <span class="qualities">IBU</span>
-                                    </div>
-                                    <div class="d-flex flex-column align-items-center justify-content-between">
-                                        <h6 class="indicatorNumber">1060</h6>
-                                        <span class="qualities">0.G</span>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="beer-modal-description">
-                                <div class="closeContainer">
-                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                        <span aria-hidden="true">&times;</span>
-                                    </button>
-                                </div>
-                                <div class="section-heading modalType mr-30">
-                                    <span class="sub-title">Clásica</span>
-                                </div>
-                                <span class="beer-title mt-10" style="color: #151515;">IPA</span>
-                                <p>
-                                    Año 1870, de inglaterra a India. Una cerveza balanceada, delicada y refrescante, con sutiles sabores frutados y aroma cítrico. Un suave carácter a malta permanente como un dejo refrescante en el final. 
-                                    Hecha con lúpulos americanos. No se filtra, puede presentar una leve turbidez. 
-                                </p>
-                                <span class="enjoyBeer">¡Disfrutala en nuestros locales o comprala online!</span>
-                                <div class="d-flex justify-content-start mt-20">
-                                    <button class="site-btn letter-btn d-flex justify-content-center" style="width: 113px"><a class="linkOption" href="https://www.vinosyspirits.com/cervezas/linea.html">COMPRAR</a></button>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
             </div>
         </div>
         ';

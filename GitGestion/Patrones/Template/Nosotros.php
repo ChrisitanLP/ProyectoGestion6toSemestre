@@ -18,7 +18,7 @@ class Nosotros extends Plantilla
                     <div class="navbar-nav ml-auto p-4">
                         <a href="../index.php" class="nav-item nav-link text-uppercase">Inicio</a>
                         <a href="Tienda.php" class="nav-item nav-link text-uppercase">Tienda</a>
-                        <a href="Servicio.html" class="nav-item nav-link text-uppercase">Servicio</a>
+                        <a href="Servicio.php" class="nav-item nav-link text-uppercase">Servicio</a>
                         <a href="Nosotros.php" class="nav-item nav-link active text-uppercase">Nosotros</a>
                         <a href="Contacto.php" class="nav-item nav-link text-uppercase">Contacto</a>
                     </div>

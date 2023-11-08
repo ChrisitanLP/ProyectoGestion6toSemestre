@@ -21,7 +21,8 @@
         <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css" rel="stylesheet">
         
         <!-- Customized Bootstrap Stylesheet -->
-        <link href="../Recursos/CSS/Style.css" rel="stylesheet">
+        <link href="../Recursos/CSS/EstilosGenerales.css" rel="stylesheet">
+        <link href="../Recursos/CSS/Opciones.css" rel="stylesheet">
         <link href="../Recursos/CSS/EstilosTienda.css" rel="stylesheet">
     </head>
     <body>
