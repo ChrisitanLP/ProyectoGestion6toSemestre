@@ -10,29 +10,25 @@ class Admin extends Plantilla
             <header class="mdl-layout__header">
                 <div class="mdl-layout__header-row">
                     <div class="mdl-layout-spacer"></div>
-        
-                    <!-- Cuenta-->      
                     <div class="avatar-dropdown" id="icon">
-                        <span>'.$_SESSION['usuario'].'</span>
-                        <img src="Recursos/Imagenes/Logos/blanco.png">
+                        <span class="nombre-usuario">'.$_SESSION['usuario'].'</span>
+                        <img class="perfil-usuario"src="Recursos/Imagenes/Logos/user.png">
                     </div>
-        
                     <!-- Account dropdawn-->
                     <ul class="mdl-menu mdl-list mdl-menu--bottom-right mdl-js-menu mdl-js-ripple-effect mdl-shadow--2dp account-dropdown"
                         for="icon">
                         <li class="mdl-list__item mdl-list__item--two-line">
                             <span class="mdl-list__item-primary-content">
                                 <span class="material-icons mdl-list__item-avatar"></span>
-                            <span>'.$_SESSION['usuario'].'</span>
+                                <span>'.$_SESSION['usuario'].'</span>
                                 <span class="mdl-list__item-sub-title">'.$_SESSION['correo'].'</span>
                             </span>
                         </li>
-        
                         <li class="list__item--border-top"></li>
                         <a href="Paginas/cerrar.php">
                             <li class="mdl-menu__item mdl-list__item">
                                 <span class="mdl-list__item-primary-content">
-                                    <i class="material-icons mdl-list__item-icon">exit_to_app</i>
+                                    <i class="material-icons mdl-list__item-icon text-color--secondary">exit_to_app</i>
                                     Cerrar Sesión
                                 </span>
                             </li>
@@ -42,7 +38,9 @@ class Admin extends Plantilla
             </header>
 
             <div class="mdl-layout__drawer">
-                <header>Aesir</header>
+                <header>
+                    <img class="navlogo" src="Recursos/Imagenes/Logos/blanco.png">
+                </header>
                 <div class="scroll__wrapper" id="scroll__wrapper">
                     <div class="scroller" id="scroller">
                         <div class="scroll__container" id="scroll__container">
@@ -51,14 +49,30 @@ class Admin extends Plantilla
                                     <i class="material-icons" role="presentation">dashboard</i>
                                     Principal
                                 </a>
-                                <a class="mdl-navigation__link" href="Paginas/Usuarios.php">
+                                <a class="mdl-navigation__link" href="Paginas/Cuenta.php">
                                     <i class="material-icons" role="presentation">person</i>
-                                    Usuarios
+                                    Cuenta
                                 </a>
-                                <a class="mdl-navigation__link" href="Paginas/Productos.php">
-                                    <i class="material-icons" role="presentation">shopping_cart</i>
-                                    Productos
-                                </a>
+                                <div class="sub-navigation">
+                                    <a class="mdl-navigation__link">
+                                        <i class="material-icons">pages</i>
+                                        Paginas
+                                        <i class="material-icons" >keyboard_arrow_down</i>
+                                    </a>
+                                    <div class="mdl-navigation">
+                                        <a class="mdl-navigation__link" href="Paginas/Usuarios.php">
+                                            Usuarios
+                                        </a>
+                                        <a class="mdl-navigation__link" href="Paginas/Productos.php">
+                                            Productos
+                                        </a>
+                                        <a class="mdl-navigation__link" href="Paginas/Compras.php">
+                                            Compras
+                                        </a>
+                                    </div>
+                                </div>
+                                <div class="mdl-layout-spacer"></div>
+                                <hr>
                             </nav>
                         </div>
                     </div>
@@ -69,74 +83,97 @@ class Admin extends Plantilla
     }
     public function crearMain()
     {
-        echo '
-        
-            <main class="mdl-layout__content ">
-                <br>
-                <div class="mdl-grid ui-tables">
-                    <div class="mdl-cell mdl-cell--10-col-desktop mdl-cell--10-col-tablet mdl-cell--4-col-phone">
-                        <div class="mdl-card mdl-shadow--1dp">
-                            <div class="mdl-card__title">
-                                <h1 class="mdl-card__title-text">Tabla de Usuarioss&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</h1>
-                                    <button class="mdl-button button--colored-teal" id="agregar">
-                                        <i class="material-icons">add_box</i>
-                                        Agregar
-                                    </button> 
+        echo '   
+            <main class="mdl-layout__content">
+                <div class="mdl-grid mdl-grid--no-spacing dashboard">
+
+                    <div class="mdl-grid mdl-cell mdl-cell--9-col-desktop mdl-cell--12-col-tablet mdl-cell--4-col-phone mdl-cell--top">
+                        <!-- Pie chart-->
+                        <div class="mdl-cell mdl-cell--4-col-desktop mdl-cell--4-col-tablet mdl-cell--2-col-phone">
+                            <div class="mdl-card mdl-shadow--2dp pie-chart">
+                                <div class="mdl-card__title">
+                                    <h2 class="mdl-card__title-text">Soporte</h2>
+                                </div>
+                                <div class="mdl-card__supporting-text">
+                                    <div class="pie-chart__container">
+
+                                    </div>
+                                </div>
                             </div>
-                            <div class="mdl-card__supporting-text no-padding">
-                                <table class="mdl-data-table mdl-js-data-table">
-                                    <thead>
-                                    <tr>
-                                        <th class="mdl-data-table__select">ID</th>
-                                        <th class="mdl-data-table__cell--non-numeric">USUARIO</th>
-                                        <th class="mdl-data-table__cell--non-numeric">CLAVE</th>
-                                        <th class="mdl-data-table__cell--non-numeric">CORREO</th>
-                                        <th class="mdl-data-table__cell--non-numeric">TELEFONO</th>
-                                        <th class="mdl-data-table__select">ACCION</th>
-                                    </tr>
-                                    </thead>
-                                    <tbody>
-                                        
-                                    </tbody>
-                                </table>
+                        </div>
+
+                        <div class="result mdl-cell mdl-cell--4-col-desktop mdl-cell--4-col-tablet mdl-cell--2-col-phone fondo-clima"></div>
+
+                        <!-- Trending widget-->
+                        <div class="mdl-cell mdl-cell--4-col-desktop mdl-cell--4-col-tablet mdl-cell--2-col-phone">
+                            <div class="mdl-card mdl-shadow--2dp trending">
+                                <div class="mdl-card__title">
+                                    <h2 class="mdl-card__title-text">Información</h2>
+                                </div>
+                                <div class="mdl-card__supporting-text">
+                                    <ul class="mdl-list">
+                                        <li class="mdl-list__item">
+                                            <span class="mdl-list__item-primary-content list__item-text"># Usuarios</span>
+                                            <span class="mdl-list__item-secondary-content">
+                                                <i class="material-icons trending__arrow-up" role="presentation">&#xE5C7</i>
+                                            </span>
+                                            <span class="mdl-list__item-secondary-content trending__percent"></span>
+                                        </li>
+                                        <li class="mdl-list__item list__item--border-top">
+                                            <span class="mdl-list__item-primary-content list__item-text"># Productos</span>
+                                            <span class="mdl-list__item-secondary-content">
+                                                <i class="material-icons trending__arrow-up" role="presentation">&#xE5C7</i>
+                                            </span>
+                                            <span class="mdl-list__item-secondary-content trending__percent"></span>
+                                        </li>
+                                        <li class="mdl-list__item list__item--border-top">
+                                            <span class="mdl-list__item-primary-content list__item-text "># Compras</span>
+                                            <span class="mdl-list__item-secondary-content">
+                                                <i class="material-icons trending__arrow-up" role="presentation">&#xE5C7</i>
+                                            </span>
+                                            <span class="mdl-list__item-secondary-content trending__percent"></span>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Cotoneaster card-->
+                        <div class="mdl-cell mdl-cell--5-col-desktop mdl-cell--5-col-tablet mdl-cell--2-col-phone">
+                            <div class="mdl-card mdl-shadow--2dp cotoneaster">
+                                <div class="mdl-card__title mdl-card--expand">
+                                    <h2 class="mdl-card__title-text">Cervecería INTI</h2>
+                                </div>
+                                <div class="mdl-card__supporting-text">
+                                    <div>
+                                        Ser la cervecera artesanal preferida y reconocida en nuestra comunidad, ofreciendo cervezas únicas y de alta calidad que inspiren a nuestros clientes a apreciar la artesanía cervecera y a compartir momentos inolvidables con amigos y familia.
+                                    </div>
+                                    <a href="Index.php" target="_blank">Ver Página</a>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- ToDo_widget-->
+                        <div class="mdl-cell mdl-cell--12-col-desktop mdl-cell--6-col-tablet mdl-cell--2-col-phone">
+                            <div class="mdl-card mdl-shadow--2dp todo">
+                                <div class="mdl-card__title">
+                                    <h2 class="mdl-card__title-text">Lista Actividades</h2>
+                                </div>
+                                <div class="mdl-card__supporting-text">
+                                    <ul class="mdl-list">
+
+                                    </ul>
+                                </div>
+                                <div class="mdl-card__actions">
+                                    <button class="mdl-button mdl-js-button mdl-js-ripple-effect">Eliminar Actividad</button>
+                                    <button class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--fab mdl-shadow--8dp mdl-button--colored ">
+                                        <i class="material-icons mdl-js-ripple-effect">add</i>
+                                    </button>
+                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
-                <br><br>
-                <div class="mdl-grid ui-tables">
-                    <div class="mdl-cell mdl-cell--10-col-desktop mdl-cell--10-col-tablet mdl-cell--4-col-phone">
-                        <div class="mdl-card mdl-shadow--1dp">
-                            <div class="mdl-card__title">
-                                <h1 class="mdl-card__title-text">Tabla de Productoss&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</h1>
-                                    <button class="mdl-button button--colored-teal" id="agregar">
-                                        <i class="material-icons">add_box</i>
-                                        Agregar
-                                    </button> 
-                            </div>
-                            <div class="mdl-card__supporting-text no-padding">
-                                <table class="mdl-data-table mdl-js-data-table">
-                                    <thead>
-                                    <tr>
-                                        <th class="mdl-data-table__select">ID</th>
-                                        <th class="mdl-data-table__cell--non-numeric">PRODUCTO</th>
-                                        <th class="mdl-data-table__cell--non-numeric">MARCA</th>
-                                        <th class="mdl-data-table__cell--non-numeric">GRADO ALCOHOL</th>
-                                        <th class="mdl-data-table__cell--non-numeric">IBU</th>
-                                        <th class="mdl-data-table__cell--non-numeric">INGREDIENTES</th>
-                                        <th class="mdl-data-table__cell--non-numeric">PRECIO</th>
-                                        <th class="mdl-data-table__select">ACCION</th>
-                                    </tr>
-                                    </thead>
-                                    <tbody>
-                                        
-                                    </tbody>
-                                </table>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <br><br>
             </main>
         </div>
         ';    
@@ -144,103 +181,6 @@ class Admin extends Plantilla
     public function crearFooter()
     {
         echo '
-            <!-- MODAL -->
-            <div class="modal fade" id="modalCrudEliminar" tabindex="-1" role="dialog" aria-labelledby="modal-register-label" aria-hidden="true">
-                <div class="modal-dialog">
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <h3 class="modal-title" id="modal-register-label">Eliminar Usuario</h3>
-                            <p class="modal">Edite los datos del Usuario:</p>
-                            <button type="button" class="btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
-                        </div> 
-                        <div class="modal-body">     
-                            <p class="text-white">¿Está seguro de que desea eliminar el Usuario?</p>
-                            <p class="text-danger"><small>Esta acción no se puede deshacer.</small></p>
-                        </div>
-                        <div class="modal-footer">
-                            <input type="button" class="btn btn-warning" data-bs-dismiss="modal" aria-label="Close" value=" Cancelar ">
-                            <input type="submit" class="btn btn-danger" value=" Eliminar Usuario ">
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <div class="modal fade" id="modalCrud" tabindex="-1" role="dialog" aria-labelledby="modal-register-label" aria-hidden="true">
-                <div class="modal-dialog">
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <h3 class="modal-title" id="modal-register-label">Editar Usuario</h3>
-                            <p class="modal">Edite los datos del Usuario:</p>
-                            <button type="button" class="btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
-                        </div> 
-                        <div class="modal-body">
-                            <form role="form" action="" method="post" class="registration-form">
-                                <div class="form-group">
-                                    <label class="sr-only" for="form-first-name">Nombre: </label>
-                                    <input type="text" name="form-first-name" placeholder="Nombre..." class="form-first-name form-control" id="form-first-name">
-                                </div>
-                                <br>
-                                <div class="form-group">
-                                    <label class="sr-only" for="form-last-name">Apellido: </label>
-                                    <input type="text" name="form-last-name" placeholder="Apellido..." class="form-last-name form-control" id="form-last-name">
-                                </div>
-                                <br>
-                                <div class="form-group">
-                                    <label class="sr-only" for="form-email">Edad: </label>
-                                    <input type="text" name="form-email" placeholder="Edad..." class="form-email form-control" id="form-email">
-                                </div>
-                                <br>
-                            
-                            </form>
-                        </div>
-                        <div class="modal-footer">
-                            <input type="button" class="btn btn-warning" data-bs-dismiss="modal" aria-label="Close" value=" Cancelar ">
-                            <input type="submit" class="btn btn-success" value=" Editar Usuario ">
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <div class="modal fade" id="modalCrudAgregar" tabindex="-1" role="dialog" aria-labelledby="modal-register-label" aria-hidden="true">
-                <div class="modal-dialog">
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <h3 class="modal-title" id="modal-register-label">Agregar Usuario</h3>
-                            <p class="modal">Ingrese los datos del Usuario:</p>
-                            <button type="button" class="btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
-                        </div> 
-                        <div class="modal-body">
-                            <form role="form" action="" method="post" class="registration-form">
-                                <div class="form-group">
-                                    <label class="sr-only" for="form-first-name">Cedula: </label>
-                                    <input type="text" name="form-first-name" placeholder="Cedula..." class="form-first-name form-control" id="form-first-name">
-                                </div>
-                                <br>
-                                <div class="form-group">
-                                    <label class="sr-only" for="form-first-name">Nombre: </label>
-                                    <input type="text" name="form-first-name" placeholder="Nombre..." class="form-first-name form-control" id="form-first-name">
-                                </div>
-                                <br>
-                                <div class="form-group">
-                                    <label class="sr-only" for="form-last-name">Apellido: </label>
-                                    <input type="text" name="form-last-name" placeholder="Apellido..." class="form-last-name form-control" id="form-last-name">
-                                </div>
-                                <br>
-                                <div class="form-group">
-                                    <label class="sr-only" for="form-email">Edad: </label>
-                                    <input type="text" name="form-email" placeholder="Edad..." class="form-email form-control" id="form-email">
-                                </div>
-                                <br>
-                            
-                            </form>
-                        </div>
-                        <div class="modal-footer">
-                            <input type="button" class="btn btn-warning" data-bs-dismiss="modal" aria-label="Close" value=" Cancelar ">
-                            <input type="submit" class="btn btn-success" value=" Agregar Usuario ">
-                        </div>
-                    </div>
-                </div>
-            </div>
         ';
     }
 }
