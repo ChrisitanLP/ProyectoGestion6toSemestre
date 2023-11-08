@@ -26,7 +26,8 @@
 
         
         <!-- Customized Bootstrap Stylesheet -->
-        <link href="Recursos/CSS/Style.css" rel="stylesheet">
+        <link href="Recursos/CSS/EstilosGenerales.css" rel="stylesheet">
+        <link href="Recursos/CSS/Opciones.css" rel="stylesheet">
         <link href="Recursos/CSS/EstilosCarrusel.css" rel="stylesheet">
         <link href="Recursos/CSS/EstilosTienda.css" rel="stylesheet">
     </head>
