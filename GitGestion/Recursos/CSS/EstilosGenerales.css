@@ -3307,7 +3307,7 @@
   }
   
   .navlogo{
-    width: 40%;
+    width: 35%;
   } 
 
   @keyframes action {
@@ -3319,13 +3319,136 @@
     }
   }
   
+  /* GOTOP */
+ 
+.go-top-container {
+  position: fixed;
+  bottom: 3rem;
+  right: 3rem;
+  width: 1.2rem;
+  height: 1.2rem;
+  z-index: -1;
+}
+
+.go-top-button {
+  width: 0rem;
+  height: 0rem;
+  background: #da9f5b;
+  border-radius: 5%;
+  cursor: pointer;
+  transition: 0.2s;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: -1;
+}
+
+.go-top-button i {
+  position: absolute;
+  font-size: 1.2rem;
+  top: 48%;
+  left: 50%;
+  transform: translate(-50%, -50%) scale(0);
+  color: #fff;
+  transition: 0.2s;
+}
+
+.show {
+  z-index: 10;
+}
+
+.show .go-top-button {
+  animation: popup 0.3s ease-in-out;
+  width: 3.2rem;
+  height: 3.2rem;
+  z-index: 10;
+}
+
+.show i {
+  transform: translate(-50%, -50%) scale(1);
+}
+
+@keyframes popup {
+  0% {
+      width: 0;
+      height: 0;
+  }
+  50% {
+      width: 6rem;
+      height: 6rem;
+  }
+  100% {
+      width: 4.4rem;
+      height: 4.4rem;
+  }
+}
+
   .contenedor-fluido.nav-bar, .nav-bar.container-sm, .nav-bar.container-md, .nav-bar.container-lg, .nav-bar.container-xl {
     position: absolute;
     z-index: 9;
   }
+
+  .nav-item.nav-link .badge {
+    background-color: #ff0000;
+    color: #fff;
+    border-radius: 50%; /* Hace que el borde sea circular */
+    padding: 1px 6px; /* Ajusta el relleno según sea necesario */
+}
+
+  .container-contact {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
   
   @media (max-width: 991.98px) {
-    .contenedor-fluido.nav-bar, .nav-bar.container-sm, .nav-bar.container-md, .nav-bar.container-lg, .nav-bar.container-xl {
+    .container{
+      width: 100%;
+      padding-left: 10%;
+      padding-right: 10%;
+    }
+
+    .container-contact {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .navbar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between; /* Añadido para separar los elementos en la fila */
+    }
+
+    .footer{
+      width: 100%;
+      padding-left: 10%;
+      padding-right: 10%;
+    }
+
+    .navbar-brand {
+      padding-top: 0.3125rem;
+      padding-bottom: 0.3125rem;
+      margin-right: 1rem;
+    }
+
+    .navlogo{
+      display: flex;
+      width: 22%;
+      height: 20%;
+    }
+
+    .carousel{
+      width: 100%;
+      height: 80%;
+    }
+
+    .contenedor-fluido.nav-bar, 
+    .nav-bar.container-sm, 
+    .nav-bar.container-md, 
+    .nav-bar.container-lg, 
+    .nav-bar.container-xl {
       position: relative;
       background: #000;
     }

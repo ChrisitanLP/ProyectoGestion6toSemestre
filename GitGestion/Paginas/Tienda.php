@@ -34,6 +34,7 @@
         <script src="../Recursos/JS/Librerias/JqueryLib.js"></script>
 
         <script src="../Recursos/JS/Filtro.js"></script>  
+        <script src="../Recursos/JS/Scroll.js"></script>
         <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
         <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.bundle.min.js"></script>
     </body>

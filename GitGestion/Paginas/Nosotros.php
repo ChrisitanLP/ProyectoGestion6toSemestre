@@ -29,7 +29,8 @@
     <body>
         <?php
             $Pagina -> crearPagina();
-        ?>                                               
+        ?>            
+        <script src="../Recursos/JS/Scroll.js"></script>                                   
         <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
         <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.bundle.min.js"></script>
     </body>
