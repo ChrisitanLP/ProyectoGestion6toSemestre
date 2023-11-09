@@ -1,16 +1,27 @@
 <?php
 include_once("Plantilla.php");
 include_once("../Acciones/AccionesProductos.php");
+include_once("../Patrones/Singleton/Conexion.php");
 
 class Tienda extends Plantilla
 {
     public function crearHeader()
     {
+        $usuario = $_SESSION["usuario"];
+        $conexion = Conexion::getInstance() -> getConexion();
+
+        $consulta = "SELECT COUNT(*) as total FROM carrito WHERE Usu_Car = :usuario";
+        $resultado = $conexion->prepare($consulta);
+        $resultado->bindParam(':usuario', $usuario, PDO::PARAM_STR);
+        $resultado->execute();
+        $row = $resultado->fetch(PDO::FETCH_ASSOC);
+        $cantidadProductos = $row['total'];
+
         echo '
         <div class="contenedor-fluido p-0 nav-bar">
             <nav class="navbar navbar-expand-lg bg-none navbar-dark py-3">
-                <a href="index.html" class="navbar-brand px-lg-4 m-0">
-                    <img class="navlogo" src="../Recursos/Imagenes/Logos/blanco.png">
+                <a href="../index.php" class="navbar-brand px-lg-4 m-0">
+                    <span class="m-0 display-3 text-uppercase text-white"><img class="navlogo" src="../Recursos/Imagenes/Logos/blanco.png"></span>
                 </a>
                 <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#navbarCollapse">
                     <span class="navbar-toggler-icon"></span>
@@ -19,9 +30,13 @@ class Tienda extends Plantilla
                     <div class="navbar-nav ml-auto p-4">
                         <a href="../index.php" class="nav-item nav-link text-uppercase">Inicio</a>
                         <a href="Tienda.php" class="nav-item nav-link active text-uppercase">Tienda</a>
-                        <a href="Servicio.html" class="nav-item nav-link text-uppercase">Servicio</a>
                         <a href="Nosotros.php" class="nav-item nav-link text-uppercase">Nosotros</a>
                         <a href="Contacto.php" class="nav-item nav-link text-uppercase">Contacto</a>
+                        <a href="Servicio.php" class="nav-item nav-link text-uppercase">
+                            <i class="fas fa-shopping-cart"></i>
+                            <span class="badge">' . $cantidadProductos . '</span>
+                        </a>
+                        <a href="cerrar.php" class="nav-item nav-link text-uppercase"><i class="far fa-user"></i></a>
                     </div>
                 </div>
             </nav>
@@ -31,6 +46,12 @@ class Tienda extends Plantilla
     public function crearMain()
     {
         echo '
+        <div class="go-top-container">
+            <div class="go-top-button">
+                <i class="fas fa-chevron-up"></i>
+            </div>
+        </div>
+
         <div class="contenedor-fluido page-headerBeer mb-5 position-relative overlay-bottom">
             <div class="d-flex flex-column align-items-center justify-content-center pt-0 pt-lg-5" style="min-height: 400px">
                 <h1 class="display-4 mb-3 mt-0 mt-lg-5 text-white text-uppercase titleMain">Tienda</h1>
@@ -67,50 +88,6 @@ class Tienda extends Plantilla
         <div class="containerBeer mt-35">
             <div class="row mt-none-30">
                 '.Acciones::Mostrar().'
-            </div>
-        </div>
-        
-
-        <div class="modal fade" id="beerModal29" tabindex="-1" role="dialog" aria-labelledby="beerModalLabel" aria-hidden="true">
-            <div class="modal-dialog modalAlign" role="document" style="max-width: 604px;">
-                <div class="modal-content">
-                    <div class="beer-modal-main-container">
-                        <div class="fabric-modal-body" style="width: 604px; height: auto; flex-direction: row;">
-                            <div class="modalBeer">
-                                <img src="https://s3.amazonaws.com/testcontent.cervezaantares.com/IPA_01_5983fc1c2b.png" alt="" style="height: 163px;">
-                                <div class="d-flex mt-20">
-                                    <div class="d-flex flex-column align-items-center justify-content-between mr-30">
-                                                                            <h6 class="indicatorNumber">58</h6>
-                                                                        <span class="qualities">IBU</span>
-                                    </div>
-                                    <div class="d-flex flex-column align-items-center justify-content-between">
-                                        <h6 class="indicatorNumber">1060</h6>
-                                        <span class="qualities">0.G</span>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="beer-modal-description">
-                                <div class="closeContainer">
-                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                        <span aria-hidden="true">&times;</span>
-                                    </button>
-                                </div>
-                                <div class="section-heading modalType mr-30">
-                                    <span class="sub-title">Clásica</span>
-                                </div>
-                                <span class="beer-title mt-10" style="color: #151515;">IPA</span>
-                                <p>
-                                    Año 1870, de inglaterra a India. Una cerveza balanceada, delicada y refrescante, con sutiles sabores frutados y aroma cítrico. Un suave carácter a malta permanente como un dejo refrescante en el final. 
-                                    Hecha con lúpulos americanos. No se filtra, puede presentar una leve turbidez. 
-                                </p>
-                                <span class="enjoyBeer">¡Disfrutala en nuestros locales o comprala online!</span>
-                                <div class="d-flex justify-content-start mt-20">
-                                    <button class="site-btn letter-btn d-flex justify-content-center" style="width: 113px"><a class="linkOption" href="https://www.vinosyspirits.com/cervezas/linea.html">COMPRAR</a></button>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
             </div>
         </div>
         ';

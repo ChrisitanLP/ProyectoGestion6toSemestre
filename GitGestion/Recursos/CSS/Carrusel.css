@@ -1,0 +1,34 @@
+.testimonial-carousel {
+    display: flex;
+    flex-wrap: nowrap;
+    overflow-x: auto;
+    scrollbar-width: thin;
+    scrollbar-color: #007bff transparent;
+}
+
+.testimonial-item {
+    background-color: #007bff;
+    color: #fff;
+    padding: 20px;
+    border-radius: 10px;
+    margin-right: 15px;
+    width: 300px; /* Ajusta el ancho según sea necesario */
+}
+
+.testimonial-item img {
+    width: 50px; /* Ajusta el tamaño de la imagen según sea necesario */
+    border-radius: 50%;
+}
+
+.testimonial-item h4 {
+    margin-bottom: 5px;
+}
+
+.testimonial-item i {
+    color: #f8f9fa; /* Cambia el color del texto de la profesión si es necesario */
+}
+
+.testimonial-item p {
+    margin-top: 15px;
+    font-size: 14px;
+}

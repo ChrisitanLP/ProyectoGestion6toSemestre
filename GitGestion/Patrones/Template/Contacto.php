@@ -1,15 +1,26 @@
 <?php
 include_once("Plantilla.php");
+include_once("../Patrones/Singleton/Conexion.php");
 
 class Contacto extends Plantilla
 {
     public function crearHeader()
     {
+        $usuario = $_SESSION["usuario"];
+        $conexion = Conexion::getInstance() -> getConexion();
+
+        $consulta = "SELECT COUNT(*) as total FROM carrito WHERE Usu_Car = :usuario";
+        $resultado = $conexion->prepare($consulta);
+        $resultado->bindParam(':usuario', $usuario, PDO::PARAM_STR);
+        $resultado->execute();
+        $row = $resultado->fetch(PDO::FETCH_ASSOC);
+        $cantidadProductos = $row['total'];
+
         echo '
         <div class="contenedor-fluido p-0 nav-bar">
             <nav class="navbar navbar-expand-lg bg-none navbar-dark py-3">
-                <a href="index.html" class="navbar-brand px-lg-4 m-0">
-                    <img class="navlogo" src="../Recursos/Imagenes/Logos/blanco.png">
+                <a href="../index.php" class="navbar-brand px-lg-4 m-0">
+                    <span class="m-0 display-3 text-uppercase text-white"><img class="navlogo" src="../Recursos/Imagenes/Logos/blanco.png"></span>
                 </a>
                 <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#navbarCollapse">
                     <span class="navbar-toggler-icon"></span>
@@ -18,9 +29,13 @@ class Contacto extends Plantilla
                     <div class="navbar-nav ml-auto p-4">
                         <a href="../index.php" class="nav-item nav-link text-uppercase">Inicio</a>
                         <a href="Tienda.php" class="nav-item nav-link text-uppercase">Tienda</a>
-                        <a href="Servicio.html" class="nav-item nav-link text-uppercase">Servicio</a>
                         <a href="Nosotros.php" class="nav-item nav-link text-uppercase">Nosotros</a>
                         <a href="Contacto.php" class="nav-item nav-link active text-uppercase">Contacto</a>
+                        <a href="Servicio.php" class="nav-item nav-link text-uppercase">
+                            <i class="fas fa-shopping-cart"></i>
+                            <span class="badge">' . $cantidadProductos . '</span>
+                        </a>
+                        <a href="cerrar.php" class="nav-item nav-link text-uppercase"><i class="far fa-user"></i></a>
                     </div>
                 </div>
             </nav>
@@ -30,6 +45,12 @@ class Contacto extends Plantilla
     public function crearMain()
     {
         echo '
+        <div class="go-top-container">
+            <div class="go-top-button">
+                <i class="fas fa-chevron-up"></i>
+            </div>
+        </div>
+
         <div class="contenedor-fluido page-header-Contact mb-5 position-relative overlay-bottom">
             <div class="d-flex flex-column align-items-center justify-content-center pt-0 pt-lg-5" style="min-height: 400px">
                 <h1 class="display-4 mb-3 mt-0 mt-lg-5 text-white text-uppercase titleMain">Contacto</h1>
@@ -67,35 +88,35 @@ class Contacto extends Plantilla
                 </div>
                 <div class="row">
                     <div class="col-md-6">
-                        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d15955.453479846206!2d-78.63983555161404!3d-1.2536033270709372!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x91d381921177aed7%3A0x572fb57acb123a8a!2sAv.%20Los%20Shyris%2016-16%2C%20Ambato%20180202!5e0!3m2!1ses-419!2sec!4v1681778079811!5m2!1ses-419!2sec" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+                        <iframe style="width: 100%; height: 443px;" src="https://www.google.com/maps/place/Avenida+Gonzalo+D%C3%A1valos+%26+Avenida+La+Prensa,+Riobamba/@-1.6562941,-78.6597947,1126m/data=!3m2!1e3!4b1!4m6!3m5!1s0x91d307f6222a0d31:0x264957ddcdb51073!8m2!3d-1.6562941!4d-78.6572198!16s%2Fg%2F11ljmmxzqm?hl=es-419&entry=ttu" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>   
                     </div>
-                    <div class="col-md-5 pb-6" style="margin-left:4%;">
+                    <div class="col-md-6 pb-5">
                         <div class="contact-form">
                             <div id="success"></div>
                             <form name="sentMessage" id="contactForm" novalidate="novalidate">
                                 <div class="control-group">
-                                    <input type="text" class="form-control bg-transparent p-4" id="name" placeholder="Nombre..."
-                                        required="required" data-validation-required-message="Por favor ingrese su Nombre" />
+                                    <input type="text" class="text-primary form-control bg-transparent p-4" id="name" placeholder="Usuario..."
+                                        required="required" data-validation-required-message="Ingresa tu Usuario" />
                                     <p class="help-block text-danger"></p>
                                 </div>
                                 <div class="control-group">
-                                    <input type="email" class="form-control bg-transparent p-4" id="email" placeholder="Email..."
-                                        required="required" data-validation-required-message="Por favor ingrese su Correo" />
+                                    <input type="email" class="text-primary form-control bg-transparent p-4" id="email" placeholder="Email..."
+                                        required="required" data-validation-required-message="Ingresa tu Email" />
                                     <p class="help-block text-danger"></p>
                                 </div>
                                 <div class="control-group">
-                                    <input type="text" class="form-control bg-transparent p-4" id="subject" placeholder="Asunto..."
-                                        required="required" data-validation-required-message="Por facor ingrese el Asunto del mensaje" />
+                                    <input type="text" class="text-primary form-control bg-transparent p-4" id="subject" placeholder="Motivo..."
+                                        required="required" data-validation-required-message="Ingresa tu Motivo" />
                                     <p class="help-block text-danger"></p>
                                 </div>
                                 <div class="control-group">
-                                    <textarea class="form-control bg-transparent py-3 px-4" rows="5" id="message" placeholder="Mensaje..."
+                                    <textarea class="text-primary form-control bg-transparent py-3 px-4" rows="5" id="message" placeholder="Mensaje..."
                                         required="required"
-                                        data-validation-required-message="Por favor ingrese el Mensaje"></textarea>
+                                        data-validation-required-message="Ingresa tu Mensaje"></textarea>
                                     <p class="help-block text-danger"></p>
                                 </div>
-                                <div>
-                                    <button class="btn btn-primary font-weight-bold py-3 px-6 text-white" type="submit" id="sendMessageButton">Enviar</button>
+                                <div class="container-contact">
+                                    <button class="btn btn-primary btn-contact text-white font-weight-bold py-3 px-5" type="submit" id="sendMessageButton">Enviar Mensaje</button>
                                 </div>
                             </form>
                         </div>

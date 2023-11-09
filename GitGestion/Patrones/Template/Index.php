@@ -1,15 +1,26 @@
 <?php
 include_once("Plantilla.php");
+include_once("Patrones/Singleton/Conexion.php");
 
 class Index extends Plantilla
 {
     public function crearHeader()
     {
+        $usuario = $_SESSION["usuario"];
+        $conexion = Conexion::getInstance() -> getConexion();
+
+        $consulta = "SELECT COUNT(*) as total FROM carrito WHERE Usu_Car = :usuario";
+        $resultado = $conexion->prepare($consulta);
+        $resultado->bindParam(':usuario', $usuario, PDO::PARAM_STR);
+        $resultado->execute();
+        $row = $resultado->fetch(PDO::FETCH_ASSOC);
+        $cantidadProductos = $row['total'];
+
         echo '
         <div class="contenedor-fluido p-0 nav-bar">
             <nav class="navbar navbar-expand-lg bg-none navbar-dark py-3">
-                <a href="index.html" class="navbar-brand px-lg-4 m-0">
-                    <img class="navlogo" src="Recursos/Imagenes/Logos/blanco.png">
+                <a href="index.php" class="navbar-brand px-lg-4 m-0">
+                    <span class="m-0 display-3 text-uppercase text-white"><img class="navlogo" src="Recursos/Imagenes/Logos/blanco.png"></span>
                 </a>
                 <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#navbarCollapse">
                     <span class="navbar-toggler-icon"></span>
@@ -18,9 +29,13 @@ class Index extends Plantilla
                     <div class="navbar-nav ml-auto p-4">
                         <a href="index.php" class="nav-item nav-link active text-uppercase">Inicio</a>
                         <a href="Paginas/Tienda.php" class="nav-item nav-link text-uppercase">Tienda</a>
-                        <a href="Paginas/cerrar.php" class="nav-item nav-link text-uppercase">Servicio</a>
                         <a href="Paginas/Nosotros.php" class="nav-item nav-link text-uppercase">Nosotros</a>
                         <a href="Paginas/Contacto.php" class="nav-item nav-link text-uppercase">Contacto</a>
+                        <a href="Paginas/Servicio.php" class="nav-item nav-link text-uppercase">
+                            <i class="fas fa-shopping-cart"></i>
+                            <span class="badge">' . $cantidadProductos . '</span>
+                        </a>
+                        <a href="Paginas/cerrar.php" class="nav-item nav-link text-uppercase"><i class="far fa-user"></i></a>
                     </div>
                 </div>
             </nav>
@@ -30,8 +45,14 @@ class Index extends Plantilla
     public function crearMain()
     {
         echo '
+        <div class="go-top-container">
+            <div class="go-top-button">
+                <i class="fas fa-chevron-up"></i>
+            </div>
+        </div>
+
         <!-- Carousel Start -->
-        <div class="container-fluid p-0 mb-5">
+        <div class="contenedor-fluido p-0 mb-5">
             <div id="blog-carousel" class="carousel slide overlay-bottom" data-ride="carousel">
                 <div class="carousel-inner">
                     <div class="carousel-item active">
@@ -99,17 +120,7 @@ class Index extends Plantilla
                 <div class="owl-carousel testimonial-carousel">
                     <div class="testimonial-item">
                         <div class="d-flex align-items-center mb-3">
-                            <img class="img-fluid" src="img/testimonial-1.jpg" alt="">
-                            <div class="ml-3">
-                                <h4>Client Name</h4>
-                                <i>Profession</i>
-                            </div>
-                        </div>
-                        <p class="m-0 text-white">Sed ea amet kasd elitr stet, stet rebum et ipsum est duo elitr eirmod clita lorem. Dolor tempor ipsum sanct clita</p>
-                    </div>
-                    <div class="testimonial-item">
-                        <div class="d-flex align-items-center mb-3">
-                            <img class="img-fluid" src="Recursos/Imagenes/Logos/blanco.png" alt="">
+                            <img class="img-fluid" src="Recursos/Imagenes/Logos/user.png" alt="">
                             <div class="ml-3">
                                 <h4>Client Name</h4>
                                 <i>Profession</i>
@@ -119,7 +130,7 @@ class Index extends Plantilla
                     </div>
                     <div class="testimonial-item">
                         <div class="d-flex align-items-center mb-3">
-                            <img class="img-fluid" src="img/testimonial-3.jpg" alt="">
+                            <img class="img-fluid" src="Recursos/Imagenes/Logos/user.png" alt="">
                             <div class="ml-3">
                                 <h4>Client Name</h4>
                                 <i>Profession</i>
@@ -129,7 +140,17 @@ class Index extends Plantilla
                     </div>
                     <div class="testimonial-item">
                         <div class="d-flex align-items-center mb-3">
-                            <img class="img-fluid" src="img/testimonial-4.jpg" alt="">
+                            <img class="img-fluid" src="Recursos/Imagenes/Logos/user.png" alt="">
+                            <div class="ml-3">
+                                <h4>Client Name</h4>
+                                <i>Profession</i>
+                            </div>
+                        </div>
+                        <p class="m-0">Sed ea amet kasd elitr stet, stet rebum et ipsum est duo elitr eirmod clita lorem. Dolor tempor ipsum sanct clita</p>
+                    </div>
+                    <div class="testimonial-item">
+                        <div class="d-flex align-items-center mb-3">
+                            <img class="img-fluid" src="Recursos/Imagenes/Logos/user.png" alt="">
                             <div class="ml-3">
                                 <h4>Client Name</h4>
                                 <i>Profession</i>
@@ -197,5 +218,6 @@ class Index extends Plantilla
         <a href="#" class="btn btn-lg btn-primary btn-lg-square back-to-top"><i class="fa fa-angle-double-up"></i></a>
         ';
     }
+
 }
 ?>

@@ -25,6 +25,43 @@ class Acciones
                         <td class="mdl-data-table__cell--non-numeric">' . $respuesta['clave'] . '</td>
                         <td class="mdl-data-table__cell--non-numeric">' . $respuesta['email'] . '</td>
                         <td class="mdl-data-table__cell--non-numeric">' . $respuesta['telefono'] . '</td>
+                        <td class="mdl-data-table__cell--non-numeric">' . $respuesta['rol'] . '</td>
+                        <td class="mdl-data-table__cell">
+                            <center>
+                                <button class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect button--colored-teal editar">
+                                    <i class="material-icons">create</i>Editar</button>
+                                <button class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect button--colored-red eliminar" >
+                                    <i class="material-icons">cancel</i>Eliminar
+                                </button>
+                            </center>
+                        </td>
+                    </tr>
+                ';
+        }
+        return $informacion;
+    }
+
+    public static function MostrarCompras()
+    {
+
+        $conexion = Conexion::getInstance()->getConexion();
+        $consulta = "SELECT * FROM compras";
+        $resultado = $conexion->prepare($consulta);
+        $resultado->execute();
+        $dato = $resultado->fetchAll(PDO::FETCH_ASSOC);
+
+        $acum = 1;
+        $informacion = '';
+
+        foreach ($dato as $respuesta) {
+            $informacion .= '
+                    <tr>
+                        <td class="mdl-data-table__cell--non-numeric">' . $respuesta['Cod_Com'] . '</td>
+                        <td class="mdl-data-table__cell--non-numeric">' . $respuesta['Cli_Com'] . '</td>
+                        <td class="mdl-data-table__cell--non-numeric">' . $respuesta['Pre_Sub_Com'] . '</td>
+                        <td class="mdl-data-table__cell--non-numeric">' . $respuesta['Pre_Tot_Com'] . '</td>
+                        <td class="mdl-data-table__cell--non-numeric">' . $respuesta['Pro_Com'] . '</td>
+                        <td class="mdl-data-table__cell--non-numeric">' . $respuesta['Fec_Com'] . '</td>
                         <td class="mdl-data-table__cell">
                             <center>
                                 <button class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect button--colored-teal editar">
@@ -60,14 +97,17 @@ class Acciones
                         <td class="mdl-data-table__cell--non-numeric">' . $respuesta['Mar_Pro'] . '</td>
                         <td class="mdl-data-table__cell--non-numeric">' . $respuesta['Gra_Alc_Pro'] . '</td>
                         <td class="mdl-data-table__cell--non-numeric">' . $respuesta['IBU'] . '</td>
-                        <td class="mdl-data-table__cell--non-numeric">' . $respuesta['Car_1_Pro'] . ' - ' . $respuesta['Car_2_Pro'] . ' - ' . $respuesta['Car_3_Pro'] . '</td>
+                        <td class="mdl-data-table__cell--non-numeric">' . $respuesta['Car_1_Pro'] . '</td>
+                        <td class="mdl-data-table__cell--non-numeric">' . $respuesta['Car_2_Pro'] . '</td>
+                        <td class="mdl-data-table__cell--non-numeric">' . $respuesta['Car_3_Pro'] . '</td>
                         <td class="mdl-data-table__cell--non-numeric">' . $respuesta['Pre_Pro'] . '</td>
+                        <td class="mdl-data-table__cell--non-numeric">' . $respuesta['Des_Pro'] . '</td>
                         <td class="mdl-data-table__cell">
                             <center>
-                                <button class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect button--colored-teal" id="editar">
+                                <button class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect button--colored-teal editar">
                                     <i class="material-icons">create</i>Editar
                                 </button> 
-                                <button class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect button--colored-red" id="eliminar">
+                                <button class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect button--colored-red eliminar">
                                     <i class="material-icons">cancel</i>Eliminar
                                 </button>
                             </center>
@@ -124,6 +164,33 @@ class Acciones
         $consulta="DELETE FROM usuarios where usuario='$usuario'";
         $resultado=$conexion->prepare($consulta);
         $resultado->execute();
+    }
+
+    public static function InsertarCompra($cliente, $subtotal, $total, $producto)
+    {
+        $fecha = date('Y-m-d');
+        $conexion = Conexion::getInstance()->getConexion();
+        $consulta = "INSERT INTO compras (Cli_Com, Pre_Sub_Com, Pre_Tot_Com, Pro_Com, Fec_Com) VALUES('$cliente', '$subtotal', '$total', '$producto', '$fecha')";
+        $resultado = $conexion->prepare($consulta);
+        $resultado->execute();
+        header("location:../Paginas/Compras.php");
+    }
+
+    public static function ActualizarCompra($usuario, $contrasena, $email, $telefono)
+    {
+        $conexion = Conexion::getInstance()->getConexion();
+        $consulta = "UPDATE compras SET Cli_Com='$contrasena', Pre_Sub_Com='$email', Pre_Tot_Com='$telefono', Pro_Com='$telefono' WHERE Cod_Com='$usuario'";
+        $resultado = $conexion->prepare($consulta);
+        $resultado->execute();
+        header("location:../Paginas/Compras.php");
+    }
+
+    public static function EliminarCompra($codigo)
+    {
+        $conexion = Conexion::getInstance()->getConexion();
+        $consulta = "DELETE FROM compras where Cod_Com='$codigo'";
+        $resultado = $conexion->prepare($consulta);
+        $resultado -> execute();
     }
 
 }

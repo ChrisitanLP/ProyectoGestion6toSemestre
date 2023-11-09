@@ -25,7 +25,6 @@
         }
 
         public function cerrarSesion(){
-            include('../Strategy/AuthenticateGoogle.php');
             session_unset();
             session_destroy();
         }

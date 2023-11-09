@@ -19,15 +19,16 @@
 
         <!-- Font Awesome -->
         <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css" rel="stylesheet">
-        
-        <!-- Libraries Stylesheet -->
-        <link href="lib/owlcarousel/assets/owl.carousel.min.css" rel="stylesheet">
-        <link href="lib/tempusdominus/css/tempusdominus-bootstrap-4.min.css" rel="stylesheet" />
+        <link rel='stylesheet' href='https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.css'>
 
+
+        <!-- Owl Carousel JS -->
+        
         
         <!-- Customized Bootstrap Stylesheet -->
-        <link href="Recursos/CSS/Style.css" rel="stylesheet">
-        <link href="Recursos/CSS/EstilosCarrusel.css" rel="stylesheet">
+        <link href="Recursos/CSS/EstilosGenerales.css" rel="stylesheet">
+        <link href="Recursos/CSS/Opciones.css" rel="stylesheet">
+        <link href="Recursos/CSS/Carrusel.css" rel="stylesheet">
         <link href="Recursos/CSS/EstilosTienda.css" rel="stylesheet">
     </head>
     <body>
@@ -35,6 +36,8 @@
             $Pagina -> crearPagina();
         ?>                                               
         <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+        <script src="Recursos/JS/Scroll.js"></script>
+        <script src="Recursos/JS/carrusel.js"></script>
         <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.bundle.min.js"></script>
     </body>
 </html>
