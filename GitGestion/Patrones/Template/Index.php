@@ -1,10 +1,21 @@
 <?php
 include_once("Plantilla.php");
+include_once("Patrones/Singleton/Conexion.php");
 
 class Index extends Plantilla
 {
     public function crearHeader()
     {
+        $usuario = $_SESSION["usuario"];
+        $conexion = Conexion::getInstance() -> getConexion();
+
+        $consulta = "SELECT COUNT(*) as total FROM carrito WHERE Usu_Car = :usuario";
+        $resultado = $conexion->prepare($consulta);
+        $resultado->bindParam(':usuario', $usuario, PDO::PARAM_STR);
+        $resultado->execute();
+        $row = $resultado->fetch(PDO::FETCH_ASSOC);
+        $cantidadProductos = $row['total'];
+
         echo '
         <div class="contenedor-fluido p-0 nav-bar">
             <nav class="navbar navbar-expand-lg bg-none navbar-dark py-3">
@@ -18,9 +29,12 @@ class Index extends Plantilla
                     <div class="navbar-nav ml-auto p-4">
                         <a href="index.php" class="nav-item nav-link active text-uppercase">Inicio</a>
                         <a href="Paginas/Tienda.php" class="nav-item nav-link text-uppercase">Tienda</a>
-                        <a href="Paginas/Servicio.php" class="nav-item nav-link text-uppercase">Servicio</a>
                         <a href="Paginas/Nosotros.php" class="nav-item nav-link text-uppercase">Nosotros</a>
                         <a href="Paginas/Contacto.php" class="nav-item nav-link text-uppercase">Contacto</a>
+                        <a href="Paginas/Servicio.php" class="nav-item nav-link text-uppercase">
+                            <i class="fas fa-shopping-cart"></i>
+                            <span style="background-color: #ff0000; color: #fff; border-radius: 40%; padding: 3px;">' . $cantidadProductos . '</span>
+                        </a>
                         <a href="Paginas/cerrar.php" class="nav-item nav-link text-uppercase"><i class="far fa-user"></i></a>
                     </div>
                 </div>
@@ -198,5 +212,6 @@ class Index extends Plantilla
         <a href="#" class="btn btn-lg btn-primary btn-lg-square back-to-top"><i class="fa fa-angle-double-up"></i></a>
         ';
     }
+
 }
 ?>
