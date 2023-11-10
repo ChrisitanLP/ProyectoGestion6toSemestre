@@ -225,9 +225,26 @@ class Productos extends Plantilla
                     e.preventDefault(); // Evitar la acción predeterminada del formulario
                 });
 
+                $("#imagenE").on("change", function() {
+                    // Obtén el primer archivo seleccionado
+                    var archivo = $(this)[0].files[0];
+                
+                    // Verifica si hay un archivo seleccionado
+                    if (archivo) {
+                        // Obtén el nombre del archivo
+                        var nombreArchivo = archivo.name;
+                        alert(nombreArchivo);
+                    } else {
+                        alert("No se ha seleccionado ningún archivo");
+                    }
+                });
         
                 $("#formEditar").submit(function (e) {
                     e.preventDefault(); 
+
+                    var archivo = $(".imagenE")[0].files[0];
+                    var nombreArchivo = archivo.name;
+
                     producto_valor;
                     productoE = $("#productoE").val();
                     marcaE = $("#marcaE").val();
@@ -236,11 +253,11 @@ class Productos extends Plantilla
                     ingrediente1E = $("#ingrediente1E").val();
                     ingrediente2E = $("#ingrediente2E").val();
                     ingrediente3E = $("#ingrediente3E").val();
-                    precioE = $("#precioE").val();
+                    precioE = parseFloat($("#precioE").val());
                     descripcionE = $("#descripcionE").val();
                     amargoE = $("#amargoE").val();
                     cuerpoE = $("#cuerpoE").val();
-                    imagenE = $("#imagenE").val();
+                    imagenE = nombreArchivo;
 
                     opcion=9;
                     
@@ -248,7 +265,7 @@ class Productos extends Plantilla
                         url: "../Acciones/Rest.php",
                         type: "POST",
                         data: {
-                            productoE : productoE, marcaE : marcaE, gradoE : gradoE, ibuE : ibuE, ingrediente1E : ingrediente1E, ingrediente2E : ingrediente2E, ingrediente3E : ingrediente3E, descripcionE : descripcionE, amargoE : amargoE, cuerpoE : cuerpoE, imagenE : imagenE, producto_valor : producto_valor, opcion:opcion
+                            productoE : productoE, marcaE : marcaE, gradoE : gradoE, ibuE : ibuE, ingrediente1E : ingrediente1E, ingrediente2E : ingrediente2E, ingrediente3E : ingrediente3E, precioE: precioE, descripcionE : descripcionE, amargoE : amargoE, cuerpoE : cuerpoE, imagenE : imagenE, producto_valor : producto_valor, opcion:opcion
                         },
                         success: function (resultado) {
                             window.location.href = "../Paginas/Productos.php";
@@ -320,7 +337,7 @@ class Productos extends Plantilla
                                 </div>
                                 <div class="form-group">
                                     <label class="sr-only" for="form">Precio:  </label>
-                                    <input type="text" name="precioE" placeholder="Precio..." class="form form-control" id="precioE" step="0.1">
+                                    <input type="number" name="precioE" placeholder="Precio..." class="form form-control" id="precioE" min="1" step="0.01">
                                 </div>
                                 <div class="form-group">
                                     <label class="sr-only" for="form">Descripción:  </label>
@@ -328,7 +345,7 @@ class Productos extends Plantilla
                                 </div>
                                 <div class="form-group">
                                     <label class="sr-only" for="amargoI">Amargo:</label>
-                                    <select name="amargoE" class="form-control" id="amargoE" required>
+                                    <select name="amargoE" class="form-control" id="amargoE">
                                         <option value="" disabled selected>Selecciona el nivel de amargor</option>
                                         <option value="Bajo">Bajo</option>
                                         <option value="Medio">Medio</option>
@@ -337,7 +354,7 @@ class Productos extends Plantilla
                                 </div>
                                 <div class="form-group">
                                     <label class="sr-only" for="amargoI">Cuerpo:</label>
-                                    <select name="cuerpoE" class="form-control" id="cuerpoE" required>
+                                    <select name="cuerpoE" class="form-control" id="cuerpoE">
                                         <option value="" disabled selected>Selecciona el nivel de Cuerpo</option>
                                         <option value="Bajo">Bajo</option>
                                         <option value="Medio">Medio</option>
@@ -347,7 +364,7 @@ class Productos extends Plantilla
                                 <div class="form-group">
                                     <label class="sr-only" for="form">Imagen Producto:  </label>
                                     <div class="file-input-container">
-                                        <input type="file" name="imagenE" id="imagenE" title="seleccionar fichero" id="importData" accept=".jpg, .jpeg, .png, .jfif, .svg" required>
+                                        <input type="file" name="imagenE" class="imagenE" title="seleccionar fichero" id="importData" accept=".jpg, .jpeg, .png, .jfif, .svg">
                                         <label class="file-upload-btn" for="importData">Subir Archivo</label>
                                         <div class="file-upload-info">No hay archivo seleccionado</div>
                                     </div>

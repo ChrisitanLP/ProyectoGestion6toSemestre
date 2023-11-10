@@ -93,7 +93,7 @@
                     $cuerpo = $_POST['cuerpoE'];
 
                     $ruta = "Recursos/Imagenes/Productos/";
-                    $nombreImagen = trim($_FILES['imagenE']['name']);
+                    $nombreImagen = $_POST['imagenE'];
 
                     $imagen = $ruta.$nombreImagen;
                     Acciones::ActualizarProductos($producto, $marca, $grado, $ibu, $ingrediente1, $ingrediente2, $ingrediente3, $amargo, $cuerpo, $precio, $descripcion, $imagen, $codigo);
