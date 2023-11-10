@@ -205,21 +205,22 @@ class Acciones
         header("location:../Paginas/Productos.php");
     }
 
-    public static function ActualizarProductos($producto, $marca, $grado, $ibu, $ingrediente1, $ingrediente2, $ingrediente3, $precio, $descripcion, $imagen)
+    public static function ActualizarProductos($producto, $marca, $grado, $ibu, $ingrediente1, $ingrediente2, $ingrediente3, $amargo, $cuerpo, $precio, $descripcion, $imagen, $codigo)
     {
         $conexion = Conexion::getInstance()->getConexion();
-        $consulta = "UPDATE productos SET Cli_Com='$contrasena', Pre_Sub_Com='$email', Pre_Tot_Com='$telefono', Pro_Com='$telefono' WHERE Cod_Com='$usuario'";
+        $consulta = "UPDATE productos SET Nom_Pro='$producto', Mar_Pro='$marca', Gra_Alc_Pro='$grado', IBU='$ibu', Car_1_Pro='$ingrediente1', Car_2_Pro='$ingrediente2', Car_3_Pro='$ingrediente3', Ama_Pro='$amargo', Cue_Pro='$cuerpo', Pre_Pro='$precio', Des_Pro='$descripcion', Rut_Pro='$imagen' WHERE Cod_Pro='$codigo'";
         $resultado = $conexion->prepare($consulta);
         $resultado->execute();
-        header("location:../Paginas/Compras.php");
+        header("location:../Paginas/Productos.php");
     }
 
     public static function EliminarProductos($codigo)
     {
         $conexion = Conexion::getInstance()->getConexion();
-        $consulta = "DELETE FROM productos where Cod_Com='$codigo'";
+        $consulta = "DELETE FROM productos where Cod_Pro='$codigo'";
         $resultado = $conexion->prepare($consulta);
         $resultado -> execute();
+        header("location:../Paginas/Productos.php");
     }
 
 

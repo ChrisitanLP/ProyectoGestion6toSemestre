@@ -79,6 +79,7 @@
                     break;
     
                 case 9:
+                    $codigo = $_POST['producto_valor'];
                     $producto = $_POST['productoE'];
                     $marca = $_POST['marcaE'];
                     $grado = $_POST['gradoE'];
@@ -88,12 +89,18 @@
                     $ingrediente3 = $_POST['ingrediente3E'];
                     $precio = $_POST['precioE'];
                     $descripcion = $_POST['descripcionE'];
-                    $imagen = $_POST['imagenE'];
-                    Acciones::ActualizarProductos($producto, $marca, $grado, $ibu, $ingrediente1, $ingrediente2, $ingrediente3, $precio, $descripcion, $imagen);
+                    $amargo = $_POST['amargoE'];
+                    $cuerpo = $_POST['cuerpoE'];
+
+                    $ruta = "Recursos/Imagenes/Productos/";
+                    $nombreImagen = trim($_FILES['imagenE']['name']);
+
+                    $imagen = $ruta.$nombreImagen;
+                    Acciones::ActualizarProductos($producto, $marca, $grado, $ibu, $ingrediente1, $ingrediente2, $ingrediente3, $amargo, $cuerpo, $precio, $descripcion, $imagen, $codigo);
                     break;
     
                 case 10:
-                    $codigo = $_POST['codigo_val'];
+                    $codigo = $_POST['producto_val'];
                     Acciones::EliminarProductos($codigo);
                     break;                    
 

@@ -142,6 +142,7 @@ class Productos extends Plantilla
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
         <script>
             $(document).ready(function () {
+                let confirmDelete = false; 
 
                 $(document).on("click", ".editar", function ()  {
                     fila = $(this).closest("tr");
@@ -178,25 +179,52 @@ class Productos extends Plantilla
 
                 $(document).on("click", ".eliminar", function ()  {
                     fila = $(this).closest("tr");
-                    usuario_val= fila.find("td:eq(1)").text();
+                    producto_val= fila.find("td:eq(0)").text();
                     
                     $("#modalCrudEliminar").modal("show");
-                    $(".contenido").text("¿Está seguro de que desea eliminar el Producto: " + usuario_val + "?");
+                    $(".contenido").text("¿Está seguro de que desea eliminar el Producto: " + producto_val + "?");
+                
+                    confirmDelete = true;
                 });
+
+                // Manejador de clic en el botón "Cancelar"
+                $(document).on("click", "#cancelButton", function () {
+                    confirmDelete = false; // Desactivar la confirmación de eliminación
+                });
+
         
                 $("#formBorrar").click(function () {
-                    usuario_val;
-                    opcion = 3;
-                    
+                    producto_val;
+                    opcion = 10;
                     $.ajax({
                         url: "../Acciones/Rest.php",
                         type: "POST",
-                        data: { usuario_val: usuario_val, opcion: opcion },
+                        data: { producto_val: producto_val, opcion: opcion },
                         success: function (resultado) {
                             window.location.href = "../Paginas/Productos.php";
                         }
                     });
                 });
+
+                // Manejador del envío del formulario de eliminación
+                $("#formBorrar").submit(function (e) {
+                    if (confirmDelete) {
+                        producto_val;
+                        opcion = 10;
+                        $.ajax({
+                            url: "../Acciones/Rest.php",
+                            type: "POST",
+                            data: { producto_val: producto_val, opcion: opcion },
+                            success: function (resultado) {
+                                window.location.href = "../Paginas/Usuarios.php";
+                            }
+                        });
+                    }
+                    $("#modalCrudEliminar").modal("hide"); // Ocultar el modal de eliminación
+                    confirmDelete = false; // Restablecer la confirmación de eliminación
+                    e.preventDefault(); // Evitar la acción predeterminada del formulario
+                });
+
         
                 $("#formEditar").submit(function (e) {
                     e.preventDefault(); 
@@ -213,13 +241,14 @@ class Productos extends Plantilla
                     amargoE = $("#amargoE").val();
                     cuerpoE = $("#cuerpoE").val();
                     imagenE = $("#imagenE").val();
-                    opcion=2;
+
+                    opcion=9;
                     
                     $.ajax({
                         url: "../Acciones/Rest.php",
                         type: "POST",
                         data: {
-                            productoE : productoE, marcaE : marcaE, gradoE : gradoE, ibuE : ibuE, ingrediente1E : ingrediente1E, ingrediente2E : ingrediente2E, ingrediente3E : ingrediente3E, descripcionE : descripcionE, producto_valor : producto_valor, opcion:opcion
+                            productoE : productoE, marcaE : marcaE, gradoE : gradoE, ibuE : ibuE, ingrediente1E : ingrediente1E, ingrediente2E : ingrediente2E, ingrediente3E : ingrediente3E, descripcionE : descripcionE, amargoE : amargoE, cuerpoE : cuerpoE, imagenE : imagenE, producto_valor : producto_valor, opcion:opcion
                         },
                         success: function (resultado) {
                             window.location.href = "../Paginas/Productos.php";
@@ -243,7 +272,7 @@ class Productos extends Plantilla
                                 <p class="text-danger"><small>Esta acción no se puede deshacer.</small></p>
                             </div>
                             <div class="modal-footer">
-                                <input type="button" class="btn btn-warning" data-bs-dismiss="modal" aria-label="Close" value=" Cancelar ">
+                                <input type="button" class="btn btn-warning" data-bs-dismiss="modal" aria-label="Close" value="Cancelar" id="cancelButton">
                                 <input type="submit" class="btn btn-danger" value=" Eliminar Producto ">
                             </div>
                         </form>
@@ -260,7 +289,7 @@ class Productos extends Plantilla
                             <button type="button" class="btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
                         </div> 
                         <div class="modal-body">
-                            <form role="form" id="formEditar" class="registration-form">
+                            <form role="form" id="formEditar" class="registration-form" enctype="multipart/form-data">
                                 <div class="form-group">
                                     <label class="sr-only" for="form-first-name">Producto: </label>
                                     <input type="text" name="productoE" placeholder="Nombre Producto..." class="form-first-name form-control" id="productoE">
@@ -291,18 +320,45 @@ class Productos extends Plantilla
                                 </div>
                                 <div class="form-group">
                                     <label class="sr-only" for="form">Precio:  </label>
-                                    <input type="text" name="precioE" placeholder="Precio..." class="form form-control" id="precioE">
+                                    <input type="text" name="precioE" placeholder="Precio..." class="form form-control" id="precioE" step="0.1">
                                 </div>
                                 <div class="form-group">
                                     <label class="sr-only" for="form">Descripción:  </label>
                                     <input type="text" name="descripcionE" placeholder="Descripción..." class="form form-control" id="descripcionE">
                                 </div>
+                                <div class="form-group">
+                                    <label class="sr-only" for="amargoI">Amargo:</label>
+                                    <select name="amargoE" class="form-control" id="amargoE" required>
+                                        <option value="" disabled selected>Selecciona el nivel de amargor</option>
+                                        <option value="Bajo">Bajo</option>
+                                        <option value="Medio">Medio</option>
+                                        <option value="Alto">Alto</option>
+                                    </select>
+                                </div>
+                                <div class="form-group">
+                                    <label class="sr-only" for="amargoI">Cuerpo:</label>
+                                    <select name="cuerpoE" class="form-control" id="cuerpoE" required>
+                                        <option value="" disabled selected>Selecciona el nivel de Cuerpo</option>
+                                        <option value="Bajo">Bajo</option>
+                                        <option value="Medio">Medio</option>
+                                        <option value="Alto">Alto</option>
+                                    </select>
+                                </div>
+                                <div class="form-group">
+                                    <label class="sr-only" for="form">Imagen Producto:  </label>
+                                    <div class="file-input-container">
+                                        <input type="file" name="imagenE" id="imagenE" title="seleccionar fichero" id="importData" accept=".jpg, .jpeg, .png, .jfif, .svg" required>
+                                        <label class="file-upload-btn" for="importData">Subir Archivo</label>
+                                        <div class="file-upload-info">No hay archivo seleccionado</div>
+                                    </div>
+                                </div>
                                 <br>
+
+                                <div class="modal-footer">
+                                    <input type="button" class="btn btn-warning" data-bs-dismiss="modal" aria-label="Close" value=" Cancelar ">
+                                    <input type="submit" class="btn btn-success" value=" Editar Producto ">
+                                </div>
                             </form>
-                        </div>
-                        <div class="modal-footer">
-                            <input type="button" class="btn btn-warning" data-bs-dismiss="modal" aria-label="Close" value=" Cancelar ">
-                            <input type="submit" class="btn btn-success" value=" Editar Producto ">
                         </div>
                     </div>
                 </div>
@@ -328,11 +384,11 @@ class Productos extends Plantilla
                                 </div>
                                 <div class="form-group">
                                     <label class="sr-only" for="form-last-name">Grado de Alcohol: </label>
-                                    <input type="number" name="gradoI" placeholder="Grado Alcohil..." class="form-last-name form-control" id="form-last-name" min="1" required>
+                                    <input type="number" name="gradoI" placeholder="Grado Alcohil..." class="form-last-name form-control" id="form-last-name" min="1" max="40" required>
                                 </div>
                                 <div class="form-group">
                                     <label class="sr-only" for="form">IBU: </label>
-                                    <input type="number" name="ibuI" placeholder="IBU..." class="form form-control" id="form" min="1" required>
+                                    <input type="number" name="ibuI" placeholder="IBU..." class="form form-control" id="form" min="1" max="60" required>
                                 </div>
                                 <div class="form-group">
                                     <label class="sr-only" for="form">Ingrediente 1: </label>
@@ -348,7 +404,7 @@ class Productos extends Plantilla
                                 </div>
                                 <div class="form-group">
                                     <label class="sr-only" for="form">Precio:  </label>
-                                    <input type="number" name="precioI" placeholder="Precio..." class="form form-control" id="form" min="1" required>
+                                    <input type="number" name="precioI" placeholder="Precio..." class="form form-control" id="form" min="1" step="0.1" required>
                                 </div>
                                 <div class="form-group">
                                     <label class="sr-only" for="form">Descripción:  </label>
