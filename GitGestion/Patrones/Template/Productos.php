@@ -192,19 +192,6 @@ class Productos extends Plantilla
                     confirmDelete = false; // Desactivar la confirmación de eliminación
                 });
 
-        
-                $("#formBorrar").click(function () {
-                    producto_val;
-                    opcion = 10;
-                    $.ajax({
-                        url: "../Acciones/Rest.php",
-                        type: "POST",
-                        data: { producto_val: producto_val, opcion: opcion },
-                        success: function (resultado) {
-                            window.location.href = "../Paginas/Productos.php";
-                        }
-                    });
-                });
 
                 // Manejador del envío del formulario de eliminación
                 $("#formBorrar").submit(function (e) {

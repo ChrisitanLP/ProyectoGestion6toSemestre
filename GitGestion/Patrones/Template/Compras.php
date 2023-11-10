@@ -142,7 +142,7 @@ class Compras extends Plantilla
                                 <p class="text-danger"><small>Esta acción no se puede deshacer.</small></p>
                             </div>
                             <div class="modal-footer">
-                                <input type="button" class="btn btn-warning" data-bs-dismiss="modal" aria-label="Close" value=" Cancelar ">
+                                <input type="button" class="btn btn-warning" data-bs-dismiss="modal" aria-label="Close" value="Cancelar" id="cancelButton">
                                 <input type="submit" class="btn btn-danger" value=" Eliminar Compra ">
                             </div>
                         </form>
@@ -155,10 +155,12 @@ class Compras extends Plantilla
             <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
             <script>
                 $(document).ready(function () {
+                    let confirmDelete = false; 
+
                     $(document).on("click", ".editar", function ()  {
                         fila = $(this).closest("tr");
                         
-                        usuario_valor = fila.find("td:eq(0)").text();
+                        codigo_valor = fila.find("td:eq(0)").text();
                         cliente_valor = fila.find("td:eq(1)").text();
                         subtotal_valor = fila.find("td:eq(2)").text();
                         total_valor = fila.find("td:eq(3)").text();
@@ -167,7 +169,8 @@ class Compras extends Plantilla
                         $("#usuarioE").val(cliente_valor);
                         $("#subtotalE").val(subtotal_valor);
                         $("#totalE").val(total_valor);
-                        $("#prductoE").val(producto_valor);
+                        $("#productoE").val(producto_valor);
+
                         $("#modalCrud").modal("show");
                     });
 
@@ -179,34 +182,49 @@ class Compras extends Plantilla
                         
                         $("#modalCrudEliminar").modal("show");
                         $(".contenido").text("¿Está seguro de que desea eliminar la compra del Usuario: " + usuario_val + "?");
+                    
+                        confirmDelete = true;
                     });
 
-                    $("#formBorrar").click(function () {
-                        codigo_val;
-                        opcion = 7;
-                        $.ajax({
-                            url: "../Acciones/Rest.php",
-                            type: "POST",
-                            data: { codigo_val: codigo_val, opcion: opcion },
-                            success: function (resultado) {
-                                window.location.href = "../Paginas/Compras.php";
-                            }
-                        });
+                    // Manejador de clic en el botón "Cancelar"
+                    $(document).on("click", "#cancelButton", function () {
+                        confirmDelete = false; // Desactivar la confirmación de eliminación
                     });
+
+                    // Manejador del envío del formulario de eliminación
+                    $("#formBorrar").submit(function (e) {
+                        if (confirmDelete) {
+                            codigo_val;
+                            opcion = 7;
+                            $.ajax({
+                                url: "../Acciones/Rest.php",
+                                type: "POST",
+                                data: { codigo_val: codigo_val, opcion: opcion },
+                                success: function (resultado) {
+                                    window.location.href = "../Paginas/Usuarios.php";
+                                }
+                            });
+                        }
+                        $("#modalCrudEliminar").modal("hide"); // Ocultar el modal de eliminación
+                        confirmDelete = false; // Restablecer la confirmación de eliminación
+                        e.preventDefault(); // Evitar la acción predeterminada del formulario
+                    });
+
 
                     $("#formEditar").submit(function (e) {
                         e.preventDefault(); 
-                        usuario_valor;
-                        claveE = $("#claveE").val();
-                        emailE = $("#emailE").val();
-                        telefonoE = $("#telefonoE").val();
+                        codigo_valor;
+                        usuarioE = $("#usuarioE").val();
+                        subtotalE = $("#subtotalE").val();
+                        totalE = $("#totalE").val();
+                        productoE = $("#productoE").val();
 
-                        opcion=2;
+                        opcion=6;
                         $.ajax({
                             url: "../Acciones/Rest.php",
                             type: "POST",
                             data: {
-                                claveE : claveE , emailE: emailE, telefonoE: telefonoE, usuario_valor: usuario_valor, opcion:opcion
+                                usuarioE : usuarioE , subtotalE: subtotalE, totalE: totalE, productoE: productoE, codigo_valor: codigo_valor, opcion:opcion
                             },
                             success: function (resultado) {
                                 window.location.href = "../Paginas/Compras.php";
@@ -228,22 +246,22 @@ class Compras extends Plantilla
                             <form role="form" id="formEditar" class="registration-form">
                                 <div class="form-group">
                                     <label class="sr-only" for="form-first-name">Usuario: </label>
-                                    <input type="text" name="claveE"  class="form-first-name form-control" id="usuarioE">
+                                    <input type="text" name="usuarioE"  class="form-first-name form-control" id="usuarioE">
                                 </div>
                                 <br>
                                 <div class="form-group">
                                     <label class="sr-only" for="form-first-name">SubTotal: </label>
-                                    <input type="text" name="claveE"  class="form-first-name form-control" id="subtotalE">
+                                    <input type="text" name="subtotalE"  class="form-first-name form-control" id="subtotalE">
                                 </div>
                                 <br>
                                 <div class="form-group">
                                     <label class="sr-only" for="form-last-name">Total: </label>
-                                    <input type="text" name="emailE"  class="form-last-name form-control" id="totalE">
+                                    <input type="text" name="totalE"  class="form-last-name form-control" id="totalE">
                                 </div>
                                 <br>
                                 <div class="form-group">
                                     <label class="sr-only" for="form-email">Productos: </label>
-                                    <input type="text" name="telefonoE" class="form-email form-control" id="prductoE">
+                                    <input type="text" name="productoE" class="form-email form-control" id="productoE">
                                 </div>
                                 <br>
                                 <div class="modal-footer">

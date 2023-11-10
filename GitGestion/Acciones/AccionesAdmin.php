@@ -167,6 +167,7 @@ class Acciones
         $consulta="DELETE FROM usuarios where usuario='$usuario'";
         $resultado=$conexion->prepare($consulta);
         $resultado->execute();
+        header("location:../Paginas/Usuarios.php");
     }
 
     public static function InsertarCompra($cliente, $subtotal, $total, $producto)
@@ -179,10 +180,10 @@ class Acciones
         header("location:../Paginas/Compras.php");
     }
 
-    public static function ActualizarCompra($usuario, $contrasena, $email, $telefono)
+    public static function ActualizarCompra($usuario, $subtotal, $total, $producto, $codigo)
     {
         $conexion = Conexion::getInstance()->getConexion();
-        $consulta = "UPDATE compras SET Cli_Com='$contrasena', Pre_Sub_Com='$email', Pre_Tot_Com='$telefono', Pro_Com='$telefono' WHERE Cod_Com='$usuario'";
+        $consulta = "UPDATE compras SET Cli_Com='$usuario', Pre_Sub_Com='$subtotal', Pre_Tot_Com='$total', Pro_Com='$producto' WHERE Cod_Com='$codigo'";
         $resultado = $conexion->prepare($consulta);
         $resultado->execute();
         header("location:../Paginas/Compras.php");
@@ -194,6 +195,7 @@ class Acciones
         $consulta = "DELETE FROM compras where Cod_Com='$codigo'";
         $resultado = $conexion->prepare($consulta);
         $resultado -> execute();
+        header("location:../Paginas/Compras.php");
     }
 
     public static function InsertarProductos($producto, $marca, $grado, $ibu, $ingrediente1, $ingrediente2, $ingrediente3, $amargo, $cuerpo, $precio, $descripcion, $imagen)

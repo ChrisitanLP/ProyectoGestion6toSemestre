@@ -46,11 +46,12 @@
                     break;
 
                 case 6:
-                    $usuario = $_POST['usuario_valor'];
-                    $contrasena = $_POST['claveE'];
-                    $email = $_POST['emailE'];
-                    $telefono = $_POST['telefonoE'];
-                    Acciones::ActualizarCompra($usuario, $contrasena, $email, $telefono);
+                    $codigo = $_POST['codigo_valor'];
+                    $usuario = $_POST['usuarioE'];
+                    $subtotal = $_POST['subtotalE'];
+                    $total = $_POST['totalE'];
+                    $producto = $_POST['productoE'];
+                    Acciones::ActualizarCompra($usuario, $subtotal, $total, $producto, $codigo);
                     break;
 
                 case 7:
