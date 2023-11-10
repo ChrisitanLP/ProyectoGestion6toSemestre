@@ -83,6 +83,7 @@ class Index extends Plantilla
         <!-- Carousel End -->
 
         <div class="contenedor-fluido py-5">
+        
             <div class="container">
                 <div class="section-title">
                     <h4 class="text-primary text-uppercase" style="letter-spacing: 5px;">Sobre Nosotros</h4>
@@ -233,6 +234,15 @@ class Index extends Plantilla
             </div>
         </div>
         <!-- Testimonial End -->
+
+        <div class="contenedor-fluido py-5">
+            <div class="container">
+                <div class="section-title">
+                    <h4 class="text-primary text-uppercase" style="letter-spacing: 5px;">Servicios</h4>
+                    <h1 class="display-4 text-primary">Es importante servirte</h1>
+                </div>
+            </div>
+        </div>
 
         ';
                     

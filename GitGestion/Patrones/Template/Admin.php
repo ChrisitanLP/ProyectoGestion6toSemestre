@@ -1,5 +1,6 @@
 <?php
 include_once("Plantilla.php");
+include_once("Patrones/Singleton/Conexion.php");
 
 class Admin extends Plantilla
 {
@@ -83,6 +84,7 @@ class Admin extends Plantilla
     }
     public function crearMain()
     {
+        $testimonios = $this -> MostrarTestimonios();
         echo '   
             <main class="mdl-layout__content">
                 <div class="mdl-grid mdl-grid--no-spacing dashboard">
@@ -138,21 +140,6 @@ class Admin extends Plantilla
                             </div>
                         </div>
 
-                        <!-- Cotoneaster card-->
-                        <div class="mdl-cell mdl-cell--5-col-desktop mdl-cell--5-col-tablet mdl-cell--2-col-phone">
-                            <div class="mdl-card mdl-shadow--2dp cotoneaster">
-                                <div class="mdl-card__title mdl-card--expand">
-                                    <h2 class="mdl-card__title-text">Cervecería INTI</h2>
-                                </div>
-                                <div class="mdl-card__supporting-text">
-                                    <div>
-                                        Ser la cervecera artesanal preferida y reconocida en nuestra comunidad, ofreciendo cervezas únicas y de alta calidad que inspiren a nuestros clientes a apreciar la artesanía cervecera y a compartir momentos inolvidables con amigos y familia.
-                                    </div>
-                                    <a href="Index.php" target="_blank">Ver Página</a>
-                                </div>
-                            </div>
-                        </div>
-
                         <!-- ToDo_widget-->
                         <div class="mdl-cell mdl-cell--12-col-desktop mdl-cell--6-col-tablet mdl-cell--2-col-phone">
                             <div class="mdl-card mdl-shadow--2dp todo">
@@ -174,15 +161,245 @@ class Admin extends Plantilla
                         </div>
                     </div>
                 </div>
+
+                <div class="mdl-grid ui-tables">
+                    <div class="mdl-cell mdl-cell--10-col-desktop mdl-cell--10-col-tablet mdl-cell--4-col-phone">
+                        <div class="mdl-card mdl-shadow--1dp">
+                            <div class="mdl-card__title">
+                                <h1 class="mdl-card__title-text">Tabla de Testimonios&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</h1>
+                            </div>
+                            <div class="mdl-card__supporting-text no-padding">
+                                <table class="mdl-data-table mdl-js-data-table" id="datatable_users">
+                                    <thead>
+                                        <tr>
+                                            <th class="mdl-data-table__select">ID</th>
+                                            <th class="mdl-data-table__cell--non-numeric">USUARIO</th>
+                                            <th class="mdl-data-table__cell--non-numeric">Email</th>
+                                            <th class="mdl-data-table__cell--non-numeric">Motivo</th>
+                                            <th class="mdl-data-table__cell--non-numeric">Mensaje</th>
+                                            <th class="mdl-data-table__cell--non-numeric">Habilitado</th>
+                                            <th class="mdl-data-table__select">ACCION</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        '.$testimonios.'
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
             </main>
         </div>
-        ';    
+        ';   
+        
+        if ($_SERVER["REQUEST_METHOD"] === "POST" && isset($_POST["opcion"])) {
+            $opcion = $_POST["opcion"];
+            switch ($opcion) {
+                case 1:
+                    $habilitado=$_POST['habilitadoE'];
+                    $codigo=$_POST['codigo_valor'];
+
+                    $conexion = Conexion::getInstance()->getConexion();
+                    $consulta = "UPDATE testimonios SET Hab_Tes='$habilitado' WHERE Cod_Tes='$codigo'";
+                    $resultado = $conexion->prepare($consulta);
+                    $resultado->execute();
+                    header("location:Admin.php");
+                    break;
+                case 2:
+                    $codigo=$_POST['codigo_val'];
+
+                    $conexion= Conexion::getInstance()->getConexion();
+                    $consulta="DELETE FROM testimonios where Cod_Tes='$codigo'";
+                    $resultado=$conexion->prepare($consulta);
+                    $resultado->execute();
+                    header("location:Admin.php");
+                    break;
+            }
+        }
+
     }
     public function crearFooter()
     {
         echo '
+
+        <!-- MODAL -->
+            <div class="modal fade" id="modalCrudEliminar" tabindex="-1" role="dialog" aria-labelledby="modal-register-label" aria-hidden="true">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h3 class="modal-title" id="modal-register-label">Eliminar Testimonio</h3>
+                            <p class="modal">Edite los datos del Testimonio:</p>
+                            <button type="button" class="btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div> 
+                        <form id="formBorrar">
+                            <div class="modal-body">     
+                                <p class="text-white contenido">¿Está seguro de que desea eliminar el Comentario?</p>
+                                <p class="text-danger"><small>Esta acción no se puede deshacer.</small></p>
+                            </div>
+                            <div class="modal-footer">
+                                <input type="button" class="btn btn-warning" data-bs-dismiss="modal" aria-label="Close" value="Cancelar" id="cancelButton">
+                                <input type="submit" class="btn btn-danger" value=" Eliminar Testimonio ">
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+            <script type="text/javascript" src="https://www.jeasyui.com/easyui/jquery.min.js"></script>
+            <script type="text/javascript" src="https://www.jeasyui.com/easyui/jquery.easyui.min.js"></script>
+            <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+            <script>
+                $(document).ready(function () {
+                    let confirmDelete = false; 
+
+                    $(document).on("click", ".editar", function ()  {
+                        fila = $(this).closest("tr");
+                        
+                        codigo_valor = fila.find("td:eq(0)").text();
+                        habilitado_valor = fila.find("td:eq(5)").text();
+                        
+                        $("#habilitadoE").val(habilitado_valor);
+
+                        $("#modalCrud").modal("show");
+                    });
+
+                    $(document).on("click", ".eliminar", function ()  {
+                        fila = $(this).closest("tr");
+                        
+                        codigo_val= fila.find("td:eq(0)").text();
+                        
+                        $("#modalCrudEliminar").modal("show");
+                        $(".contenido").text("¿Está seguro de que desea eliminar el Comentario: " + codigo_val + "?");
+                        
+                        confirmDelete = true;
+                    });
+
+                    // Manejador de clic en el botón "Cancelar"
+                    $(document).on("click", "#cancelButton", function () {
+                        confirmDelete = false; // Desactivar la confirmación de eliminación
+                    });
+
+                    // Manejador del envío del formulario de eliminación
+                    $("#formBorrar").submit(function (e) {
+                        if (confirmDelete) {
+                            codigo_val;
+                            opcion = 2;
+                            $.ajax({
+                                url: "",
+                                type: "POST",
+                                data: { codigo_val: codigo_val, opcion: opcion },
+                                success: function (resultado) {
+                                    window.location.href = "Admin.php";
+                                }
+                            });
+                        }
+                        $("#modalCrudEliminar").modal("hide"); // Ocultar el modal de eliminación
+                        confirmDelete = false; // Restablecer la confirmación de eliminación
+                        e.preventDefault(); // Evitar la acción predeterminada del formulario
+                    });
+
+                    $("#formEditar").submit(function (e) {
+                        e.preventDefault(); 
+                        codigo_valor;
+                        habilitadoE = $("#habilitadoE").val();
+
+                        opcion=1;
+                        $.ajax({
+                            url: "",
+                            type: "POST",
+                            data: {
+                                habilitadoE : habilitadoE , codigo_valor: codigo_valor, opcion: opcion
+                            },
+                            success: function (resultado) {
+                                window.location.href = "Admin.php";
+                            }
+                        });
+                    });
+                });
+            </script>
+            
+            <div class="modal fade" id="modalCrud" tabindex="-1" role="dialog" aria-labelledby="modal-register-label" aria-hidden="true">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h3 class="modal-title" id="modal-register-label">Editar Testimonio</h3>
+                            <p class="modal">Edite los datos del Usuario:</p>
+                            <button type="button" class="btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div> 
+                        <div class="modal-body">
+                            <form role="form" id="formEditar" class="registration-form">
+                                <div class="form-group">
+                                    <label class="sr-only" for="amargoI">Habilitación Comentario:</label>
+                                    <select name="habilitadoE" class="form-control" id="habilitadoE">
+                                        <option value="" disabled selected>Selecciona el tipo</option>
+                                        <option value="Habilitado">Habilitado</option>
+                                        <option value="Deshabilitado">Deshabilitado</option>
+                                    </select>
+                                </div>
+                                <br>
+                                <div class="modal-footer">
+                                    <input type="button" class="btn btn-warning" data-bs-dismiss="modal" aria-label="Close" value=" Cancelar ">
+                                    <input type="submit" class="btn btn-success" value=" Editar Testimonio ">
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
         ';
+    }
+
+    public function MostrarTestimonios()
+    {
+        $conexion = Conexion::getInstance()->getConexion();
+        $consulta = "SELECT * FROM testimonios";
+        $resultado = $conexion->prepare($consulta);
+        $resultado->execute();
+        $dato = $resultado->fetchAll(PDO::FETCH_ASSOC);
+
+        $acum = 1;
+        $informacion = '';
+
+        foreach ($dato as $respuesta) {
+            $informacion .= '
+                    <tr>
+                        <td class="mdl-data-table__cell--non-numeric">' . $respuesta['Cod_Tes'] . '</td>
+                        <td class="mdl-data-table__cell--non-numeric">' . $respuesta['Usu_Tes'] . '</td>
+                        <td class="mdl-data-table__cell--non-numeric">' . $respuesta['Ema_Tes'] . '</td>
+                        <td class="mdl-data-table__cell--non-numeric">' . $respuesta['Mot_Tes'] . '</td>
+                        <td class="mdl-data-table__cell--non-numeric">' . $respuesta['Men_Tes'] . '</td>
+                        <td class="mdl-data-table__cell--non-numeric">' . $respuesta['Hab_Tes'] . '</td>
+                        <td class="mdl-data-table__cell">
+                            <center>
+                                <button class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect button--colored-teal editar">
+                                    <i class="material-icons">create</i>Editar</button>
+                                <button class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect button--colored-red eliminar" >
+                                    <i class="material-icons">cancel</i>Eliminar
+                                </button>
+                            </center>
+                        </td>
+                    </tr>
+                ';
+        }
+        return $informacion;
     }
 }
 
+/*
+    <!-- Cotoneaster card-->
+                        <div class="mdl-cell mdl-cell--5-col-desktop mdl-cell--5-col-tablet mdl-cell--2-col-phone">
+                            <div class="mdl-card mdl-shadow--2dp cotoneaster">
+                                <div class="mdl-card__title mdl-card--expand">
+                                    <h2 class="mdl-card__title-text">Cervecería INTI</h2>
+                                </div>
+                                <div class="mdl-card__supporting-text">
+                                    <div>
+                                        Ser la cervecera artesanal preferida y reconocida en nuestra comunidad, ofreciendo cervezas únicas y de alta calidad que inspiren a nuestros clientes a apreciar la artesanía cervecera y a compartir momentos inolvidables con amigos y familia.
+                                    </div>
+                                    <a href="Index.php" target="_blank">Ver Página</a>
+                                </div>
+                            </div>
+                        </div>
+*/
 ?>

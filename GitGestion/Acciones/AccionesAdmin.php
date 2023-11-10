@@ -41,6 +41,42 @@ class Acciones
         return $informacion;
     }
 
+    public static function MostrarTestimonios()
+    {
+
+        $conexion = Conexion::getInstance()->getConexion();
+        $consulta = "SELECT * FROM testimonios";
+        $resultado = $conexion->prepare($consulta);
+        $resultado->execute();
+        $dato = $resultado->fetchAll(PDO::FETCH_ASSOC);
+
+        $acum = 1;
+        $informacion = '';
+
+        foreach ($dato as $respuesta) {
+            $informacion .= '
+                    <tr>
+                        <td class="mdl-data-table__cell--non-numeric">' . $respuesta['Cod_Tes'] . '</td>
+                        <td class="mdl-data-table__cell--non-numeric">' . $respuesta['Usu_Tes'] . '</td>
+                        <td class="mdl-data-table__cell--non-numeric">' . $respuesta['Ema_Tet'] . '</td>
+                        <td class="mdl-data-table__cell--non-numeric">' . $respuesta['Mot_Tes'] . '</td>
+                        <td class="mdl-data-table__cell--non-numeric">' . $respuesta['Men_Tes'] . '</td>
+                        <td class="mdl-data-table__cell--non-numeric">' . $respuesta['Hab_Tes'] . '</td>
+                        <td class="mdl-data-table__cell">
+                            <center>
+                                <button class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect button--colored-teal editar">
+                                    <i class="material-icons">create</i>Editar</button>
+                                <button class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect button--colored-red eliminar" >
+                                    <i class="material-icons">cancel</i>Eliminar
+                                </button>
+                            </center>
+                        </td>
+                    </tr>
+                ';
+        }
+        return $informacion;
+    }
+
     public static function MostrarCompras()
     {
 
@@ -225,6 +261,16 @@ class Acciones
         header("location:../Paginas/Productos.php");
     }
 
+    public static function InsertarTestimonio($usuario, $email, $motivo, $mensaje)
+    {
+        $habilitado = "Deshabilitado";
+
+        $conexion = Conexion::getInstance()->getConexion();
+        $consulta = "INSERT INTO testimonios (Usu_Tes, Ema_Tes, Mot_Tes, Men_Tes, Hab_Tes) VALUES('$usuario', '$email', '$motivo', '$mensaje', '$habilitado')";
+        $resultado = $conexion->prepare($consulta);
+        $resultado->execute();
+        header("location:../Paginas/Contacto.php");
+    }
 
 }
 
