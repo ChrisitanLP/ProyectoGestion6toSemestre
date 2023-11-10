@@ -59,7 +59,7 @@ class Cuenta extends Plantilla
                                 <div class="sub-navigation">
                                     <a class="mdl-navigation__link" >
                                         <i class="material-icons">pages</i>
-                                        Paginas
+                                        Gestión
                                         <i class="material-icons" >keyboard_arrow_down</i>
                                     </a>
                                     <div class="mdl-navigation">

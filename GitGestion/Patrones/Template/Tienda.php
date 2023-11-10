@@ -1,21 +1,12 @@
 <?php
 include_once("Plantilla.php");
 include_once("../Acciones/AccionesProductos.php");
-include_once("../Patrones/Singleton/Conexion.php");
 
 class Tienda extends Plantilla
 {
     public function crearHeader()
     {
-        $usuario = $_SESSION["usuario"];
-        $conexion = Conexion::getInstance() -> getConexion();
-
-        $consulta = "SELECT COUNT(*) as total FROM carrito WHERE Usu_Car = :usuario";
-        $resultado = $conexion->prepare($consulta);
-        $resultado->bindParam(':usuario', $usuario, PDO::PARAM_STR);
-        $resultado->execute();
-        $row = $resultado->fetch(PDO::FETCH_ASSOC);
-        $cantidadProductos = $row['total'];
+        $cantidadProductos = Acciones::cantidadProductos();
 
         echo '
         <div class="contenedor-fluido p-0 nav-bar">

@@ -58,6 +58,39 @@
                     Acciones::EliminarCompra($codigo);
                     break;
 
+                case 8:
+                    $producto = $_POST['productoI'];
+                    $marca = $_POST['marcaI'];
+                    $grado = $_POST['gradoI'];
+                    $ibu = $_POST['ibuI'];
+                    $ingrediente1 = $_POST['ingrediente1I'];
+                    $ingrediente2 = $_POST['ingrediente2I'];
+                    $ingrediente3 = $_POST['ingrediente3I'];
+                    $precio = $_POST['precioI'];
+                    $descripcion = $_POST['descripcionI'];
+                    $imagen = $_POST['imagenI'];
+                    Acciones::InsertarProductos($producto, $marca, $grado, $ibu, $ingrediente1, $ingrediente2, $ingrediente3, $precio, $descripcion, $imagen);
+                    break;
+    
+                case 9:
+                    $producto = $_POST['productoE'];
+                    $marca = $_POST['marcaE'];
+                    $grado = $_POST['gradoE'];
+                    $ibu = $_POST['ibuE'];
+                    $ingrediente1 = $_POST['ingrediente1E'];
+                    $ingrediente2 = $_POST['ingrediente2E'];
+                    $ingrediente3 = $_POST['ingrediente3E'];
+                    $precio = $_POST['precioE'];
+                    $descripcion = $_POST['descripcionE'];
+                    $imagen = $_POST['imagenE'];
+                    Acciones::ActualizarProductos($producto, $marca, $grado, $ibu, $ingrediente1, $ingrediente2, $ingrediente3, $precio, $descripcion, $imagen);
+                    break;
+    
+                case 10:
+                    $codigo = $_POST['codigo_val'];
+                    Acciones::EliminarProductos($codigo);
+                    break;                    
+
                 default:
                     header("location:../Paginas/Usuarios.php");
                     break;

@@ -245,6 +245,22 @@
             exit();
         }
 
+        public static function cantidadProductos()
+        {
+            $usuario = $_SESSION["usuario"];
+            $conexion = Conexion::getInstance() -> getConexion();
+
+            $consulta = "SELECT COUNT(*) as total FROM carrito WHERE Usu_Car = :usuario";
+            $resultado = $conexion->prepare($consulta);
+            $resultado->bindParam(':usuario', $usuario, PDO::PARAM_STR);
+            $resultado->execute();
+            $row = $resultado->fetch(PDO::FETCH_ASSOC);
+            $cantidadProductos = $row['total'];
+
+            return $cantidadProductos;
+        }
+
+
         public function enviar($total, $subtotal){
 
             $conexion = Conexion::getInstance() -> getConexion();

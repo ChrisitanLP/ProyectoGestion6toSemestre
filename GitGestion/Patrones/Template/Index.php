@@ -210,7 +210,7 @@ class Index extends Plantilla
                                 
                                     <div class="box-area">	
                                         <div class="img-area">
-                                            <img src="Recursos/Imagenes/Logos/user.png" alt="">
+                                        <img src="Recursos/Imagenes/Logos/user.png" alt="">
                                         </div>	
                                         <h3>Persons name</h3>
                                         <span>Cliente</span>									

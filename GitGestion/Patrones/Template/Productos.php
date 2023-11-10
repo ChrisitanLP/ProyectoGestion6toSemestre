@@ -59,7 +59,7 @@ class Productos extends Plantilla
                                 <div class="sub-navigation">
                                     <a class="mdl-navigation__link mdl-navigation__link--current" >
                                         <i class="material-icons">pages</i>
-                                        Paginas
+                                        Gestión
                                         <i class="material-icons" >keyboard_arrow_down</i>
                                     </a>
                                     <div class="mdl-navigation">
@@ -91,7 +91,7 @@ class Productos extends Plantilla
             <main class="mdl-layout__content ">
                 <br>
                 <div class="mdl-grid ui-tables">
-                    <div class="mdl-cell mdl-cell--10-col-desktop mdl-cell--10-col-tablet mdl-cell--4-col-phone">
+                    <div class="mdl-cell mdl-cell--12-col-desktop mdl-cell--12-col-tablet mdl-cell--12-col-phone">
                         <div class="mdl-card mdl-shadow--1dp">
                             <div class="mdl-card__title">
                                 <h1 class="mdl-card__title-text">Tabla de Productoss&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</h1>
@@ -114,6 +114,9 @@ class Productos extends Plantilla
                                             <th class="mdl-data-table__cell--non-numeric">INGREDIENTE_3</th>
                                             <th class="mdl-data-table__cell--non-numeric">PRECIO</th>
                                             <th class="mdl-data-table__cell--non-numeric">DESCRIPCIÓN</th>
+                                            <th class="mdl-data-table__cell--non-numeric">AMARGO</th>
+                                            <th class="mdl-data-table__cell--non-numeric">CUERPO</th>                                            
+                                            <th class="mdl-data-table__cell--non-numeric">IMAGEN</th>
                                             <th class="mdl-data-table__select">ACCION</th>
                                         </tr>
                                     </thead>
@@ -153,6 +156,9 @@ class Productos extends Plantilla
                     ing3_valor = fila.find("td:eq(7)").text();
                     precio_valor = fila.find("td:eq(8)").text();
                     descripcion_valor = fila.find("td:eq(9)").text();
+                    amargo_valor = fila.find("td:eq(10)").text();
+                    cuerpo_valor = fila.find("td:eq(11)").text();
+                    imagen_valor = fila.find("td:eq(12)").text();
                     
                     $("#productoE").val(nombre_valor);
                     $("#marcaE").val(marca_valor);
@@ -161,8 +167,11 @@ class Productos extends Plantilla
                     $("#ingrediente1E").val(ing1_valor);
                     $("#ingrediente2E").val(ing2_valor);
                     $("#ingrediente3E").val(ing3_valor);
-                    $("#descripcionE").val(descripcion_valor);
                     $("#precioE").val(precio_valor);
+                    $("#descripcionE").val(descripcion_valor);
+                    $("#amargoE").val(amargo_valor);
+                    $("#cuerpoE").val(cuerpo_valor);
+                    $("#imagenE").val(imagen_valor);
 
                     $("#modalCrud").modal("show");
                 });
@@ -201,6 +210,9 @@ class Productos extends Plantilla
                     ingrediente3E = $("#ingrediente3E").val();
                     precioE = $("#precioE").val();
                     descripcionE = $("#descripcionE").val();
+                    amargoE = $("#amargoE").val();
+                    cuerpoE = $("#cuerpoE").val();
+                    imagenE = $("#imagenE").val();
                     opcion=2;
                     
                     $.ajax({
@@ -340,7 +352,19 @@ class Productos extends Plantilla
                                 </div>
                                 <div class="form-group">
                                     <label class="sr-only" for="form">Descripción:  </label>
-                                    <input type="text" name="descripcionI" placeholder="Descripción..." class="form form-control" id="form">
+                                    <input type="text" name="descripcionI" placeholder="Descripción..." class="form form-control" id="form" required>
+                                </div>
+                                <div class="form-group">
+                                    <label class="sr-only" for="form">Amargo:  </label>
+                                    <input type="text" name="amargoI" placeholder="Amargo..." class="form form-control" id="form" required>
+                                </div>
+                                <div class="form-group">
+                                    <label class="sr-only" for="form">Cuerpo:  </label>
+                                    <input type="text" name="cuerpoI" placeholder="Descripción..." class="form form-control" id="form" required>
+                                </div>
+                                <div class="form-group">
+                                    <label class="sr-only" for="form">Imagen Producto:  </label>
+                                    <input type="file" name="imagenI" title="seleccionar fichero" id="importData" accept=".jpg,.jpge, .png, .jfif, .svg" required>
                                 </div>
                                 <br>
                             </form>

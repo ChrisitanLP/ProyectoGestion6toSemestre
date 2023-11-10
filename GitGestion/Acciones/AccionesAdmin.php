@@ -102,6 +102,9 @@ class Acciones
                         <td class="mdl-data-table__cell--non-numeric">' . $respuesta['Car_3_Pro'] . '</td>
                         <td class="mdl-data-table__cell--non-numeric">' . $respuesta['Pre_Pro'] . '</td>
                         <td class="mdl-data-table__cell--non-numeric">' . $respuesta['Des_Pro'] . '</td>
+                        <td class="mdl-data-table__cell--non-numeric">' . $respuesta['Ama_Pro'] . '</td>
+                        <td class="mdl-data-table__cell--non-numeric">' . $respuesta['Cue_Pro'] . '</td>
+                        <td class="mdl-data-table__cell--non-numeric"><img class="img-gest" src="../' . $respuesta['Rut_Pro'] . '"></img></td>
                         <td class="mdl-data-table__cell">
                             <center>
                                 <button class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect button--colored-teal editar">
@@ -192,6 +195,33 @@ class Acciones
         $resultado = $conexion->prepare($consulta);
         $resultado -> execute();
     }
+
+    public static function InsertarProductos($producto, $marca, $grado, $ibu, $ingrediente1, $ingrediente2, $ingrediente3, $precio, $descripcion, $imagen)
+    {
+        $conexion = Conexion::getInstance()->getConexion();
+        $consulta = "INSERT INTO productos (Nom_Pro, Mar_Pro, Gra_Alc_Pro, Car_1_Pro, Car_2_Pro, Car_3_Pro, Ama_Pro, Cue_Pro, Pre_Pro, Des_Pro, Rut_Pro) VALUES($producto, $marca, $grado, $ibu, $ingrediente1, $ingrediente2, $ingrediente3, $precio, $descripcion, $imagen)";
+        $resultado = $conexion->prepare($consulta);
+        $resultado->execute();
+        header("location:../Paginas/Productos.php");
+    }
+
+    public static function ActualizarProductos($producto, $marca, $grado, $ibu, $ingrediente1, $ingrediente2, $ingrediente3, $precio, $descripcion, $imagen)
+    {
+        $conexion = Conexion::getInstance()->getConexion();
+        $consulta = "UPDATE productos SET Cli_Com='$contrasena', Pre_Sub_Com='$email', Pre_Tot_Com='$telefono', Pro_Com='$telefono' WHERE Cod_Com='$usuario'";
+        $resultado = $conexion->prepare($consulta);
+        $resultado->execute();
+        header("location:../Paginas/Compras.php");
+    }
+
+    public static function EliminarProductos($codigo)
+    {
+        $conexion = Conexion::getInstance()->getConexion();
+        $consulta = "DELETE FROM productos where Cod_Com='$codigo'";
+        $resultado = $conexion->prepare($consulta);
+        $resultado -> execute();
+    }
+
 
 }
 
