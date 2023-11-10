@@ -166,10 +166,13 @@ class Usuarios extends Plantilla
                         clave_valor = fila.find("td:eq(2)").text();
                         email_valor = fila.find("td:eq(3)").text();
                         telefono_valor = fila.find("td:eq(4)").text();
+                        rol_valor = fila.find("td:eq(5)").text();
+
 
                         $("#claveE").val(clave_valor);
                         $("#emailE").val(email_valor);
                         $("#telefonoE").val(telefono_valor);
+                        $("#rolE").val(rol_valor);
                         $("#modalCrud").modal("show");
                     });
 
@@ -229,13 +232,14 @@ class Usuarios extends Plantilla
                         claveE = $("#claveE").val();
                         emailE = $("#emailE").val();
                         telefonoE = $("#telefonoE").val();
+                        rolE = $("#rolE").val();
 
                         opcion=2;
                         $.ajax({
                             url: "../Acciones/Rest.php",
                             type: "POST",
                             data: {
-                                claveE : claveE , emailE: emailE, telefonoE: telefonoE, usuario_valor: usuario_valor, opcion:opcion
+                                claveE : claveE , emailE: emailE, telefonoE: telefonoE, rolE: rolE, usuario_valor: usuario_valor, opcion:opcion
                             },
                             success: function (resultado) {
                                 window.location.href = "../Paginas/Usuarios.php";
@@ -268,6 +272,11 @@ class Usuarios extends Plantilla
                                 <div class="form-group">
                                     <label class="sr-only" for="form-email">Teléfono: </label>
                                     <input type="text" name="telefonoE" class="form-email form-control" id="telefonoE">
+                                </div>
+                                <br>
+                                <div class="form-group">
+                                    <label class="sr-only" for="form-email">Rol: </label>
+                                    <input type="text" name="rolE" class="form-email form-control" id="rolE">
                                 </div>
                                 <br>
                                 <div class="modal-footer">

@@ -316,11 +316,11 @@ class Productos extends Plantilla
                                 </div>
                                 <div class="form-group">
                                     <label class="sr-only" for="form-last-name">Grado de Alcohol: </label>
-                                    <input type="number" name="gradoI" placeholder="Grado Alcohil..." class="form-last-name form-control" id="form-last-name" required>
+                                    <input type="number" name="gradoI" placeholder="Grado Alcohil..." class="form-last-name form-control" id="form-last-name" min="1" required>
                                 </div>
                                 <div class="form-group">
                                     <label class="sr-only" for="form">IBU: </label>
-                                    <input type="number" name="ibuI" placeholder="IBU..." class="form form-control" id="form" required>
+                                    <input type="number" name="ibuI" placeholder="IBU..." class="form form-control" id="form" min="1" required>
                                 </div>
                                 <div class="form-group">
                                     <label class="sr-only" for="form">Ingrediente 1: </label>
@@ -336,7 +336,7 @@ class Productos extends Plantilla
                                 </div>
                                 <div class="form-group">
                                     <label class="sr-only" for="form">Precio:  </label>
-                                    <input type="number" name="precioI" placeholder="Precio..." class="form form-control" id="form" required>
+                                    <input type="number" name="precioI" placeholder="Precio..." class="form form-control" id="form" min="1" required>
                                 </div>
                                 <div class="form-group">
                                     <label class="sr-only" for="form">Descripción:  </label>

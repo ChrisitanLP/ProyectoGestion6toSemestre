@@ -20,7 +20,8 @@
                     $contrasena = $_POST['claveE'];
                     $email = $_POST['emailE'];
                     $telefono = $_POST['telefonoE'];
-                    Acciones::ActualizarUsuario($usuario, $contrasena, $email, $telefono);
+                    $rol = $_POST['rolE'];
+                    Acciones::ActualizarUsuario($usuario, $contrasena, $email, $telefono, $rol);
                     break;
 
                 case 3:

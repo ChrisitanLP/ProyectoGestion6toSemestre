@@ -117,48 +117,119 @@ class Index extends Plantilla
                     <h4 class="text-primary text-uppercase" style="letter-spacing: 5px;">Testimonios</h4>
                     <h1 class="display-4 text-primary">Nuestros Clientes dicen</h1>
                 </div>
-                <div class="owl-carousel testimonial-carousel">
-                    <div class="testimonial-item">
-                        <div class="d-flex align-items-center mb-3">
-                            <img class="img-fluid" src="Recursos/Imagenes/Logos/user.png" alt="">
-                            <div class="ml-3">
-                                <h4>Client Name</h4>
-                                <i>Profession</i>
+
+                <section id="testimonial_area" class="section_padding">
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="testmonial_slider_area text-center owl-carousel">
+                                    <div class="box-area">	
+                                        <div class="img-area">
+                                            <img src="Recursos/Imagenes/Logos/user.png" alt="">
+                                        </div>	
+                                        <h3>Persons name</h3>
+                                        <span>Cliente</span>									
+                                        <p class="content">
+                                        "La cerveza artesanal de <strong>INTI</strong> ha elevado mis expectativas. Cada sorbo es una experiencia única llena de sabor y calidad. ¡Un deleite para los amantes de la cerveza!"
+                                        </p>
+                                        <h6 class="socials">
+                                            <i class="fa fa-instagram"></i>
+                                            <i class="fa fa-facebook"></i>
+                                            <i class="fa fa-linkedin"></i>
+                                            <i class="fa fa-youtube"></i>
+                                        </h6>
+                                    </div> <!-- END SINGLE TESTIMONIALS -->	
+                                
+                                    <div class="box-area">	
+                                        <div class="img-area">
+                                            <img src="Recursos/Imagenes/Logos/user.png" alt="">
+                                        </div>	
+                                        <h3>Persons name</h3>
+                                        <span>Cliente</span>								
+                                        <p class="content">
+                                        "Lo que más me impresiona es el compromiso de <strong>INTI</strong> con la calidad. Cada cerveza es un testimonio de su dedicación a la excelencia y la artesanía."
+                                        </p>
+                                        <h6 class="socials">
+                                            <i class="fa fa-instagram"></i>
+                                            <i class="fa fa-facebook"></i>
+                                            <i class="fa fa-linkedin"></i>
+                                            <i class="fa fa-youtube"></i>
+                                        </h6>
+                                    </div> <!-- END SINGLE TESTIMONIALS -->	
+                                
+                                    <div class="box-area">	
+                                        <div class="img-area">
+                                            <img src="Recursos/Imagenes/Logos/user.png" alt="">
+                                        </div>	
+                                        <h3>Persons name</h3>
+                                        <span>Cliente</span>									
+                                        <p class="content">
+                                        "Como conocedor de la cerveza, puedo decir con confianza que la calidad de las cervezas de <strong>INTI</strong> es inigualable. Ingredientes de primera, proceso artesanal y amor por la cerveza."
+                                        </p>
+                                        <h6 class="socials">
+                                            <i class="fa fa-instagram"></i>
+                                            <i class="fa fa-facebook"></i>
+                                            <i class="fa fa-linkedin"></i>
+                                            <i class="fa fa-youtube"></i>
+                                        </h6>
+                                    </div> <!-- END SINGLE TESTIMONIALS -->
+                                
+                                    <div class="box-area">	
+                                        <div class="img-area">
+                                            <img src="Recursos/Imagenes/Logos/user.png" alt="">
+                                        </div>	
+                                        <h3>Persons name</h3>
+                                        <span>Cliente</span>									
+                                        <p class="content">
+                                        "La cerveza artesanal de esta empresa es más que una bebida, es una experiencia. Cada cerveza cuenta una historia, y cada sorbo es una invitación a explorar el apasionante mundo de la cerveza artesanal."
+                                        </p>
+                                        <h6 class="socials">
+                                            <i class="fa fa-instagram"></i>
+                                            <i class="fa fa-facebook"></i>
+                                            <i class="fa fa-linkedin"></i>
+                                            <i class="fa fa-youtube"></i>
+                                        </h6>
+                                    </div> <!-- END SINGLE TESTIMONIALS -->
+                                
+                                    <div class="box-area">	
+                                        <div class="img-area">
+                                            <img src="Recursos/Imagenes/Logos/user.png" alt="">
+                                        </div>	
+                                        <h3>Persons name</h3>
+                                        <span>Designation Goes Here</span>									
+                                        <span>Cliente</span>
+                                        "Desde que probé la cerveza artesanal de esta empresa, no puedo conformarme con otra. La frescura y la atención a los detalles hacen que cada cerveza sea una obra maestra. ¡No puedo esperar a probar las próximas creaciones!"
+                                        </p>
+                                        <h6 class="socials">
+                                            <i class="fa fa-instagram"></i>
+                                            <i class="fa fa-facebook"></i>
+                                            <i class="fa fa-linkedin"></i>
+                                            <i class="fa fa-youtube"></i>
+                                        </h6>
+                                    </div> <!-- END SINGLE TESTIMONIALS -->
+                                
+                                    <div class="box-area">	
+                                        <div class="img-area">
+                                            <img src="Recursos/Imagenes/Logos/user.png" alt="">
+                                        </div>	
+                                        <h3>Persons name</h3>
+                                        <span>Cliente</span>									
+                                        <p class="content">
+                                        "Como amante de la cerveza, puedo decir con certeza que la selección de cervezas artesanales de esta empresa es insuperable. Desde las cervezas más ligeras hasta las más robustas, siempre encuentro la perfecta para cada ocasión."
+                                        </p>
+                                        <h6 class="socials">
+                                            <i class="fa fa-instagram"></i>
+                                            <i class="fa fa-facebook"></i>
+                                            <i class="fa fa-linkedin"></i>
+                                            <i class="fa fa-youtube"></i>
+                                        </h6>
+                                    </div> <!-- END SINGLE TESTIMONIALS -->	
+                                </div>
                             </div>
                         </div>
-                        <p class="m-0">Sed ea amet kasd elitr stet, stet rebum et ipsum est duo elitr eirmod clita lorem. Dolor tempor ipsum sanct clita</p>
                     </div>
-                    <div class="testimonial-item">
-                        <div class="d-flex align-items-center mb-3">
-                            <img class="img-fluid" src="Recursos/Imagenes/Logos/user.png" alt="">
-                            <div class="ml-3">
-                                <h4>Client Name</h4>
-                                <i>Profession</i>
-                            </div>
-                        </div>
-                        <p class="m-0">Sed ea amet kasd elitr stet, stet rebum et ipsum est duo elitr eirmod clita lorem. Dolor tempor ipsum sanct clita</p>
-                    </div>
-                    <div class="testimonial-item">
-                        <div class="d-flex align-items-center mb-3">
-                            <img class="img-fluid" src="Recursos/Imagenes/Logos/user.png" alt="">
-                            <div class="ml-3">
-                                <h4>Client Name</h4>
-                                <i>Profession</i>
-                            </div>
-                        </div>
-                        <p class="m-0">Sed ea amet kasd elitr stet, stet rebum et ipsum est duo elitr eirmod clita lorem. Dolor tempor ipsum sanct clita</p>
-                    </div>
-                    <div class="testimonial-item">
-                        <div class="d-flex align-items-center mb-3">
-                            <img class="img-fluid" src="Recursos/Imagenes/Logos/user.png" alt="">
-                            <div class="ml-3">
-                                <h4>Client Name</h4>
-                                <i>Profession</i>
-                            </div>
-                        </div>
-                        <p class="m-0">Sed ea amet kasd elitr stet, stet rebum et ipsum est duo elitr eirmod clita lorem. Dolor tempor ipsum sanct clita</p>
-                    </div>
-                </div>
+                </section>
+
             </div>
         </div>
         <!-- Testimonial End -->
