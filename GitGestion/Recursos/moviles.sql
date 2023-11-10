@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 08-11-2023 a las 20:49:15
+-- Tiempo de generación: 10-11-2023 a las 22:02:42
 -- Versión del servidor: 10.4.28-MariaDB
 -- Versión de PHP: 8.2.4
 
@@ -55,10 +55,9 @@ CREATE TABLE `compras` (
 --
 
 INSERT INTO `compras` (`Cod_Com`, `Cli_Com`, `Pre_Tot_Com`, `Fec_Com`, `Pro_Com`, `Pre_Sub_Com`) VALUES
-(3, 'dallin', 84.672, '2023-11-08', '[\"Pedro Ximenez\",\"u00d6u00f6\",\"Must Kuld\"]', 75.6),
-(4, 'dallin', 47.376, '2023-11-08', '[\"The Last Dark Dawn\",\"WITELA\"]', 42.3),
 (5, 'dallin', 52.752, '2023-11-08', '[\"Palo Cortado\",\"The Last Dark Dawn\"]', 47.1),
-(6, 'dallin', 95.088, '2023-11-08', '[\"Russian Imperial Stout\",\"WITELA\",\"NIGULA\",\"SUMARTu00cc\"]', 84.9);
+(6, 'dallin', 95.088, '2023-11-08', '[\"Russian Imperial Stout\",\"WITELA\",\"NIGULA\",\"SUMARTu00cc\"]', 84.9),
+(8, 'dallin', 52.752, '2023-11-10', '[\"Palo Cortado\",\"The Last Dark Dawn\"]', 47.1);
 
 -- --------------------------------------------------------
 
@@ -87,7 +86,7 @@ CREATE TABLE `productos` (
 --
 
 INSERT INTO `productos` (`Cod_Pro`, `Nom_Pro`, `Mar_Pro`, `Gra_Alc_Pro`, `Car_1_Pro`, `Car_2_Pro`, `Car_3_Pro`, `Ama_Pro`, `Cue_Pro`, `Pre_Pro`, `Des_Pro`, `IBU`, `Rut_Pro`) VALUES
-(1, 'Pedro Ximenez', 'BlackBlock', 13, 'Chocolate', 'Copos Cebada', 'Magnum', 'Alto', 'Medio', 4.5, 'La Black Block de siempre añejada durante 2 años en barricas de PX. Una delicia para los sentidos.', 60, 'Recursos/Imagenes/Productos/PedroXimenez.png'),
+(1, 'Pedro Ximenez', 'BlackBlock', 13, 'Chocolate', 'Copos Cebada', 'Magnum', 'Alto', 'Medio', 0, 'La Black Block de siempre añejada durante 2 años en barricas de PX. Una delicia para los sentidos.', 60, 'Recursos/Imagenes/Productos/PedroXimenez.png'),
 (2, 'Palo Cortado', 'BlackBlock', 13, 'Cebada Asada', 'Avena', 'Malta Extra Palida', 'Alto', 'Medio', 4, 'Nuestra Black Block de siempre, madurada en barricas de Palo Cortado durante 2 años. Yummm!', 60, 'Recursos/Imagenes/Productos/Bourbon.png'),
 (3, 'The Last Dark Dawn', 'BlackBlock', 15, 'Dextrina', 'Copos Trigo', 'Cebada Tostada', 'Alto', 'Alto', 3.85, 'Algo “grande” o “muy grande”, que destaca por su magnitud. Oscuridad, densidad, potencia, cremosidad, torrefacción…', 65, 'Recursos/Imagenes/Productos/TheLastDark.png'),
 (4, 'Vanilla Black Velvet', 'BlackBlock', 10.3, 'Vainilla', 'Avena', 'Malta Extra Palida', 'Medio', 'Medio', 4.2, 'No queremos presumir demasiado… pero esto es un BIRROTE! La mezcla ha sido mágica y el resultado es sorprendente y no te dejará indiferente.', 40, 'Recursos/Imagenes/Productos/Vanilla.png'),
@@ -104,6 +103,35 @@ INSERT INTO `productos` (`Cod_Pro`, `Nom_Pro`, `Mar_Pro`, `Gra_Alc_Pro`, `Car_1_
 (15, 'SBERLUC', 'PintalPina', 5.5, 'Lupulo', 'Malta Cebada', 'Levadura', 'Bajo', 'Bajo', 3.9, 'Cerveza Lager, típica FestBier alemana de color dorado y fina espuma blanca. La nariz recuerda a la corteza de pan y a la miel. En boca, la dulzura de la malta y el lúpulo refinado equilibran un buen contenido de alcohol, lo que invita a beber.', 18, 'Recursos/Imagenes/Productos/Sberluc.png'),
 (16, 'CRASC', 'PintalPina', 4.5, 'Raíz Regaliz', 'Malta Cebada', 'Levadura', 'Bajo', 'Medio', 3.2, 'Crasc es una cerveza negra con un aspecto nocturno con un sombrero grueso de espuma crema. En nariz desprende aromas a café tostado y cereales tostados. Agradablemente complejo, aporta un delicado chocolate negro a la boca complementado con toques de chinotto y raíz de regaliz. ', 22, 'Recursos/Imagenes/Productos/Crasc.png'),
 (17, 'NIGULA', 'PintalPina', 4.5, 'Lupulo', 'Malta Cebada', 'Levadura', 'Medio', 'Bajo', 3.8, 'Cerveza ligera de color dorado, con un importante lupulado que libera aromas cítricos y herbáceos, dándole un sabor único, pero \"sencillo\". El cuerpo esbelto, pero con carácter, y el ligero amargor que emerge claramente la convierten en una cerveza con una excelente bebibilidad.', 33, 'Recursos/Imagenes/Productos/Nigula.png');
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `testimonios`
+--
+
+CREATE TABLE `testimonios` (
+  `Cod_Tes` int(11) NOT NULL,
+  `Usu_Tes` varchar(50) NOT NULL,
+  `Ema_Tes` varchar(200) NOT NULL,
+  `Mot_Tes` varchar(100) NOT NULL,
+  `Men_Tes` varchar(500) NOT NULL,
+  `Hab_Tes` varchar(20) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Volcado de datos para la tabla `testimonios`
+--
+
+INSERT INTO `testimonios` (`Cod_Tes`, `Usu_Tes`, `Ema_Tes`, `Mot_Tes`, `Men_Tes`, `Hab_Tes`) VALUES
+(1, 'Dallin Miranda', 'DTuston@uta.edu.ec', 'Testimonio', '\"La cerveza artesanal de INTI ha elevado mis expectativas. Cada sorbo es una experiencia única llena de sabor y calidad. ¡Un deleite para los amantes de la cerveza!\"', 'Habilitado'),
+(2, 'Andres Laverde', 'ALaverde@uta.edu.ec', 'Testimonio', '\"Lo que más me impresiona es el compromiso de INTI con la calidad. Cada cerveza es un testimonio de su dedicación a la excelencia y la artesanía.\"', 'Habilitado'),
+(4, 'Valentina Caserez', 'VCaserez@hotmail.com', 'Testimonio', '\"La cerveza artesanal de esta empresa es más que una bebida, es una experiencia. Cada cerveza cuenta una historia, y cada sorbo es una invitación a explorar el apasionante mundo de la cerveza artesanal.\"', 'Deshabilitado'),
+(5, 'Andres Quiñonez', 'AndQ2023@gmail.com', 'Testimonio', '\"Desde que probé la cerveza artesanal de esta empresa, no puedo conformarme con otra. La frescura y la atención a los detalles hacen que cada cerveza sea una obra maestra. ¡No puedo esperar a probar las próximas creaciones!\"', 'Habilitado'),
+(6, 'Alan Flores', 'AlitasPicantes@gmail.com', 'Testimonio', '\"Como amante de la cerveza, puedo decir con certeza que la selección de cervezas artesanales de esta empresa es insuperable. Desde las cervezas más ligeras hasta las más robustas, siempre encuentro la perfecta para cada ocasión.\"', 'Deshabilitado'),
+(7, 'Marcos Cevallos', 'DCevallos@uta.edu.ec', 'Testimonio', '\"Como conocedor de la cerveza, puedo decir con confianza que la calidad de las cervezas de INTI es inigualable. Ingredientes de primera, proceso artesanal y amor por la cerveza.\"', 'Deshabilitado'),
+(8, 'Maria Benedeti', 'MariaB20@gmail.com', 'Testimonio', 'Wenas Tardes Jovenes', 'Deshabilitado'),
+(9, '', '', '', '', 'Deshabilitado');
 
 -- --------------------------------------------------------
 
@@ -125,7 +153,8 @@ CREATE TABLE `usuarios` (
 
 INSERT INTO `usuarios` (`usuario`, `clave`, `email`, `telefono`, `rol`) VALUES
 ('dallin', 'dallin123', 'dallin@hotmail.com', '0985184605', 'cliente'),
-('admin', 'admin', 'admin@uta.edu.ec', '0985184705', 'admin');
+('admin', 'admin', 'admin@uta.edu.ec', '0985184705', 'admin'),
+('OliviaBiscuit', 'OliverAtp', 'OliverB2016@gmail.com', '0993422656', 'admin');
 
 --
 -- Índices para tablas volcadas
@@ -150,6 +179,12 @@ ALTER TABLE `productos`
   ADD PRIMARY KEY (`Cod_Pro`);
 
 --
+-- Indices de la tabla `testimonios`
+--
+ALTER TABLE `testimonios`
+  ADD PRIMARY KEY (`Cod_Tes`);
+
+--
 -- AUTO_INCREMENT de las tablas volcadas
 --
 
@@ -157,19 +192,25 @@ ALTER TABLE `productos`
 -- AUTO_INCREMENT de la tabla `carrito`
 --
 ALTER TABLE `carrito`
-  MODIFY `Cod_Car` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
+  MODIFY `Cod_Car` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=40;
 
 --
 -- AUTO_INCREMENT de la tabla `compras`
 --
 ALTER TABLE `compras`
-  MODIFY `Cod_Com` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `Cod_Com` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 
 --
 -- AUTO_INCREMENT de la tabla `productos`
 --
 ALTER TABLE `productos`
-  MODIFY `Cod_Pro` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
+  MODIFY `Cod_Pro` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
+
+--
+-- AUTO_INCREMENT de la tabla `testimonios`
+--
+ALTER TABLE `testimonios`
+  MODIFY `Cod_Tes` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

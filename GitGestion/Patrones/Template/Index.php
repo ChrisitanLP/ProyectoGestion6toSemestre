@@ -44,6 +44,7 @@ class Index extends Plantilla
     }
     public function crearMain()
     {
+        $testimonios = $this -> MostrarTestimonios();
         echo '
         <div class="go-top-container">
             <div class="go-top-button">
@@ -83,6 +84,7 @@ class Index extends Plantilla
         <!-- Carousel End -->
 
         <div class="contenedor-fluido py-5">
+
             <div class="container">
                 <div class="section-title">
                     <h4 class="text-primary text-uppercase" style="letter-spacing: 5px;">Sobre Nosotros</h4>
@@ -123,107 +125,7 @@ class Index extends Plantilla
                         <div class="row">
                             <div class="col-md-12">
                                 <div class="testmonial_slider_area text-center owl-carousel">
-                                    <div class="box-area">	
-                                        <div class="img-area">
-                                            <img src="Recursos/Imagenes/Logos/user.png" alt="">
-                                        </div>	
-                                        <h3>Persons name</h3>
-                                        <span>Cliente</span>									
-                                        <p class="content">
-                                        "La cerveza artesanal de <strong>INTI</strong> ha elevado mis expectativas. Cada sorbo es una experiencia única llena de sabor y calidad. ¡Un deleite para los amantes de la cerveza!"
-                                        </p>
-                                        <h6 class="socials">
-                                            <i class="fa fa-instagram"></i>
-                                            <i class="fa fa-facebook"></i>
-                                            <i class="fa fa-linkedin"></i>
-                                            <i class="fa fa-youtube"></i>
-                                        </h6>
-                                    </div> <!-- END SINGLE TESTIMONIALS -->	
-                                
-                                    <div class="box-area">	
-                                        <div class="img-area">
-                                            <img src="Recursos/Imagenes/Logos/user.png" alt="">
-                                        </div>	
-                                        <h3>Persons name</h3>
-                                        <span>Cliente</span>								
-                                        <p class="content">
-                                        "Lo que más me impresiona es el compromiso de <strong>INTI</strong> con la calidad. Cada cerveza es un testimonio de su dedicación a la excelencia y la artesanía."
-                                        </p>
-                                        <h6 class="socials">
-                                            <i class="fa fa-instagram"></i>
-                                            <i class="fa fa-facebook"></i>
-                                            <i class="fa fa-linkedin"></i>
-                                            <i class="fa fa-youtube"></i>
-                                        </h6>
-                                    </div> <!-- END SINGLE TESTIMONIALS -->	
-                                
-                                    <div class="box-area">	
-                                        <div class="img-area">
-                                            <img src="Recursos/Imagenes/Logos/user.png" alt="">
-                                        </div>	
-                                        <h3>Persons name</h3>
-                                        <span>Cliente</span>									
-                                        <p class="content">
-                                        "Como conocedor de la cerveza, puedo decir con confianza que la calidad de las cervezas de <strong>INTI</strong> es inigualable. Ingredientes de primera, proceso artesanal y amor por la cerveza."
-                                        </p>
-                                        <h6 class="socials">
-                                            <i class="fa fa-instagram"></i>
-                                            <i class="fa fa-facebook"></i>
-                                            <i class="fa fa-linkedin"></i>
-                                            <i class="fa fa-youtube"></i>
-                                        </h6>
-                                    </div> <!-- END SINGLE TESTIMONIALS -->
-                                
-                                    <div class="box-area">	
-                                        <div class="img-area">
-                                            <img src="Recursos/Imagenes/Logos/user.png" alt="">
-                                        </div>	
-                                        <h3>Persons name</h3>
-                                        <span>Cliente</span>									
-                                        <p class="content">
-                                        "La cerveza artesanal de esta empresa es más que una bebida, es una experiencia. Cada cerveza cuenta una historia, y cada sorbo es una invitación a explorar el apasionante mundo de la cerveza artesanal."
-                                        </p>
-                                        <h6 class="socials">
-                                            <i class="fa fa-instagram"></i>
-                                            <i class="fa fa-facebook"></i>
-                                            <i class="fa fa-linkedin"></i>
-                                            <i class="fa fa-youtube"></i>
-                                        </h6>
-                                    </div> <!-- END SINGLE TESTIMONIALS -->
-                                
-                                    <div class="box-area">	
-                                        <div class="img-area">
-                                            <img src="Recursos/Imagenes/Logos/user.png" alt="">
-                                        </div>	
-                                        <h3>Persons name</h3>
-                                        <span>Designation Goes Here</span>									
-                                        <span>Cliente</span>
-                                        "Desde que probé la cerveza artesanal de esta empresa, no puedo conformarme con otra. La frescura y la atención a los detalles hacen que cada cerveza sea una obra maestra. ¡No puedo esperar a probar las próximas creaciones!"
-                                        </p>
-                                        <h6 class="socials">
-                                            <i class="fa fa-instagram"></i>
-                                            <i class="fa fa-facebook"></i>
-                                            <i class="fa fa-linkedin"></i>
-                                            <i class="fa fa-youtube"></i>
-                                        </h6>
-                                    </div> <!-- END SINGLE TESTIMONIALS -->
-                                
-                                    <div class="box-area">	
-                                        <div class="img-area">
-                                        <img src="Recursos/Imagenes/Logos/user.png" alt="">
-                                        </div>	
-                                        <h3>Persons name</h3>
-                                        <span>Cliente</span>									
-                                        <p class="content">
-                                        "Como amante de la cerveza, puedo decir con certeza que la selección de cervezas artesanales de esta empresa es insuperable. Desde las cervezas más ligeras hasta las más robustas, siempre encuentro la perfecta para cada ocasión."
-                                        </p>
-                                        <h6 class="socials">
-                                            <i class="fa fa-instagram"></i>
-                                            <i class="fa fa-facebook"></i>
-                                            <i class="fa fa-linkedin"></i>
-                                            <i class="fa fa-youtube"></i>
-                                        </h6>
-                                    </div> <!-- END SINGLE TESTIMONIALS -->	
+                                    '.$testimonios.'
                                 </div>
                             </div>
                         </div>
@@ -233,6 +135,15 @@ class Index extends Plantilla
             </div>
         </div>
         <!-- Testimonial End -->
+
+        <div class="contenedor-fluido py-5">
+            <div class="container">
+                <div class="section-title">
+                    <h4 class="text-primary text-uppercase" style="letter-spacing: 5px;">Servicios</h4>
+                    <h1 class="display-4 text-primary">Es importante servirte</h1>
+                </div>
+            </div>
+        </div>
 
         ';
                     
@@ -288,6 +199,41 @@ class Index extends Plantilla
    
         <a href="#" class="btn btn-lg btn-primary btn-lg-square back-to-top"><i class="fa fa-angle-double-up"></i></a>
         ';
+    }
+
+    public function MostrarTestimonios()
+    {
+        $habilitado = "Habilitado";
+        $conexion = Conexion::getInstance()->getConexion();
+        $consulta = "SELECT * FROM testimonios WHERE Hab_Tes='$habilitado'";
+        $resultado = $conexion->prepare($consulta);
+        $resultado->execute();
+        $dato = $resultado->fetchAll(PDO::FETCH_ASSOC);
+
+        $acum = 1;
+        $informacion = '';
+
+        foreach ($dato as $respuesta) {
+            $informacion .= '
+                    <div class="box-area">	
+                        <div class="img-area">
+                            <img src="Recursos/Imagenes/Logos/perfil2.png" alt="">
+                        </div>	
+                        <h3>' . $respuesta['Usu_Tes'] . '</h3>
+                        <span>' . $respuesta['Mot_Tes'] . '</span>									
+                        <p class="content">
+                            ' . $respuesta['Men_Tes'] . '
+                        </p>
+                        <h6 class="socials">
+                            <i class="fa fa-instagram"></i>
+                            <i class="fa fa-facebook"></i>
+                            <i class="fa fa-linkedin"></i>
+                            <i class="fa fa-youtube"></i>
+                        </h6>
+                    </div> 
+                ';
+        }
+        return $informacion;
     }
 
 }

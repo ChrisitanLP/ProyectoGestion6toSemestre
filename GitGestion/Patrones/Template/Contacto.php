@@ -85,28 +85,28 @@ class Contacto extends Plantilla
                     <div class="col-md-6 pb-5">
                         <div class="contact-form">
                             <div id="success"></div>
-                            <form name="sentMessage" id="contactForm" novalidate="novalidate">
+                            <form id="contactForm" novalidate="novalidate" role="form" action="../Acciones/Rest.php" method="post" class="registration-form">
                                 <div class="control-group">
-                                    <input type="text" class="text-primary form-control bg-transparent p-4" id="name" placeholder="Usuario..."
-                                        required="required" data-validation-required-message="Ingresa tu Usuario" />
+                                    <input name="usuarioI" type="text" class="text-primary form-control bg-transparent p-4" id="usuarioI" placeholder="Nombre..." data-validation-required-message="Ingresa tu Nombre" required />
                                     <p class="help-block text-danger"></p>
                                 </div>
                                 <div class="control-group">
-                                    <input type="email" class="text-primary form-control bg-transparent p-4" id="email" placeholder="Email..."
-                                        required="required" data-validation-required-message="Ingresa tu Email" />
+                                    <input name="emailI" type="email" class="text-primary form-control bg-transparent p-4" id="emailI" placeholder="Email..." data-validation-required-message="Ingresa tu Email" required />
                                     <p class="help-block text-danger"></p>
                                 </div>
                                 <div class="control-group">
-                                    <input type="text" class="text-primary form-control bg-transparent p-4" id="subject" placeholder="Motivo..."
-                                        required="required" data-validation-required-message="Ingresa tu Motivo" />
-                                    <p class="help-block text-danger"></p>
+                                    <select name="motivoI" id="motivoI" class="text-primary form-control bg-transparent p-4" placeholder="Motivo...">
+                                        <option value="" disabled selected>Selecciona el Motivo</option>
+                                        <option value="Testimonio">Testimonio</option>
+                                        <option value="Queja">Queja</option>
+                                    </select>
                                 </div>
                                 <div class="control-group">
-                                    <textarea class="text-primary form-control bg-transparent py-3 px-4" rows="5" id="message" placeholder="Mensaje..."
-                                        required="required"
-                                        data-validation-required-message="Ingresa tu Mensaje"></textarea>
+                                    <textarea name="mensajeI" class="text-primary form-control bg-transparent py-3 px-4" rows="5" id="mensajeI" placeholder="Comentario..." data-validation-required-message="Ingresa tu Mensaje" required></textarea>
+                                    <input type="hidden" name="opcion" value="11">
                                     <p class="help-block text-danger"></p>
                                 </div>
+
                                 <div class="container-contact">
                                     <button class="btn btn-primary btn-contact text-white font-weight-bold py-3 px-5" type="submit" id="sendMessageButton">Enviar Mensaje</button>
                                 </div>
@@ -122,11 +122,11 @@ class Contacto extends Plantilla
             }
             document.getElementById(\'telefono\').addEventListener(\'mouseover\', function() {
                 document.body.style.cursor = \'pointer\';
-               });
+            });
                
-               document.getElementById(\'telefono\').addEventListener(\'mouseout\', function() {
+            document.getElementById(\'telefono\').addEventListener(\'mouseout\', function() {
                 document.body.style.cursor = \'default\';
-               });
+            });
         </script>
         ';
                     

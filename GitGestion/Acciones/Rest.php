@@ -103,7 +103,15 @@
                 case 10:
                     $codigo = $_POST['producto_val'];
                     Acciones::EliminarProductos($codigo);
-                    break;                    
+                    break;     
+                    
+                case 11:
+                    $usuario = $_POST['usuarioI'];
+                    $email = $_POST['emailI'];
+                    $motivo = $_POST['motivoI'];
+                    $mensaje = $_POST['mensajeI'];
+                    Acciones::insertarTestimonio($usuario, $email, $motivo, $mensaje);
+                    break;     
 
                 default:
                     header("location:../Paginas/Usuarios.php");
