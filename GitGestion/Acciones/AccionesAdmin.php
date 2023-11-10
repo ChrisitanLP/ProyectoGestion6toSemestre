@@ -196,10 +196,10 @@ class Acciones
         $resultado -> execute();
     }
 
-    public static function InsertarProductos($producto, $marca, $grado, $ibu, $ingrediente1, $ingrediente2, $ingrediente3, $precio, $descripcion, $imagen)
-    {
+    public static function InsertarProductos($producto, $marca, $grado, $ibu, $ingrediente1, $ingrediente2, $ingrediente3, $amargo, $cuerpo, $precio, $descripcion, $imagen)
+    { 
         $conexion = Conexion::getInstance()->getConexion();
-        $consulta = "INSERT INTO productos (Nom_Pro, Mar_Pro, Gra_Alc_Pro, Car_1_Pro, Car_2_Pro, Car_3_Pro, Ama_Pro, Cue_Pro, Pre_Pro, Des_Pro, Rut_Pro) VALUES($producto, $marca, $grado, $ibu, $ingrediente1, $ingrediente2, $ingrediente3, $precio, $descripcion, $imagen)";
+        $consulta = "INSERT INTO productos (Nom_Pro, Mar_Pro, Gra_Alc_Pro, IBU, Car_1_Pro, Car_2_Pro, Car_3_Pro, Ama_Pro, Cue_Pro, Pre_Pro, Des_Pro, Rut_Pro) VALUES('$producto', '$marca', '$grado', '$ibu', '$ingrediente1', '$ingrediente2', '$ingrediente3', '$amargo', '$cuerpo', '$precio', '$descripcion', '$imagen')";
         $resultado = $conexion->prepare($consulta);
         $resultado->execute();
         header("location:../Paginas/Productos.php");

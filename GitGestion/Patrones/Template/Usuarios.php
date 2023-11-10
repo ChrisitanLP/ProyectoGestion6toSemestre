@@ -320,10 +320,11 @@ class Usuarios extends Plantilla
                                     <input type="hidden" name="opcion" value="1">
                                     </div>
                                 <br>
+                                
                                 <div class="modal-footer">
-                                <input type="button" class="btn btn-warning" data-bs-dismiss="modal" aria-label="Close" value=" Cancelar ">
-                                <input type="submit" class="btn btn-success" value=" Agregar Usuario ">
-                            </div>
+                                    <input type="button" class="btn btn-warning" data-bs-dismiss="modal" aria-label="Close" value=" Cancelar ">
+                                    <input type="submit" class="btn btn-success" value=" Agregar Usuario ">
+                                </div>
                             </form>
                         </div>
                     </div>

@@ -68,8 +68,14 @@
                     $ingrediente3 = $_POST['ingrediente3I'];
                     $precio = $_POST['precioI'];
                     $descripcion = $_POST['descripcionI'];
-                    $imagen = $_POST['imagenI'];
-                    Acciones::InsertarProductos($producto, $marca, $grado, $ibu, $ingrediente1, $ingrediente2, $ingrediente3, $precio, $descripcion, $imagen);
+                    $amargo = $_POST['amargoI'];
+                    $cuerpo = $_POST['cuerpoI'];
+
+                    $ruta = "Recursos/Imagenes/Productos/";
+                    $nombreImagen = trim($_FILES['imagenI']['name']);
+
+                    $imagen = $ruta.$nombreImagen;
+                    Acciones::InsertarProductos($producto, $marca, $grado, $ibu, $ingrediente1, $ingrediente2, $ingrediente3, $amargo, $cuerpo, $precio, $descripcion, $imagen);
                     break;
     
                 case 9:

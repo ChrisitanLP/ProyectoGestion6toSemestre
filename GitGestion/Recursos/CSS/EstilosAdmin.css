@@ -176,6 +176,7 @@ textarea.form-control {
 	line-height: 30px;
 }
 
+
 input[type="text"]:focus, 
 input[type="number"]:focus, 
 input[type="email"]:focus, 
@@ -185,8 +186,8 @@ textarea.form-control:focus {
 	color: #b3b1b1;
 	outline: 0;
 	background: #525050;
-    border: 3px solid #61d9e9;
-    -moz-box-shadow: none; -webkit-box-shadow: none; box-shadow: none;
+  border: 3px solid #61d9e9;
+  -moz-box-shadow: none; -webkit-box-shadow: none; box-shadow: none;
 }
 
 input[type="email"]:-moz-placeholder, input[type="tel"]:-moz-placeholder,input[type="number"]:-moz-placeholder, input[type="text"]:-moz-placeholder, textarea:-moz-placeholder, textarea.form-control:-moz-placeholder { color: #888; }
@@ -194,6 +195,77 @@ input[type="email"]:-moz-placeholder, input[type="tel"]:-moz-placeholder,input[t
 input[type="email"]:-ms-input-placeholder, input[type="tel"]:-ms-input-placeholder, input[type="number"]:-ms-input-placeholder, input[type="text"]:-ms-input-placeholder, textarea:-ms-input-placeholder, textarea.form-control:-ms-input-placeholder { color: #888; }
 
 input[type="email"]::-webkit-input-placeholder, input[type="tel"]::-webkit-input-placeholder, input[type="number"]::-webkit-input-placeholder, input[type="text"]::-webkit-input-placeholder, textarea::-webkit-input-placeholder, textarea.form-control::-webkit-input-placeholder { color: #888; }
+
+/* Estilo base para los select */
+select.form-control {
+  height: 50px;
+  margin: 0;
+  padding: 0 20px;
+  vertical-align: middle;
+  background: #333;
+  border: 1px solid #333;
+  font-family: 'Roboto', sans-serif;
+  font-size: 16px;
+  font-weight: 300;
+  line-height: 50px;
+  color: #b4b4b4;
+  -moz-border-radius: 4px; -webkit-border-radius: 4px; border-radius: 4px;
+  -moz-box-shadow: none; -webkit-box-shadow: none; box-shadow: none;
+  -o-transition: all .3s; -moz-transition: all .3s; -webkit-transition: all .3s; -ms-transition: all .3s; transition: all .3s;
+}
+
+/* Estilo específico para el estado de enfoque del select */
+select.form-control:focus {
+  color: #b3b1b1;
+  outline: 0;
+  background: #525050;
+  border: 3px solid #61d9e9;
+  -moz-box-shadow: none; -webkit-box-shadow: none; box-shadow: none;
+}
+
+/* Alineación del texto en el select durante el enfoque y el valor seleccionado */
+select.form-control:-moz-placeholder, select.form-control::-moz-placeholder { color: #888; }
+select.form-control:-ms-input-placeholder, select.form-control::-ms-input-placeholder { color: #888; }
+select.form-control::-webkit-input-placeholder { color: #888; }
+
+/* Estilos para el campo de entrada de tipo file */
+input[type="file"] {
+  display: none; /* Oculta el campo de entrada de tipo file */
+}
+
+/* Estilo para el contenedor del campo de entrada de tipo file */
+.file-input-container {
+  position: relative;
+  width: 100%;
+  max-width: 400px; /* Ajusta según sea necesario */
+  margin: 0 auto;
+}
+
+/* Estilo para el botón de subir archivo */
+.file-upload-btn {
+  background-color: #333;
+  color: #fff;
+  padding: 10px 15px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  display: block;
+  width: 100%;
+  text-align: center;
+}
+
+/* Estilo para el texto cuando no se ha seleccionado ningún archivo */
+.file-upload-info {
+  margin-top: 10px;
+  text-align: center;
+  color: #888;
+}
+
+/* Estilo específico cuando el campo de entrada de tipo file tiene el foco */
+input[type="file"]:focus + .file-input-container .file-upload-btn {
+  outline: 2px solid #61d9e9;
+}
+
 
 .nombre-contenedor{
   text-decoration: none;
@@ -480,7 +552,8 @@ button.btn {
   font-size: 15px;
 }
 
-.img-gest{
-  width: 120%;
+.img-gest {
+  max-width: 200px; /* Establece el tamaño máximo que desees */
+  height: 200px; /* Mantiene la proporción de aspecto original */
+  display: block; /* Elimina cualquier espacio adicional debajo de la imagen */
 }
-

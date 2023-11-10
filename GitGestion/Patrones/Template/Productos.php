@@ -317,7 +317,7 @@ class Productos extends Plantilla
                             <button type="button" class="btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
                         </div> 
                         <div class="modal-body">
-                            <form role="form" action="../Acciones/Rest.php" method="post" class="registration-form">
+                            <form role="form" action="../Acciones/Rest.php" method="post" class="registration-form" enctype="multipart/form-data">
                                 <div class="form-group">
                                     <label class="sr-only" for="form-first-name">Producto: </label>
                                     <input type="text" name="productoI" placeholder="Nombre Producto..." class="form-first-name form-control" id="form-first-name" required>
@@ -355,23 +355,39 @@ class Productos extends Plantilla
                                     <input type="text" name="descripcionI" placeholder="Descripción..." class="form form-control" id="form" required>
                                 </div>
                                 <div class="form-group">
-                                    <label class="sr-only" for="form">Amargo:  </label>
-                                    <input type="text" name="amargoI" placeholder="Amargo..." class="form form-control" id="form" required>
+                                    <label class="sr-only" for="amargoI">Amargo:</label>
+                                    <select name="amargoI" class="form-control" id="amargoI" required>
+                                        <option value="" disabled selected>Selecciona el nivel de amargor</option>
+                                        <option value="Bajo">Bajo</option>
+                                        <option value="Medio">Medio</option>
+                                        <option value="Alto">Alto</option>
+                                    </select>
                                 </div>
                                 <div class="form-group">
-                                    <label class="sr-only" for="form">Cuerpo:  </label>
-                                    <input type="text" name="cuerpoI" placeholder="Descripción..." class="form form-control" id="form" required>
+                                    <label class="sr-only" for="amargoI">Cuerpo:</label>
+                                    <select name="cuerpoI" class="form-control" id="amargoI" required>
+                                        <option value="" disabled selected>Selecciona el nivel de Cuerpo</option>
+                                        <option value="Bajo">Bajo</option>
+                                        <option value="Medio">Medio</option>
+                                        <option value="Alto">Alto</option>
+                                    </select>
                                 </div>
                                 <div class="form-group">
                                     <label class="sr-only" for="form">Imagen Producto:  </label>
-                                    <input type="file" name="imagenI" title="seleccionar fichero" id="importData" accept=".jpg,.jpge, .png, .jfif, .svg" required>
+                                    <div class="file-input-container">
+                                        <input type="file" name="imagenI" title="seleccionar fichero" id="importData" accept=".jpg, .jpeg, .png, .jfif, .svg" required>
+                                        <label class="file-upload-btn" for="importData">Subir Archivo</label>
+                                        <div class="file-upload-info">No hay archivo seleccionado</div>
+                                        <input type="hidden" name="opcion" value="8">
+                                    </div>
                                 </div>
                                 <br>
+
+                                <div class="modal-footer">
+                                    <input type="button" class="btn btn-warning" data-bs-dismiss="modal" aria-label="Close" value=" Cancelar ">
+                                    <input type="submit" class="btn btn-success" value=" Agregar Producto ">
+                                </div>
                             </form>
-                        </div>
-                        <div class="modal-footer">
-                            <input type="button" class="btn btn-warning" data-bs-dismiss="modal" aria-label="Close" value=" Cancelar ">
-                            <input type="submit" class="btn btn-success" value=" Agregar Producto ">
                         </div>
                     </div>
                 </div>
