@@ -149,10 +149,10 @@ class Acciones
         header("location:../Paginas/Usuarios.php");
     }
 
-    public static function ActualizarUsuario($usuario, $contrasena, $email, $telefono)
+    public static function ActualizarUsuario($usuario, $contrasena, $email, $telefono, $rol)
     {
         $conexion = Conexion::getInstance()->getConexion();
-        $consulta = "UPDATE usuarios SET clave='$contrasena', email='$email', telefono='$telefono' WHERE usuario='$usuario'";
+        $consulta = "UPDATE usuarios SET clave='$contrasena', email='$email', telefono='$telefono', rol='$rol' WHERE usuario='$usuario'";
         $resultado = $conexion->prepare($consulta);
         $resultado->execute();
         header("location:../Paginas/Usuarios.php");

@@ -23,7 +23,8 @@
 
 
         <!-- Owl Carousel JS -->
-        
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.2.1/assets/owl.carousel.min.css">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.2.1/assets/owl.theme.default.min.css">
         
         <!-- Customized Bootstrap Stylesheet -->
         <link href="Recursos/CSS/EstilosGenerales.css" rel="stylesheet">
@@ -36,8 +37,38 @@
             $Pagina -> crearPagina();
         ?>                                               
         <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
-        <script src="Recursos/JS/Scroll.js"></script>
-        <script src="Recursos/JS/carrusel.js"></script>
         <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.bundle.min.js"></script>
+        <script src="Recursos/JS/Scroll.js"></script>
+
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.2.1/owl.carousel.min.js"></script>
+		<script>
+            $(".testmonial_slider_area").owlCarousel({
+                autoplay: true,
+                slideSpeed:1000,
+                items : 3,
+                loop: true,
+                nav:true,
+                navText:['<span class="carousel-control-prev-icon"></span>','<span class="carousel-control-next-icon"></span>'],
+                margin: 30,
+                dots: true,
+                responsive:{
+                    320:{
+                        items:1
+                    },
+                    767:{
+                        items:2
+                    },
+                    600:{
+                        items:2
+                    },
+                    1000:{
+                        items:3
+                    }
+                }
+                    
+            });
+        </script>
+
     </body>
 </html>
