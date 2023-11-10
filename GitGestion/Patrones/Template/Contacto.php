@@ -75,7 +75,7 @@ class Contacto extends Plantilla
                         <h4 class="font-weight-bold text-primary" style="letter-spacing: 3px;">Dirección</h4>
                         <p class="text-white">Av. Los Chasquis y Río Payamino</p>
                     </div>
-                    <div class="col-sm-4 text-center mb-3">
+                    <div id="telefono" class="col-sm-4 text-center mb-3" onclick="redirectToWhatsapp()">
                         <i class="fa fa-2x fa-phone-alt mb-3 text-primary"></i>
                         <h4 class="font-weight-bold text-primary" style="letter-spacing: 3px;">Telefono</h4>
                         <p class="text-white">+593 985184705</p>
@@ -124,6 +124,18 @@ class Contacto extends Plantilla
                 </div>
             </div>
         </div>
+        <script>
+            function redirectToWhatsapp() {
+                window.open(`https://wa.me/593958907392`, \'_blank\');
+            }
+            document.getElementById(\'telefono\').addEventListener(\'mouseover\', function() {
+                document.body.style.cursor = \'pointer\';
+               });
+               
+               document.getElementById(\'telefono\').addEventListener(\'mouseout\', function() {
+                document.body.style.cursor = \'default\';
+               });
+        </script>
         ';
                     
     }
