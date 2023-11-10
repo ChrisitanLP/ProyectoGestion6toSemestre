@@ -260,8 +260,10 @@
 
             //Crear un array para almacenar los nombres de los productos
             $productosComprados = array();
+            $lista='';
             foreach ($productosCarrito as $producto) {
                 $productosComprados[] = $producto['Pro_Car'];
+                $lista=$lista.$producto['Pro_Car'].', ';
             }
 
             //Serializar el array en formato JSON
@@ -271,13 +273,19 @@
             $consulta1 = "INSERT INTO compras (Cli_Com, Pre_Tot_Com, Fec_Com, Pre_Sub_Com, Pro_Com) values ('$usuario',$total,'$fecha', '$subtotal', '$productosJSON')";
             $resultado1 = $conexion->prepare($consulta1);
             $resultado1->execute();
+
+            //Contactar en otra pestaña mediante Whatsapp con el admin
+            $texto = urlencode("Hola Erick López Pillajo, quiero comprar".$lista." el total es $".$total);
+            $url = "https://wa.me/593958907392?text=$texto";
+            //echo "<script>window.open(`$url`, '_blank');</script>";
+            header("Location: $url");
             
             //Eliminar los productos del carrito
             $eliminar = "DELETE FROM carrito WHERE Usu_Car='$usuario'";
             $resultado2 = $conexion->prepare($eliminar);
             $resultado2->execute();
 
-            header("Location: ../Paginas/Servicio.php");
+            //header("Location: ../Paginas/Servicio.php");
             exit();
             
         }
