@@ -1,15 +1,26 @@
 <?php
 include_once("Plantilla.php");
+include_once("Patrones/Singleton/Conexion.php");
 
 class Index extends Plantilla
 {
     public function crearHeader()
     {
+        $usuario = $_SESSION["usuario"];
+        $conexion = Conexion::getInstance() -> getConexion();
+
+        $consulta = "SELECT COUNT(*) as total FROM carrito WHERE Usu_Car = :usuario";
+        $resultado = $conexion->prepare($consulta);
+        $resultado->bindParam(':usuario', $usuario, PDO::PARAM_STR);
+        $resultado->execute();
+        $row = $resultado->fetch(PDO::FETCH_ASSOC);
+        $cantidadProductos = $row['total'];
+
         echo '
         <div class="contenedor-fluido p-0 nav-bar">
             <nav class="navbar navbar-expand-lg bg-none navbar-dark py-3">
-                <a href="index.html" class="navbar-brand px-lg-4 m-0">
-                    <img class="navlogo" src="Recursos/Imagenes/Logos/blanco.png">
+                <a href="index.php" class="navbar-brand px-lg-4 m-0">
+                    <span class="m-0 display-3 text-uppercase text-white"><img class="navlogo" src="Recursos/Imagenes/Logos/blanco.png"></span>
                 </a>
                 <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#navbarCollapse">
                     <span class="navbar-toggler-icon"></span>
@@ -18,9 +29,13 @@ class Index extends Plantilla
                     <div class="navbar-nav ml-auto p-4">
                         <a href="index.php" class="nav-item nav-link active text-uppercase">Inicio</a>
                         <a href="Paginas/Tienda.php" class="nav-item nav-link text-uppercase">Tienda</a>
-                        <a href="Paginas/cerrar.php" class="nav-item nav-link text-uppercase">Servicio</a>
                         <a href="Paginas/Nosotros.php" class="nav-item nav-link text-uppercase">Nosotros</a>
                         <a href="Paginas/Contacto.php" class="nav-item nav-link text-uppercase">Contacto</a>
+                        <a href="Paginas/Servicio.php" class="nav-item nav-link text-uppercase">
+                            <i class="fas fa-shopping-cart"></i>
+                            <span class="badge">' . $cantidadProductos . '</span>
+                        </a>
+                        <a href="Paginas/cerrar.php" class="nav-item nav-link text-uppercase"><i class="far fa-user"></i></a>
                     </div>
                 </div>
             </nav>
@@ -29,9 +44,16 @@ class Index extends Plantilla
     }
     public function crearMain()
     {
+        $testimonios = $this -> MostrarTestimonios();
         echo '
+        <div class="go-top-container">
+            <div class="go-top-button">
+                <i class="fas fa-chevron-up"></i>
+            </div>
+        </div>
+
         <!-- Carousel Start -->
-        <div class="container-fluid p-0 mb-5">
+        <div class="contenedor-fluido p-0 mb-5">
             <div id="blog-carousel" class="carousel slide overlay-bottom" data-ride="carousel">
                 <div class="carousel-inner">
                     <div class="carousel-item active">
@@ -62,6 +84,7 @@ class Index extends Plantilla
         <!-- Carousel End -->
 
         <div class="contenedor-fluido py-5">
+
             <div class="container">
                 <div class="section-title">
                     <h4 class="text-primary text-uppercase" style="letter-spacing: 5px;">Sobre Nosotros</h4>
@@ -90,57 +113,88 @@ class Index extends Plantilla
         </div>
 
         <!-- Testimonial Start -->
-        <div class="container-fluid py-5">
+        <div class="container-fluid py-5 bg-img-testimonial">
             <div class="container">
                 <div class="section-title">
                     <h4 class="text-primary text-uppercase" style="letter-spacing: 5px;">Testimonios</h4>
                     <h1 class="display-4 text-primary">Nuestros Clientes dicen</h1>
                 </div>
-                <div class="owl-carousel testimonial-carousel">
-                    <div class="testimonial-item">
-                        <div class="d-flex align-items-center mb-3">
-                            <img class="img-fluid" src="img/testimonial-1.jpg" alt="">
-                            <div class="ml-3">
-                                <h4>Client Name</h4>
-                                <i>Profession</i>
+
+                <section id="testimonial_area" class="section_padding">
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="testmonial_slider_area text-center owl-carousel">
+                                    '.$testimonios.'
+                                </div>
                             </div>
                         </div>
-                        <p class="m-0 text-white">Sed ea amet kasd elitr stet, stet rebum et ipsum est duo elitr eirmod clita lorem. Dolor tempor ipsum sanct clita</p>
                     </div>
-                    <div class="testimonial-item">
-                        <div class="d-flex align-items-center mb-3">
-                            <img class="img-fluid" src="Recursos/Imagenes/Logos/blanco.png" alt="">
-                            <div class="ml-3">
-                                <h4>Client Name</h4>
-                                <i>Profession</i>
-                            </div>
-                        </div>
-                        <p class="m-0">Sed ea amet kasd elitr stet, stet rebum et ipsum est duo elitr eirmod clita lorem. Dolor tempor ipsum sanct clita</p>
-                    </div>
-                    <div class="testimonial-item">
-                        <div class="d-flex align-items-center mb-3">
-                            <img class="img-fluid" src="img/testimonial-3.jpg" alt="">
-                            <div class="ml-3">
-                                <h4>Client Name</h4>
-                                <i>Profession</i>
-                            </div>
-                        </div>
-                        <p class="m-0">Sed ea amet kasd elitr stet, stet rebum et ipsum est duo elitr eirmod clita lorem. Dolor tempor ipsum sanct clita</p>
-                    </div>
-                    <div class="testimonial-item">
-                        <div class="d-flex align-items-center mb-3">
-                            <img class="img-fluid" src="img/testimonial-4.jpg" alt="">
-                            <div class="ml-3">
-                                <h4>Client Name</h4>
-                                <i>Profession</i>
-                            </div>
-                        </div>
-                        <p class="m-0">Sed ea amet kasd elitr stet, stet rebum et ipsum est duo elitr eirmod clita lorem. Dolor tempor ipsum sanct clita</p>
-                    </div>
-                </div>
+                </section>
+
             </div>
         </div>
         <!-- Testimonial End -->
+
+        <div class="contenedor-fluido py-5">
+            <div class="container">
+                <div class="section-title">
+                    <h4 class="text-primary text-uppercase" style="letter-spacing: 5px;">Servicios</h4>
+                    <h1 class="display-4 text-primary">Es importante servirte</h1>
+                </div>
+
+                <div class="wrapper">
+                    <div class="box-area-services">
+                        <div class="icon-area">
+                        <i class="fas fa-wine-bottle"></i>
+                        </div>
+                        <h6 class="text-primary">GRANDES CERVEZAS</h6>
+                        <p>Contamos con 3 estilos de línea y cervezas experimentales, para todos los gustos.</p>
+                    </div>
+                    <div class="box-area-services custom">
+                        <div class="icon-area">
+                        <i class="fas fa-box"></i> 
+                        </div>
+                        <h6 class="text-primary">VISITAS A LA PLANTA</h6>
+                        <p>¿Quieres descubrir cual es el proceso que se lleva a cabo para embotellar nuestra pasión por la Cerveza?.</p>
+                    </div>
+                    <div class="box-area-services">
+                        <div class="icon-area">
+                        <i class="fas fa-beer"></i>
+                        </div>
+                        <h6 class="text-primary">MAQUILAMOS TU CERVEZA</h6>
+                        <p>Tú pones la idea y nosotros el sabor para hacerlo realidad.</p>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+        <div class="bg-img">
+            <section class="container fabric12Jump cameMeet bg_img pb-80" data-background="Recursos/Imagenes/Fondos/fondoTexturado.png">
+                <div class="container">
+                    <div class="row mm-reverse">
+                        <div class="col-xl-6 aos-init aos-animate" data-aos="fade-right" data-aos-duration="1200">
+                            <div class="about__left about__left--4 beersLovers">
+                                <div class="section-heading">
+                                    <h1 class="text-primary pt-40 pb-25">Ven a conocernos</h1>
+                                    <p>Abrimos nuestras puertas para que todos los apasionados por la cerveza artesanal conozcan más sobre esta pasión.</p>
+                                    <p>Reservá tu lugar y realizá una visita guiada por la Fábrica. También vas a poder aprovechar y disfrutar las ediciones limitadas disponibles únicamente en el Bar de la Fábrica.</p>
+                                </div>
+                                <div class="btn btn-primary mt-45 font-weight-bold btn-test">
+                                    <a href="https://api.whatsapp.com/send?phone=593985184705" target="_blank" class="text-white" style="text-decoration: none;">RESERVAR VISITA</a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-xl-4 offset-xl-2 aos-init aos-animate" data-aos="fade-right" data-aos-duration="1200">
+                            <div class="big-product-wrapper d-flex justify-content-center position-relative">
+                                <img class="img-reserva" src="Recursos/Imagenes/Fondos/fabrica.png" alt="img">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
 
         ';
                     
@@ -197,5 +251,41 @@ class Index extends Plantilla
         <a href="#" class="btn btn-lg btn-primary btn-lg-square back-to-top"><i class="fa fa-angle-double-up"></i></a>
         ';
     }
+
+    public function MostrarTestimonios()
+    {
+        $habilitado = "Habilitado";
+        $conexion = Conexion::getInstance()->getConexion();
+        $consulta = "SELECT * FROM testimonios WHERE Hab_Tes='$habilitado'";
+        $resultado = $conexion->prepare($consulta);
+        $resultado->execute();
+        $dato = $resultado->fetchAll(PDO::FETCH_ASSOC);
+
+        $acum = 1;
+        $informacion = '';
+
+        foreach ($dato as $respuesta) {
+            $informacion .= '
+                    <div class="box-area">	
+                        <div class="img-area">
+                            <img src="Recursos/Imagenes/Logos/perfil2.png" alt="">
+                        </div>	
+                        <h3>' . $respuesta['Usu_Tes'] . '</h3>
+                        <span>' . $respuesta['Mot_Tes'] . '</span>									
+                        <p class="content">
+                            ' . $respuesta['Men_Tes'] . '
+                        </p>
+                        <h6 class="socials">
+                            <i class="fa fa-instagram"></i>
+                            <i class="fa fa-facebook"></i>
+                            <i class="fa fa-linkedin"></i>
+                            <i class="fa fa-youtube"></i>
+                        </h6>
+                    </div> 
+                ';
+        }
+        return $informacion;
+    }
+
 }
 ?>

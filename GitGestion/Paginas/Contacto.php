@@ -21,14 +21,16 @@
         <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css" rel="stylesheet">
         
         <!-- Customized Bootstrap Stylesheet -->
-        <link href="../Recursos/CSS/Style.css" rel="stylesheet">
+        <link href="../Recursos/CSS/EstilosGenerales.css" rel="stylesheet">
+        <link href="../Recursos/CSS/Opciones.css" rel="stylesheet">
         <link href="../Recursos/CSS/EstilosTienda.css" rel="stylesheet">
     </head>
     </head>
     <body>
         <?php
             $Pagina -> crearPagina();
-        ?>                                               
+        ?>     
+        <script src="../Recursos/JS/Scroll.js"></script>                                           
         <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
         <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.bundle.min.js"></script>
     </body>

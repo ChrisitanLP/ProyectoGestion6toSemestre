@@ -1,15 +1,18 @@
 <?php
 include_once("Plantilla.php");
+include_once("../Acciones/AccionesProductos.php");
 
 class Contacto extends Plantilla
 {
     public function crearHeader()
     {
+        $cantidadProductos = Acciones::cantidadProductos();
+
         echo '
         <div class="contenedor-fluido p-0 nav-bar">
             <nav class="navbar navbar-expand-lg bg-none navbar-dark py-3">
-                <a href="index.html" class="navbar-brand px-lg-4 m-0">
-                    <img class="navlogo" src="../Recursos/Imagenes/Logos/blanco.png">
+                <a href="../index.php" class="navbar-brand px-lg-4 m-0">
+                    <span class="m-0 display-3 text-uppercase text-white"><img class="navlogo" src="../Recursos/Imagenes/Logos/blanco.png"></span>
                 </a>
                 <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#navbarCollapse">
                     <span class="navbar-toggler-icon"></span>
@@ -18,9 +21,13 @@ class Contacto extends Plantilla
                     <div class="navbar-nav ml-auto p-4">
                         <a href="../index.php" class="nav-item nav-link text-uppercase">Inicio</a>
                         <a href="Tienda.php" class="nav-item nav-link text-uppercase">Tienda</a>
-                        <a href="Servicio.html" class="nav-item nav-link text-uppercase">Servicio</a>
                         <a href="Nosotros.php" class="nav-item nav-link text-uppercase">Nosotros</a>
                         <a href="Contacto.php" class="nav-item nav-link active text-uppercase">Contacto</a>
+                        <a href="Servicio.php" class="nav-item nav-link text-uppercase">
+                            <i class="fas fa-shopping-cart"></i>
+                            <span class="badge">' . $cantidadProductos . '</span>
+                        </a>
+                        <a href="cerrar.php" class="nav-item nav-link text-uppercase"><i class="far fa-user"></i></a>
                     </div>
                 </div>
             </nav>
@@ -30,6 +37,12 @@ class Contacto extends Plantilla
     public function crearMain()
     {
         echo '
+        <div class="go-top-container">
+            <div class="go-top-button">
+                <i class="fas fa-chevron-up"></i>
+            </div>
+        </div>
+
         <div class="contenedor-fluido page-header-Contact mb-5 position-relative overlay-bottom">
             <div class="d-flex flex-column align-items-center justify-content-center pt-0 pt-lg-5" style="min-height: 400px">
                 <h1 class="display-4 mb-3 mt-0 mt-lg-5 text-white text-uppercase titleMain">Contacto</h1>
@@ -54,7 +67,7 @@ class Contacto extends Plantilla
                         <h4 class="font-weight-bold text-primary" style="letter-spacing: 3px;">Dirección</h4>
                         <p class="text-white">Av. Los Chasquis y Río Payamino</p>
                     </div>
-                    <div class="col-sm-4 text-center mb-3">
+                    <div id="telefono" class="col-sm-4 text-center mb-3" onclick="redirectToWhatsapp()">
                         <i class="fa fa-2x fa-phone-alt mb-3 text-primary"></i>
                         <h4 class="font-weight-bold text-primary" style="letter-spacing: 3px;">Telefono</h4>
                         <p class="text-white">+593 985184705</p>
@@ -67,35 +80,35 @@ class Contacto extends Plantilla
                 </div>
                 <div class="row">
                     <div class="col-md-6">
-                        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d15955.453479846206!2d-78.63983555161404!3d-1.2536033270709372!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x91d381921177aed7%3A0x572fb57acb123a8a!2sAv.%20Los%20Shyris%2016-16%2C%20Ambato%20180202!5e0!3m2!1ses-419!2sec!4v1681778079811!5m2!1ses-419!2sec" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+                        <iframe style="width: 100%; height: 443px;" src="https://www.google.com/maps/place/Avenida+Gonzalo+D%C3%A1valos+%26+Avenida+La+Prensa,+Riobamba/@-1.6562941,-78.6597947,1126m/data=!3m2!1e3!4b1!4m6!3m5!1s0x91d307f6222a0d31:0x264957ddcdb51073!8m2!3d-1.6562941!4d-78.6572198!16s%2Fg%2F11ljmmxzqm?hl=es-419&entry=ttu" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>   
                     </div>
-                    <div class="col-md-5 pb-6" style="margin-left:4%;">
+                    <div class="col-md-6 pb-5">
                         <div class="contact-form">
                             <div id="success"></div>
-                            <form name="sentMessage" id="contactForm" novalidate="novalidate">
+                            <form id="contactForm" novalidate="novalidate" role="form" action="../Acciones/Rest.php" method="post" class="registration-form">
                                 <div class="control-group">
-                                    <input type="text" class="form-control bg-transparent p-4" id="name" placeholder="Nombre..."
-                                        required="required" data-validation-required-message="Por favor ingrese su Nombre" />
+                                    <input name="usuarioI" type="text" class="text-primary form-control bg-transparent p-4" id="usuarioI" placeholder="Nombre..." data-validation-required-message="Ingresa tu Nombre" required />
                                     <p class="help-block text-danger"></p>
                                 </div>
                                 <div class="control-group">
-                                    <input type="email" class="form-control bg-transparent p-4" id="email" placeholder="Email..."
-                                        required="required" data-validation-required-message="Por favor ingrese su Correo" />
+                                    <input name="emailI" type="email" class="text-primary form-control bg-transparent p-4" id="emailI" placeholder="Email..." data-validation-required-message="Ingresa tu Email" required />
                                     <p class="help-block text-danger"></p>
                                 </div>
                                 <div class="control-group">
-                                    <input type="text" class="form-control bg-transparent p-4" id="subject" placeholder="Asunto..."
-                                        required="required" data-validation-required-message="Por facor ingrese el Asunto del mensaje" />
-                                    <p class="help-block text-danger"></p>
+                                    <select name="motivoI" id="motivoI" class="text-primary form-control bg-transparent p-4" placeholder="Motivo...">
+                                        <option value="" disabled selected>Selecciona el Motivo</option>
+                                        <option value="Testimonio">Testimonio</option>
+                                        <option value="Queja">Queja</option>
+                                    </select>
                                 </div>
                                 <div class="control-group">
-                                    <textarea class="form-control bg-transparent py-3 px-4" rows="5" id="message" placeholder="Mensaje..."
-                                        required="required"
-                                        data-validation-required-message="Por favor ingrese el Mensaje"></textarea>
+                                    <textarea name="mensajeI" class="text-primary form-control bg-transparent py-3 px-4" rows="5" id="mensajeI" placeholder="Comentario..." data-validation-required-message="Ingresa tu Mensaje" required></textarea>
+                                    <input type="hidden" name="opcion" value="11">
                                     <p class="help-block text-danger"></p>
                                 </div>
-                                <div>
-                                    <button class="btn btn-primary font-weight-bold py-3 px-6 text-white" type="submit" id="sendMessageButton">Enviar</button>
+
+                                <div class="container-contact">
+                                    <button class="btn btn-primary btn-contact text-white font-weight-bold py-3 px-5" type="submit" id="sendMessageButton">Enviar Mensaje</button>
                                 </div>
                             </form>
                         </div>
@@ -103,6 +116,18 @@ class Contacto extends Plantilla
                 </div>
             </div>
         </div>
+        <script>
+            function redirectToWhatsapp() {
+                window.open(`https://wa.me/593958907392`, \'_blank\');
+            }
+            document.getElementById(\'telefono\').addEventListener(\'mouseover\', function() {
+                document.body.style.cursor = \'pointer\';
+            });
+               
+            document.getElementById(\'telefono\').addEventListener(\'mouseout\', function() {
+                document.body.style.cursor = \'default\';
+            });
+        </script>
         ';
                     
     }

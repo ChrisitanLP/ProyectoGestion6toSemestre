@@ -22,11 +22,11 @@
 		<div class="signup">
 			<form  id="register" method="post" action="../Acciones/Rest.php">
 				<label for="chk" aria-hidden="true">REGISTRO</label>
-				<input type="text" name="usuario"  id="usuario" placeholder="Usuario" required="">
-				<input type="text" name="email"  id="email" placeholder="E-Mail" required="">
-                <input type="text" name="telefono"  id="telefono" placeholder="Telefono" required="">
-				<input type="password" name="contrasena" id="contrasena" placeholder="Contraseña" required="">
-				
+				<input type="text" name="usuario"  id="usuario" placeholder="Usuario" required>
+				<input type="email" name="email"  id="email" placeholder="E-Mail" required>
+                <input type="tel" name="telefono"  id="telefono" placeholder="Telefono" required>
+				<input type="password" name="contrasena" id="contrasena" placeholder="Contraseña" required>
+				<input type="hidden" name="opcion" value="4">
                 <center><p id="msgUserExist" style="color:white"></p></center>
 				<button type="submit" id="btnRegister">Registrarse</button>
 			</form>
@@ -35,8 +35,8 @@
 		<div class="login">
 			<form id="login" method="POST" action="<?php echo $_SERVER['PHP_SELF']; ?>">
 				<label for="chk" aria-hidden="true">INGRESO</label>
-				<input type="text" name="usuario" id="usuario" placeholder="Usuario" required="">
-				<input type="password" name="contrasena" id="contrasena" placeholder="Contraseña" required="">
+				<input type="text" name="usuario" id="usuario" placeholder="Usuario" required>
+				<input type="password" name="contrasena" id="contrasena" placeholder="Contraseña" required>
 				<center><p id="msgUserInvalid"></p></center>
 				<button id="btnLogin" type="submit">Ingresar</button>
 			</form>

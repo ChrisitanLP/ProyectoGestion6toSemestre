@@ -1,15 +1,18 @@
 <?php
 include_once("Plantilla.php");
+include_once("../Acciones/AccionesProductos.php");
 
 class Nosotros extends Plantilla
 {
     public function crearHeader()
     {
+        $cantidadProductos = Acciones::cantidadProductos();
+
         echo '
         <div class="contenedor-fluido p-0 nav-bar">
             <nav class="navbar navbar-expand-lg bg-none navbar-dark py-3">
-                <a href="index.html" class="navbar-brand px-lg-4 m-0">
-                    <img class="navlogo" src="../Recursos/Imagenes/Logos/blanco.png">
+                <a href="../index.php" class="navbar-brand px-lg-4 m-0">
+                    <span class="m-0 display-3 text-uppercase text-white"><img class="navlogo" src="../Recursos/Imagenes/Logos/blanco.png"></span>
                 </a>
                 <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#navbarCollapse">
                     <span class="navbar-toggler-icon"></span>
@@ -18,9 +21,13 @@ class Nosotros extends Plantilla
                     <div class="navbar-nav ml-auto p-4">
                         <a href="../index.php" class="nav-item nav-link text-uppercase">Inicio</a>
                         <a href="Tienda.php" class="nav-item nav-link text-uppercase">Tienda</a>
-                        <a href="Servicio.html" class="nav-item nav-link text-uppercase">Servicio</a>
                         <a href="Nosotros.php" class="nav-item nav-link active text-uppercase">Nosotros</a>
                         <a href="Contacto.php" class="nav-item nav-link text-uppercase">Contacto</a>
+                        <a href="Servicio.php" class="nav-item nav-link text-uppercase">
+                            <i class="fas fa-shopping-cart"></i>
+                            <span class="badge">' . $cantidadProductos . '</span>
+                        </a>
+                        <a href="cerrar.php" class="nav-item nav-link text-uppercase"><i class="far fa-user"></i></a>
                     </div>
                 </div>
             </nav>
@@ -30,6 +37,12 @@ class Nosotros extends Plantilla
     public function crearMain()
     {
         echo '
+        <div class="go-top-container">
+            <div class="go-top-button">
+                <i class="fas fa-chevron-up"></i>
+            </div>
+        </div>
+
         <div class="contenedor-fluido page-header mb-5 position-relative overlay-bottom">
             <div class="d-flex flex-column align-items-center justify-content-center pt-0 pt-lg-5" style="min-height: 400px">
                 <h1 class="display-4 mb-3 mt-0 mt-lg-5 text-white text-uppercase titleMain">Nosotros</h1>
