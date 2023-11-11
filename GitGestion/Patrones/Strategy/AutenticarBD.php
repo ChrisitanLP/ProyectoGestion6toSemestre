@@ -27,14 +27,14 @@
 
             if ($data) {
                 Sesion::getInstance()->setSesion("usuario", $data["usuario"]);
-                echo "Inicio de sesion Existoso " . $data["usuario"];
+                //echo "Inicio de sesion Existoso " . $data["usuario"];
                 $rol = $data['rol'];
                 $correo = $data['email'];
+                $_SESSION['rol'] = $rol;
+                $_SESSION['correo'] = $correo;
             } else {
                 header("location:error.php");
             }
-            $_SESSION['rol'] = $rol;
-            $_SESSION['correo'] = $correo;
         }
     }
 
