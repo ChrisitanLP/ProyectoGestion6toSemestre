@@ -3802,3 +3802,196 @@ select.form-control option:checked {
   background-color: #151515;
   color: #fff;
 }
+
+.wrapper {
+  padding: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.box-area-services {
+  width: 300px;
+  margin: 20px;
+  padding: 30px;
+  background-color: #212529;
+  transition: all 0.6s ease-in-out;
+  color: #fff;
+  height: 300px; /* Tamaño fijo para todas las cajas */
+  overflow: hidden; /* Oculta el texto que excede la altura definida */
+}
+
+.box-area-services .icon-area {
+  width: 100%;
+  margin-bottom: 20px; /* Reduce el espacio entre el ícono y el texto */
+}
+
+.icon-area i {
+  font-size: 70px;
+  color: #ffffff;
+}
+
+.box-area-services h6 {
+  margin-bottom: 10px;
+  color: #262626;
+  font-size: 24px; /* Tamaño del texto ajustado */
+  font-family: 'Asfalto';
+  overflow: hidden; /* Oculta el texto que excede la altura definida */
+}
+
+.box-area-services p {
+  font-size: 16px; /* Tamaño del texto ajustado */
+}
+
+.box-area-services:hover {
+  background-color: #2b3034;
+  box-shadow: 15px 15px 30px rgba(0, 0, 0, 0.3);
+}
+
+.box-area-services:hover i {
+  color: #d6a873;
+}
+
+.box-area-services:hover h6 {
+  color: #fff;
+}
+
+.box-area-services:hover p {
+  color: #e2e2e2;
+}
+
+
+/*----------------------------------------------------------*/
+.bg-img {
+  background: linear-gradient(rgba(16, 15, 15, 0.1), rgba(16, 15, 15, 0.1)), url(../Imagenes/Fondos/fondoTexturado.png);
+  background-attachment: fixed; /* Esto hace que el fondo sea fijo y crea el efecto parallax */
+  background-position: center; /* Ajusta la posición del fondo */
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+.bg-img-testimonial {
+  background: linear-gradient(rgba(16, 15, 15, 0.8), rgba(16, 15, 15, 0.8)), url(../Imagenes/Fondos/barradispensador.webp);
+  background-attachment: fixed; /* Esto hace que el fondo sea fijo y crea el efecto parallax */
+  background-position: center; /* Ajusta la posición del fondo */
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+.fabric12Jump {
+  margin-bottom: -5%;
+  background-attachment: fixed;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+.fabric12-main-container
+{
+  width: 100%;
+  height: auto;
+  background-color: #0000;
+  display: flex;
+  flex-direction: column;
+}
+
+.fabric12-slider-container
+{
+  width: 50%;
+  height: auto;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+}
+
+.fabric12Jump
+{
+  height: 760px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.section-heading p
+{
+  color: #FFFFFF;
+  font-size: 20px;
+  font-weight: 200;
+  line-height: 25px;
+  letter-spacing: 0.05em;
+  text-align: left;
+}
+
+.section-heading h1
+{
+  font-size: 52px;
+  font-weight: 800;
+  line-height: 25px;
+  letter-spacing: 0.05em;
+}
+
+.slide-container img:nth-child(1),
+.slide-container img:nth-child(4)
+{
+  opacity: 0.5;
+}
+
+.slide-container
+{
+  width: 100%;
+  height: 100%;
+  background-color: #151515;
+  justify-content: center;
+  overflow: hidden;
+  display: flex;
+  gap: 20px;
+}
+.slide-container img
+{
+  width: 550px;
+  height: 500px;
+  object-fit: cover;
+}
+
+.arrowCarousel
+{
+  width: 50px;
+  height: 50px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 14px;
+  background-color: #CB761B;
+  color: #FFFFFF;
+  border-radius: 50%;
+  transition: 0.3s;
+}
+
+.img-reserva{
+  margin-top: 20%;
+  width: 100%;
+}
+
+/* Ajustes para dispositivos más pequeños */
+@media (max-width: 1190.98px) {
+  .fabric12Jump {
+    min-height: 300px; /* Ajusta la altura mínima para dispositivos más pequeños */
+    padding-top: 9.5%;
+    padding-bottom: 9.5%;
+  }
+
+  .fabric12-slider-container {
+    width: 100%;
+    max-width: none;
+  }
+  .img-reserva{
+    margin-top: 4%;
+    width: 80%;
+  }
+
+  .btn-test
+  {
+    margin-top: -500px;    
+  }
+}

@@ -20,7 +20,9 @@
         <!-- Font Awesome -->
         <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css" rel="stylesheet">
         <link rel='stylesheet' href='https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.css'>
-
+        
+        <!-- Enlace al archivo CSS de LineIcons -->
+        <link rel="stylesheet" href="https://cdn.lineicons.com/2.0/LineIcons.css">
 
         <!-- Owl Carousel JS -->
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.2.1/assets/owl.carousel.min.css">

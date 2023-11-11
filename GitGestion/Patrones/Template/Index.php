@@ -113,7 +113,7 @@ class Index extends Plantilla
         </div>
 
         <!-- Testimonial Start -->
-        <div class="container-fluid py-5">
+        <div class="container-fluid py-5 bg-img-testimonial">
             <div class="container">
                 <div class="section-title">
                     <h4 class="text-primary text-uppercase" style="letter-spacing: 5px;">Testimonios</h4>
@@ -142,7 +142,58 @@ class Index extends Plantilla
                     <h4 class="text-primary text-uppercase" style="letter-spacing: 5px;">Servicios</h4>
                     <h1 class="display-4 text-primary">Es importante servirte</h1>
                 </div>
+
+                <div class="wrapper">
+                    <div class="box-area-services">
+                        <div class="icon-area">
+                        <i class="fas fa-wine-bottle"></i>
+                        </div>
+                        <h6 class="text-primary">GRANDES CERVEZAS</h6>
+                        <p>Contamos con 3 estilos de línea y cervezas experimentales, para todos los gustos.</p>
+                    </div>
+                    <div class="box-area-services custom">
+                        <div class="icon-area">
+                        <i class="fas fa-box"></i> 
+                        </div>
+                        <h6 class="text-primary">VISITAS A LA PLANTA</h6>
+                        <p>¿Quieres descubrir cual es el proceso que se lleva a cabo para embotellar nuestra pasión por la Cerveza?.</p>
+                    </div>
+                    <div class="box-area-services">
+                        <div class="icon-area">
+                        <i class="fas fa-beer"></i>
+                        </div>
+                        <h6 class="text-primary">MAQUILAMOS TU CERVEZA</h6>
+                        <p>Tú pones la idea y nosotros el sabor para hacerlo realidad.</p>
+                    </div>
+                </div>
+
             </div>
+        </div>
+
+        <div class="bg-img">
+            <section class="container fabric12Jump cameMeet bg_img pb-80" data-background="Recursos/Imagenes/Fondos/fondoTexturado.png">
+                <div class="container">
+                    <div class="row mm-reverse">
+                        <div class="col-xl-6 aos-init aos-animate" data-aos="fade-right" data-aos-duration="1200">
+                            <div class="about__left about__left--4 beersLovers">
+                                <div class="section-heading">
+                                    <h1 class="text-primary pt-40 pb-25">Ven a conocernos</h1>
+                                    <p>Abrimos nuestras puertas para que todos los apasionados por la cerveza artesanal conozcan más sobre esta pasión.</p>
+                                    <p>Reservá tu lugar y realizá una visita guiada por la Fábrica. También vas a poder aprovechar y disfrutar las ediciones limitadas disponibles únicamente en el Bar de la Fábrica.</p>
+                                </div>
+                                <div class="btn btn-primary mt-45 font-weight-bold btn-test">
+                                    <a href="https://api.whatsapp.com/send?phone=593985184705" target="_blank" class="text-white" style="text-decoration: none;">RESERVAR VISITA</a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-xl-4 offset-xl-2 aos-init aos-animate" data-aos="fade-right" data-aos-duration="1200">
+                            <div class="big-product-wrapper d-flex justify-content-center position-relative">
+                                <img class="img-reserva" src="Recursos/Imagenes/Fondos/fabrica.png" alt="img">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
         </div>
 
         ';

@@ -81,10 +81,9 @@ class Servicio extends Plantilla
 
         <section id="cart-add" class="section-p1">
             <div id="coupon">
-                <h3>Aplicar Cupon</h3>
+                
                 <div>
-                    <input type="text" placeholder="Ingresa tu cupon">
-                    <button class="btn btn-primary font-weight-bold">Aplicar</button>
+                    
                 </div>
             </div>
             '.Acciones::Pago().'
