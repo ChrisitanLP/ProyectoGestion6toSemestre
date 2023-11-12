@@ -201,7 +201,7 @@ class Compras extends Plantilla
                                 type: "POST",
                                 data: { codigo_val: codigo_val, opcion: opcion },
                                 success: function (resultado) {
-                                    window.location.href = "../Paginas/Usuarios.php";
+                                    window.location.href = "../Paginas/Compras.php";
                                 }
                             });
                         }
