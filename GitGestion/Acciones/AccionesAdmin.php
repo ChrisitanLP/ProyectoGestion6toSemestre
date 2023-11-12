@@ -30,9 +30,6 @@ class Acciones
                             <center>
                                 <button class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect button--colored-teal editar">
                                     <i class="material-icons">create</i>Editar</button>
-<<<<<<< HEAD
-                                <button class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect button--colored-red eliminar">
-=======
                                 <button class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect button--colored-red eliminar" >
                                     <i class="material-icons">cancel</i>Eliminar
                                 </button>
@@ -106,7 +103,6 @@ class Acciones
                                 <button class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect button--colored-teal editar">
                                     <i class="material-icons">create</i>Editar</button>
                                 <button class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect button--colored-red eliminar" >
->>>>>>> 06ef65d0f81c508d2b8028eeb8198fd2187b9fdd
                                     <i class="material-icons">cancel</i>Eliminar
                                 </button>
                             </center>
