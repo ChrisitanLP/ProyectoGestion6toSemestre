@@ -261,22 +261,22 @@ class Usuarios extends Plantilla
                             <form role="form" id="formEditar" class="registration-form">
                                 <div class="form-group">
                                     <label class="sr-only" for="form-first-name">Clave: </label>
-                                    <input type="text" name="claveE"  class="form-first-name form-control" id="claveE">
+                                    <input type="text" name="claveE"  class="form-first-name form-control" id="claveE" required>
                                 </div>
                                 <br>
                                 <div class="form-group">
                                     <label class="sr-only" for="form-last-name">Email: </label>
-                                    <input type="text" name="emailE"  class="form-last-name form-control" id="emailE">
+                                    <input type="text" name="emailE"  class="form-last-name form-control" id="emailE" required>
                                 </div>
                                 <br>
                                 <div class="form-group">
                                     <label class="sr-only" for="form-email">Teléfono: </label>
-                                    <input type="text" name="telefonoE" class="form-email form-control" id="telefonoE">
+                                    <input type="text" name="telefonoE" class="form-email form-control" id="telefonoE" required>
                                 </div>
                                 <br>
                                 <div class="form-group">
                                     <label class="sr-only" for="form-email">Rol: </label>
-                                    <input type="text" name="rolE" class="form-email form-control" id="rolE">
+                                    <input type="text" name="rolE" class="form-email form-control" id="rolE" required>
                                 </div>
                                 <br>
                                 <div class="modal-footer">

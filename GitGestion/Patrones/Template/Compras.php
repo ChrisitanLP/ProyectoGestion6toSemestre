@@ -201,7 +201,7 @@ class Compras extends Plantilla
                                 type: "POST",
                                 data: { codigo_val: codigo_val, opcion: opcion },
                                 success: function (resultado) {
-                                    window.location.href = "../Paginas/Usuarios.php";
+                                    window.location.href = "../Paginas/Compras.php";
                                 }
                             });
                         }
@@ -246,22 +246,22 @@ class Compras extends Plantilla
                             <form role="form" id="formEditar" class="registration-form">
                                 <div class="form-group">
                                     <label class="sr-only" for="form-first-name">Usuario: </label>
-                                    <input type="text" name="usuarioE"  class="form-first-name form-control" id="usuarioE">
+                                    <input type="text" name="usuarioE"  class="form-first-name form-control" id="usuarioE" required>
                                 </div>
                                 <br>
                                 <div class="form-group">
                                     <label class="sr-only" for="form-first-name">SubTotal: </label>
-                                    <input type="text" name="subtotalE"  class="form-first-name form-control" id="subtotalE">
+                                    <input type="text" name="subtotalE"  class="form-first-name form-control" id="subtotalE" required>
                                 </div>
                                 <br>
                                 <div class="form-group">
                                     <label class="sr-only" for="form-last-name">Total: </label>
-                                    <input type="text" name="totalE"  class="form-last-name form-control" id="totalE">
+                                    <input type="text" name="totalE"  class="form-last-name form-control" id="totalE" required>
                                 </div>
                                 <br>
                                 <div class="form-group">
                                     <label class="sr-only" for="form-email">Productos: </label>
-                                    <input type="text" name="productoE" class="form-email form-control" id="productoE">
+                                    <input type="text" name="productoE" class="form-email form-control" id="productoE" required>
                                 </div>
                                 <br>
                                 <div class="modal-footer">
