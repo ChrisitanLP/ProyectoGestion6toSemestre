@@ -5,7 +5,7 @@
         private $sesion;
 
         private function __construct(){
-            session_start();
+            if (session_status() == PHP_SESSION_NONE)  session_start();
             $this -> sesion = &$_SESSION;
         }
 
@@ -25,7 +25,6 @@
         }
 
         public function cerrarSesion(){
-            include('../Strategy/AuthenticateGoogle.php');
             session_unset();
             session_destroy();
         }
