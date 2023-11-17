@@ -196,17 +196,21 @@
 
         public static function Pago(){
             $carrito = new Acciones();
-
+        
             if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['precioTotal'])) {
                 $precioTotal = $_POST['precioTotal'];
                 $subTotal = $_POST['subTotal'];
                 $carrito -> enviar($precioTotal, $subTotal);
             }
-
+        
             $subtotal = self::$total;
             $iva = $subtotal * 0.12;
             $precioTotal = ($subtotal + $iva);
-
+        
+            if ($precioTotal == 0) {
+                return '<p>No hay productos en el carrito.</p>';
+            }
+        
             $pago = '
                 <div id="subtotal">
                     <h3>Total en el Carrito: </h3>
@@ -231,6 +235,7 @@
                     </form>
                 </div>
             ';
+        
             return $pago;
         }
 
@@ -292,7 +297,7 @@
 
             //Contactar en otra pestaña mediante Whatsapp con el admin
             $texto = urlencode("Hola Erick López Pillajo, quiero comprar".$lista." el total es $".$total);
-            $url = "https://wa.me/593958907392?text=$texto";
+            $url = "https://wa.me/593985184705?text=$texto";
             //echo "<script>window.open(`$url`, '_blank');</script>";
             header("Location: $url");
             
