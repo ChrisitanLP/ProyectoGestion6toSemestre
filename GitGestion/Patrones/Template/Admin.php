@@ -177,6 +177,7 @@ class Admin extends Plantilla
                                             <th class="mdl-data-table__cell--non-numeric">Email</th>
                                             <th class="mdl-data-table__cell--non-numeric">Motivo</th>
                                             <th class="mdl-data-table__cell--non-numeric">Mensaje</th>
+                                            <th class="mdl-data-table__cell--non-numeric">CALIFICACION</th>
                                             <th class="mdl-data-table__cell--non-numeric">Habilitado</th>
                                             <th class="mdl-data-table__select">ACCION</th>
                                         </tr>
@@ -207,14 +208,18 @@ class Admin extends Plantilla
                     $resultado->execute();
                     header("location:Admin.php");
                     break;
-                case 2:
-                    $codigo=$_POST['codigo_val'];
-
-                    $conexion= Conexion::getInstance()->getConexion();
-                    $consulta="DELETE FROM testimonios where Cod_Tes='$codigo'";
-                    $resultado=$conexion->prepare($consulta);
+                case 2:            
+                
+                    $codigo = $_POST['codigo_val'];
+                    
+                    $conexion = Conexion::getInstance()->getConexion();
+                    $consulta = "DELETE FROM testimonios WHERE Cod_Tes = :codigo";
+                    $resultado = $conexion->prepare($consulta);
+                    $resultado->bindParam(':codigo', $codigo, PDO::PARAM_STR);
                     $resultado->execute();
-                    header("location:Admin.php");
+                    
+                    header("Location: Admin.php");
+                    
                     break;
             }
         }
@@ -250,14 +255,15 @@ class Admin extends Plantilla
             <script type="text/javascript" src="https://www.jeasyui.com/easyui/jquery.easyui.min.js"></script>
             <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
             <script>
+                
                 $(document).ready(function () {
-                    let confirmDelete = false; 
+                    confirmDelete = false; 
 
                     $(document).on("click", ".editar", function ()  {
                         fila = $(this).closest("tr");
                         
-                        codigo_valor = fila.find("td:eq(0)").text();
-                        habilitado_valor = fila.find("td:eq(5)").text();
+                        codigo_valor = encodeURIComponent(fila.find("td:eq(0)").text());
+                        habilitado_valor = encodeURIComponent(fila.find("td:eq(5)").text());
                         
                         $("#habilitadoE").val(habilitado_valor);
 
@@ -267,7 +273,7 @@ class Admin extends Plantilla
                     $(document).on("click", ".eliminar", function ()  {
                         fila = $(this).closest("tr");
                         
-                        codigo_val= fila.find("td:eq(0)").text();
+                        codigo_val = encodeURIComponent(fila.find("td:eq(0)").text());
                         
                         $("#modalCrudEliminar").modal("show");
                         $(".contenido").text("¿Está seguro de que desea eliminar el Comentario: " + codigo_val + "?");
@@ -285,10 +291,11 @@ class Admin extends Plantilla
                         if (confirmDelete) {
                             codigo_val;
                             opcion = 2;
+
                             $.ajax({
                                 url: "",
                                 type: "POST",
-                                data: { codigo_val: codigo_val, opcion: opcion },
+                                data: { codigo_val: codigo_val, opcion: opcion},
                                 success: function (resultado) {
                                     window.location.href = "Admin.php";
                                 }
@@ -356,20 +363,20 @@ class Admin extends Plantilla
         $consulta = "SELECT * FROM testimonios";
         $resultado = $conexion->prepare($consulta);
         $resultado->execute();
-        $dato = $resultado->fetchAll(PDO::FETCH_ASSOC);
+        $datos = $resultado->fetchAll(PDO::FETCH_ASSOC);
 
-        $acum = 1;
         $informacion = '';
 
-        foreach ($dato as $respuesta) {
+        foreach ($datos as $respuesta) {
             $informacion .= '
                     <tr>
-                        <td class="mdl-data-table__cell--non-numeric">' . $respuesta['Cod_Tes'] . '</td>
-                        <td class="mdl-data-table__cell--non-numeric">' . $respuesta['Usu_Tes'] . '</td>
-                        <td class="mdl-data-table__cell--non-numeric">' . $respuesta['Ema_Tes'] . '</td>
-                        <td class="mdl-data-table__cell--non-numeric">' . $respuesta['Mot_Tes'] . '</td>
-                        <td class="mdl-data-table__cell--non-numeric">' . $respuesta['Men_Tes'] . '</td>
-                        <td class="mdl-data-table__cell--non-numeric">' . $respuesta['Hab_Tes'] . '</td>
+                        <td class="mdl-data-table__cell--non-numeric">' . htmlspecialchars($respuesta['Cod_Tes']) . '</td>
+                        <td class="mdl-data-table__cell--non-numeric">' . htmlspecialchars($respuesta['Usu_Tes']) . '</td>
+                        <td class="mdl-data-table__cell--non-numeric">' . htmlspecialchars($respuesta['Ema_Tes']) . '</td>
+                        <td class="mdl-data-table__cell--non-numeric">' . htmlspecialchars($respuesta['Mot_Tes']) . '</td>
+                        <td class="mdl-data-table__cell--non-numeric">' . htmlspecialchars($respuesta['Men_Tes']) . '</td>
+                        <td class="mdl-data-table__cell--non-numeric">' . htmlspecialchars($respuesta['Cal_Mot']) . '</td>
+                        <td class="mdl-data-table__cell--non-numeric">' . htmlspecialchars($respuesta['Hab_Tes']) . '</td>
                         <td class="mdl-data-table__cell">
                             <center>
                                 <button class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect button--colored-teal editar">
@@ -384,22 +391,7 @@ class Admin extends Plantilla
         }
         return $informacion;
     }
+
 }
 
-/*
-    <!-- Cotoneaster card-->
-                        <div class="mdl-cell mdl-cell--5-col-desktop mdl-cell--5-col-tablet mdl-cell--2-col-phone">
-                            <div class="mdl-card mdl-shadow--2dp cotoneaster">
-                                <div class="mdl-card__title mdl-card--expand">
-                                    <h2 class="mdl-card__title-text">Cervecería INTI</h2>
-                                </div>
-                                <div class="mdl-card__supporting-text">
-                                    <div>
-                                        Ser la cervecera artesanal preferida y reconocida en nuestra comunidad, ofreciendo cervezas únicas y de alta calidad que inspiren a nuestros clientes a apreciar la artesanía cervecera y a compartir momentos inolvidables con amigos y familia.
-                                    </div>
-                                    <a href="Index.php" target="_blank">Ver Página</a>
-                                </div>
-                            </div>
-                        </div>
-*/
 ?>

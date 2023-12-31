@@ -266,12 +266,12 @@ class Usuarios extends Plantilla
                                 <br>
                                 <div class="form-group">
                                     <label class="sr-only" for="form-last-name">Email: </label>
-                                    <input type="text" name="emailE"  class="form-last-name form-control" id="emailE" required>
+                                    <input type="email" name="emailE"  class="form-last-name form-control" id="emailE" required>
                                 </div>
                                 <br>
                                 <div class="form-group">
                                     <label class="sr-only" for="form-email">Teléfono: </label>
-                                    <input type="text" name="telefonoE" class="form-email form-control" id="telefonoE" required>
+                                    <input type="tel" name="telefonoE" class="form-email form-control" id="telefonoE" required>
                                 </div>
                                 <br>
                                 <div class="form-group">
@@ -318,8 +318,10 @@ class Usuarios extends Plantilla
                                     <label class="sr-only" for="form-email">Teléfono: </label>
                                     <input type="tel" name="telefonoI" placeholder="Teléfono..." class="form-email form-control" id="telefono" required>
                                     <input type="hidden" name="opcion" value="1">
+                                    <input type="hidden" name="csrf_token" value="'.$_SESSION['csrf_token'].'">
                                     </div>
                                 <br>
+
 
                                 <div class="modal-footer">
                                     <input type="button" class="btn btn-warning" data-bs-dismiss="modal" aria-label="Close" value=" Cancelar ">

@@ -95,8 +95,10 @@ class Compras extends Plantilla
                         <div class="mdl-card mdl-shadow--1dp">
                             <div class="mdl-card__title">
                                 <h1 class="mdl-card__title-text">Tabla de Comprass&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</h1>
-                                    
-
+                                <button class="mdl-button button--colored-teal" id="agregar">
+                                    <i class="material-icons">add_box</i>
+                                    Agregar
+                                </button>     
                             </div>
                             <div class="mdl-card__supporting-text no-padding">
                                 <table class="mdl-data-table mdl-js-data-table" id="datatable_users">
@@ -126,6 +128,34 @@ class Compras extends Plantilla
     }
     public function crearFooter()
     {
+        $conexion = Conexion::getInstance()->getConexion();
+
+        function cargarProductos($conexion) {
+            $htmlOptions = '';
+            $query = "SELECT Cod_Pro, Nom_Pro, Pre_Pro FROM productos";
+            $stmt = $conexion->prepare($query);
+            $stmt->execute();
+
+            while($fila = $stmt->fetch(PDO::FETCH_ASSOC)) {
+                $htmlOptions .= "<option value='".htmlspecialchars($fila['Nom_Pro'])."' data-precio='".$fila['Pre_Pro']."'>".htmlspecialchars($fila['Nom_Pro'])."</option>";
+            }
+            return $htmlOptions;
+        }
+        $productosOptions = cargarProductos($conexion);
+        
+        function cargarClientes($conexion) {
+            $htmlOptions = '';
+            $query = "SELECT usuario FROM usuarios";
+            $stmt = $conexion->prepare($query);
+            $stmt->execute();
+        
+            while($fila = $stmt->fetch(PDO::FETCH_ASSOC)) {
+                $htmlOptions .= "<option value='" . htmlspecialchars($fila['usuario']) . "'>" . htmlspecialchars($fila['usuario']) . "</option>";
+            }
+            return $htmlOptions;
+        }
+        $clientesOptions = cargarClientes($conexion);
+    
         echo '
             <!-- MODAL -->
             <div class="modal fade" id="modalCrudEliminar" tabindex="-1" role="dialog" aria-labelledby="modal-register-label" aria-hidden="true">
@@ -286,25 +316,32 @@ class Compras extends Plantilla
                             <form role="form" action="../Acciones/Rest.php" method="post" class="registration-form">
                                 <div class="form-group">
                                     <label class="sr-only" for="form-first-name">Cliente:</label>
-                                    <input type="text" name="clienteI" placeholder="Cliente..." class="form-first-name form-control" id="cliente" required>
+                                    <select name="clienteI" class="form-control" id="cliente" required>
+                                        <option value="">Seleccione un cliente...</option>
+                                        '.$clientesOptions.'
+                                    </select>
                                 </div>
                                 <br>
                                 <div class="form-group">
-                                    <label class="sr-only" for="form-first-name">Subtotal: </label>
-                                    <input type="number" name="subtotalI" placeholder="Subtotal..." class="form-first-name form-control" id="subtotal" min="1" required>
+                                    <label class="sr-only" for="producto">Producto: </label>
+                                    <select name="productoI" class="form-control" id="producto" required onchange="actualizarPrecios()">
+                                        <option value="">Seleccione un producto...</option>
+                                        '.$productosOptions.'
+                                    </select>
                                 </div>
                                 <br>
                                 <div class="form-group">
-                                    <label class="sr-only" for="form-last-name">Total: </label>
-                                    <input type="number" name="totalI" placeholder="Total..." class="form-last-name form-control" id="total" required>
+                                    <label class="sr-only" for="subtotal">Subtotal: </label>
+                                    <input type="number" name="subtotalI" placeholder="Subtotal..." class="form-control" id="subtotal" min="1" step="0.01" required>
                                 </div>
                                 <br>
                                 <div class="form-group">
-                                    <label class="sr-only" for="form-email">Producto: </label>
-                                    <input type="text" name="prductoI" placeholder="Producto..." class="form-email form-control" id="producto" required>
-                                    <input type="hidden" name="opcion" value="5">
-                                    </div>
+                                    <label class="sr-only" for="total">Total: </label>
+                                    <input type="number" name="totalI" placeholder="Total..." class="form-control" id="total" min="1" step="0.01" required>
+                                </div>
                                 <br>
+                                <input type="hidden" name="opcion" value="5">
+                                <input type="hidden" name="csrf_token" value="'.$_SESSION['csrf_token'].'">
                                 <div class="modal-footer">
                                 <input type="button" class="btn btn-warning" data-bs-dismiss="modal" aria-label="Close" value=" Cancelar ">
                                 <input type="submit" class="btn btn-success" value=" Agregar Compra ">
@@ -314,8 +351,23 @@ class Compras extends Plantilla
                     </div>
                 </div>
             </div>
-
             <script>
+                function actualizarPrecios() {
+                    var selectProducto = document.getElementById("producto");
+                    var precioBase = selectProducto.options[selectProducto.selectedIndex].getAttribute("data-precio");
+                    var subtotalInput = document.getElementById("subtotal");
+                    var totalInput = document.getElementById("total");
+
+                    precioBase = parseFloat(precioBase * 6);
+                    var iva = precioBase * 0.12;
+                    var precioFinal = precioBase + iva;
+                
+                    subtotalInput.value = precioBase.toFixed(2);
+                    totalInput.value = precioFinal.toFixed(2); // precio base + IVA
+                }
+            </script>
+            <script>
+            
                 document.getElementById("formAgregarUsuario").addEventListener("submit", function (e) {
                     const usuarioInput = document.getElementById("usuario");
                     const claveInput = document.getElementById("clave");
@@ -331,12 +383,4 @@ class Compras extends Plantilla
         ';
     }
 }
-
-/*
-<button class="mdl-button button--colored-teal" id="agregar">
-                                        <i class="material-icons">add_box</i>
-                                        Agregar
-                                    </button> 
-*/
-
 ?>

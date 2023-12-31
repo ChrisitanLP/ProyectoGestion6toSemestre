@@ -14,13 +14,21 @@
             $this->foto = $foto;
             $this->usuario = $usuario;
         }
-        public function execute()
-        {
-            // Perform the action here, e.g., insert the data into the database
-            $conexion = Conexion::getInstance() -> getConexion();
-            $consulta = "INSERT INTO carrito (Usu_Car, Pro_Car, Pre_Car, Ima_Car) VALUES (?, ?, ?, ?)";
-            $resultado = $conexion->prepare($consulta);
-            $resultado->execute([$this->usuario, $this->producto, $this->precio, $this->foto]);
+
+        public function execute() {
+            try {
+                // Intenta ejecutar la operación de base de datos
+                $conexion = Conexion::getInstance()->getConexion();
+                $consulta = "INSERT INTO carrito (Usu_Car, Pro_Car, Pre_Car, Ima_Car) VALUES (?, ?, ?, ?)";
+                $resultado = $conexion->prepare($consulta);
+                $resultado->execute([$this->usuario, $this->producto, $this->precio, $this->foto]);
+            } catch (PDOException $e) {
+                // Maneja la excepción específica de la base de datos
+                error_log("Error en la base de datos: " . $e->getMessage());
+                
+                throw new Exception("Error al procesar la solicitud en la base de datos.");
+        
+            }
         }
     }
 ?>

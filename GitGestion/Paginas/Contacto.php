@@ -1,4 +1,5 @@
 <?php
+    include_once("../Patrones/Template/config.php");
     include_once("../Patrones/Template/Plantilla.php");
     include_once("../Patrones/Template/Contacto.php");
     $Pagina = new Contacto;

@@ -90,3 +90,20 @@ button:hover{
 #chk:checked ~ .signup label{
 	transform: scale(.8);
 }
+
+
+.password-container {
+    position: relative;
+}
+
+.toggle-password {
+    position: absolute;
+    top: 50%;
+    right: 10px;
+    transform: translateY(-50%);
+    cursor: pointer;
+    background: url('eye-icon.png') no-repeat;
+    background-size: contain;
+    width: 20px;
+    height: 20px;
+}

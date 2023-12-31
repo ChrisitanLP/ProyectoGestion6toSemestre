@@ -1,4 +1,5 @@
 <?php
+
     abstract class Plantilla{
 
         public abstract function crearHeader();
@@ -6,13 +7,14 @@
         public abstract function crearFooter();
         
         public function verificarSesionPaginas(){
-            if (session_status() == PHP_SESSION_NONE) session_start();
-
-            if (isset($_SESSION['usuario'])){
-                $_SESSION['usuario'];
-            }else{
+            if (session_status() == PHP_SESSION_NONE) {
+                session_start();
+            }
+            if (!isset($_SESSION['usuario'])) {
                 header('Location: Logeo.php');
-                die() ;
+                exit; // Asegúrate de llamar a exit después de una redirección.
+            }else {
+                $_SESSION['usuario'];
             }
         }
 
@@ -27,16 +29,18 @@
             }
         }
 
-        function verificarTipoUsuario($origen,$ruta){
-            if (isset($_SESSION['usuario'])) {
+        function verificarTipoUsuario($origen, $ruta) {
+            if (isset($_SESSION['usuario']) && isset($_SESSION['rol'])) {
+                // Verificación adicional del rol aquí, si es necesario
                 if($_SESSION['rol'] == 'admin'){
                     if($origen) return;
-                    header('Location: '.$ruta.'Admin.php');
+                        header('Location: '.$ruta.'Admin.php');
                 }else{
                     if($origen) header('Location: '.$ruta.'index.php');
                 }
             }
         }
+            
 
         public function crearPagina(){
             $this -> crearHeader();
