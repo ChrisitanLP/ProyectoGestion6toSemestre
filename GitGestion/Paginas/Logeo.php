@@ -29,6 +29,7 @@
 	<script src="../Recursos/JS/Librerias/jquery-1.11.1.min.js"></script>
     <script src="../Recursos/JS/Librerias/jquery-1.11.1.js"></script>
     <script src="../Recursos/JS/Librerias/JqueryLib.js"></script>
+	<script src="../Recursos/JS/formulario.js"></script>
 
 	<script>
 		function togglePasswordVisibility() {
@@ -43,6 +44,20 @@
 				toggleIcon.style.background = 'url(eye-icon.png) no-repeat';
 			}
 		}
+
+		function verificarLongitud(event) {
+			var input = event.target;
+			var maxLongitud = 10;
+
+			// Permitir solo dígitos
+			var regex = /[^0-9]/gi;
+			input.value = input.value.replace(regex, '');
+
+			// Limitar la longitud
+			if (input.value.length > maxLongitud) {
+				input.value = input.value.slice(0, maxLongitud);
+			}
+		}
 	</script>
 </head>
 <body>
@@ -50,12 +65,13 @@
 		<input type="checkbox" id="chk" aria-hidden="true">
 		<div class="signup">
 			<form  id="register" method="post" action="../Acciones/Rest.php">
-				<label for="chk" aria-hidden="true">REGISTRO</label>
+				<label for="chk" aria-hidden="true" class="register">REGISTRO</label>
 				<input type="text" name="usuario"  id="usuario" placeholder="Usuario" required>
 				<input type="email" name="email"  id="email" placeholder="E-Mail" required>
-                <input type="tel" name="telefono"  id="telefono" placeholder="Telefono" required>
+                <input type="tel" name="telefono"  id="telefono" placeholder="Telefono" required oninput="verificarLongitud(event)">
 				<div class="password-container">
 					<input type="password" name="contrasena" id="contrasena" placeholder="Contraseña" required>
+					<input type="password" name="rcontrasena" id="rcontrasena" placeholder="Repita su contraseña" required>
 					<span class="toggle-password" onclick="togglePasswordVisibility()"></span>
 				</div>
 				<input type="hidden" name="csrf_token" value="<?php echo $_SESSION['csrf_token']; ?>">
