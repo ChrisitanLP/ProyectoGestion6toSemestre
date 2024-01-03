@@ -15,25 +15,27 @@
 
         public function authenticate($user, $password)
         {
-            $consulta = "SELECT * FROM usuarios WHERE usuario = '$user' AND clave = '$password'";
+            $consulta = "SELECT * FROM usuarios WHERE BINARY usuario = :usuario";
             $stmt = $this->conexion->prepare($consulta);
+            $stmt->bindParam(':usuario', $user);
             $stmt->execute();
 
             $data = $stmt->fetch(PDO::FETCH_ASSOC);
 
-            //credenciales
-            $rol = '';
-            $correo = '';
-
             if ($data) {
-                Sesion::getInstance()->setSesion("usuario", $data["usuario"]);
-                //echo "Inicio de sesion Existoso " . $data["usuario"];
-                $rol = $data['rol'];
-                $correo = $data['email'];
-                $_SESSION['rol'] = $rol;
-                $_SESSION['correo'] = $correo;
+                if ($data['clave'] == $password) {
+                    Sesion::getInstance()->setSesion("usuario", $data["usuario"]);
+
+                    $_SESSION['rol'] = $data['rol'];
+                    $_SESSION['correo'] = $data['email'];
+                }else {
+                    // Si la contraseña no coincide
+                    header("Location: error.php?error=contrasena");
+                    exit();
+                }
             } else {
-                header("location:error.php");
+                header("Location: error.php?error=usuario");
+                exit();
             }
         }
     }

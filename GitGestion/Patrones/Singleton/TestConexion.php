@@ -5,7 +5,6 @@
     class TestConexion extends PHPUnit\Framework\TestCase {
 
         public function testConexionSingleton() {
-            // Verifica que la conexión sea una instancia única
             $conexion1 = Conexion::getInstance();
             $conexion2 = Conexion::getInstance();
             
@@ -13,7 +12,6 @@
         }
 
         public function testConexionPDO() {
-            // Verifica que la conexión PDO esté configurada correctamente
             $conexion = Conexion::getInstance();
             $pdo = $conexion->getConexion();
             
@@ -21,7 +19,6 @@
         }
 
         public function testConexionExitosa() {
-            // Verifica si la conexión a la base de datos se realiza con éxito
             $conexion = Conexion::getInstance();
             $pdo = $conexion->getConexion();
             
@@ -29,6 +26,15 @@
             
             $this->assertEquals(PDO::ERRMODE_EXCEPTION, $pdo->getAttribute(PDO::ATTR_ERRMODE));
         }
-    }
 
+        public function testCerrarSesion() {
+            $sesion = Sesion::getInstance();
+
+            $sesion->setSesion("usuario", "maria");
+            $sesion->setSesion("rol", "cliente");
+
+            $sesion->cerrarSesion();
+            $this->assertEmpty($_SESSION);
+        }
+    }
 ?>

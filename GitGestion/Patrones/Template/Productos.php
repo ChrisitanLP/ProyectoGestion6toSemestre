@@ -435,10 +435,11 @@ class Productos extends Plantilla
                                 <div class="form-group">
                                     <label class="sr-only" for="form">Imagen Producto:  </label>
                                     <div class="file-input-container">
-                                        <input type="file" name="imagenI" title="seleccionar fichero" id="importData" accept=".jpg, .jpeg, .png, .jfif, .svg" required>
+                                        <input type="file" name="imagenI" title="seleccionar fichero" id="importData" accept=".jpg, .jpeg, .png, .jfif, .svg">
                                         <label class="file-upload-btn" for="importData">Subir Archivo</label>
                                         <div class="file-upload-info">No hay archivo seleccionado</div>
                                         <input type="hidden" name="opcion" value="8">
+                                        <input type="hidden" name="csrf_token" value="'.$_SESSION['csrf_token'].'">
                                     </div>
                                 </div>
                                 <br>

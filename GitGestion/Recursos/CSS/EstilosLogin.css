@@ -13,7 +13,7 @@ body{
 }
 .main{
 	width: 350px;
-	height: 500px;
+	height: 590px;
 	background: red;
 	overflow: hidden;
 	background: linear-gradient(to bottom, #151515, #151515, #151515);	border-radius: 10px;
@@ -70,10 +70,10 @@ button:hover{
 	background: #e28d33;
 }
 .login{
-	height: 460px;
+	height: 800px;
 	background: #fffdfd;
 	border-radius: 60% / 10%;
-	transform: translateY(-165px);
+	transform: translateY(-160px);
 	transition: .8s ease-in-out;
 }
 .login label{
@@ -82,11 +82,28 @@ button:hover{
 }
 
 #chk:checked ~ .login{
-	transform: translateY(-500px);
+	transform: translateY(-600px);
 }
 #chk:checked ~ .login label{
 	transform: scale(.8);	
 }
 #chk:checked ~ .signup label{
 	transform: scale(.8);
+}
+
+
+.password-container {
+    position: relative;
+}
+
+.toggle-password {
+    position: absolute;
+    top: 50%;
+    right: 10px;
+    transform: translateY(-50%);
+    cursor: pointer;
+    background: url('eye-icon.png') no-repeat;
+    background-size: contain;
+    width: 20px;
+    height: 20px;
 }

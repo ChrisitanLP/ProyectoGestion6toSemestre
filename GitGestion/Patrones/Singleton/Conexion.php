@@ -10,11 +10,13 @@
             $password = "";
             $database = "moviles";
 
-            try{
-                $this -> conexion = new PDO("mysql:host=".$host."; dbname=".$database,$user,$password);
-                $this -> conexion ->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-            }catch(PDOException $e){
-                die("Error al conectar a la base de datos: ".$e -> getMessage());
+            try {
+                $dsn = "mysql:host=$host; dbname=$database;charset=utf8mb4"; // Añadir codificación
+                $this->conexion = new PDO($dsn, $user, $password);
+                $this->conexion->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+            } catch (PDOException $e) {
+                // En producción, considera registrar este error en lugar de mostrarlo
+                die("Error al conectar a la base de datos: " . $e->getMessage());
             }
         }
 

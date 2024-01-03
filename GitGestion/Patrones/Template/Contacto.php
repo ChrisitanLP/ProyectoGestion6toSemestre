@@ -85,10 +85,20 @@ class Contacto extends Plantilla
                     <div class="col-md-6 pb-5">
                         <div class="contact-form">
                             <div id="success"></div>
-                            <form id="contactForm" novalidate="novalidate" role="form" action="../Acciones/Rest.php" method="post" class="registration-form">
+                            <form id="contactForm" role="form" action="../Acciones/Rest.php" method="post" class="registration-form">
                                 <div class="control-group">
                                     <input name="usuarioI" type="text" class="text-primary form-control bg-transparent p-4" id="usuarioI" placeholder="Nombre..." data-validation-required-message="Ingresa tu Nombre" required />
                                     <p class="help-block text-danger"></p>
+                                </div>
+                                <div class="control-group">
+                                    <select name="calificacionI" id="calificacionI" class="text-primary form-control bg-transparent p-4" placeholder="Calificacion...">
+                                        <option value="" disabled selected>Selecciona la Calificación</option>
+                                        <option value="1">1</option>
+                                        <option value="2">2</option>
+                                        <option value="3">3</option>
+                                        <option value="4">4</option>
+                                        <option value="5">5</option>
+                                    </select>
                                 </div>
                                 <div class="control-group">
                                     <input name="emailI" type="email" class="text-primary form-control bg-transparent p-4" id="emailI" placeholder="Email..." data-validation-required-message="Ingresa tu Email" required />
@@ -106,6 +116,8 @@ class Contacto extends Plantilla
                                     <input type="hidden" name="opcion" value="11">
                                     <p class="help-block text-danger"></p>
                                 </div>
+                                <input type="hidden" name="csrf_token" value="'.$_SESSION['csrf_token'].'">
+
 
                                 <div class="container-contact">
                                     <button class="btn btn-primary btn-contact text-white font-weight-bold py-3 px-5" type="submit" id="sendMessageButton">Enviar Mensaje</button>
@@ -118,7 +130,7 @@ class Contacto extends Plantilla
         </div>
         <script>
             function redirectToWhatsapp() {
-                window.open(`https://wa.me/593958907392`, \'_blank\');
+                window.open(`https://wa.me/593985184705`, \'_blank\');
             }
             document.getElementById(\'telefono\').addEventListener(\'mouseover\', function() {
                 document.body.style.cursor = \'pointer\';
@@ -127,7 +139,27 @@ class Contacto extends Plantilla
             document.getElementById(\'telefono\').addEventListener(\'mouseout\', function() {
                 document.body.style.cursor = \'default\';
             });
+
+            function validarFormulario() {
+                let usuario = document.getElementById("usuarioI").value;
+                let email = document.getElementById("emailI").value;
+                let mensaje = document.getElementById("mensajeI").value;
+        
+                if(usuario.length < 3 || email.indexOf("@") === -1 || mensaje.length < 5) {
+                    alert("Por favor, completa el formulario correctamente.");
+                    return false;
+                }
+                return true;
+            }
+        
+            document.getElementById("contactForm").addEventListener("submit", function(event) {
+                if (!validarFormulario()) {
+                    event.preventDefault();
+                }
+            });
+
         </script>
+
         ';
                     
     }

@@ -265,6 +265,18 @@ class Index extends Plantilla
         $informacion = '';
 
         foreach ($dato as $respuesta) {
+
+            $calificacion = $respuesta['Cal_Mot'];
+            $estrellasHTML = '';
+
+            for ($i = 1; $i <= 5; $i++) {
+                if ($i <= $calificacion) {
+                    $estrellasHTML .= '<i class="fas fa-star"></i>';
+                } else {
+                    $estrellasHTML .= '<i class="far fa-star"></i>';
+                }
+            }
+
             $informacion .= '
                     <div class="box-area">	
                         <div class="img-area">
@@ -275,12 +287,11 @@ class Index extends Plantilla
                         <p class="content">
                             ' . $respuesta['Men_Tes'] . '
                         </p>
-                        <h6 class="socials">
-                            <i class="fa fa-instagram"></i>
-                            <i class="fa fa-facebook"></i>
-                            <i class="fa fa-linkedin"></i>
-                            <i class="fa fa-youtube"></i>
-                        </h6>
+                        <div class="d-flex flex-column align-items-center mr-15">
+                            <div class="d-flex justify-content-center" style="height: 40px">
+                                '.$estrellasHTML.'
+                            </div>
+                        </div>
                     </div> 
                 ';
         }

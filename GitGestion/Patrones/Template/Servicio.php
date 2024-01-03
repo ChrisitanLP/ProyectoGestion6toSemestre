@@ -7,6 +7,7 @@ class Servicio extends Plantilla
     public function crearHeader()
     {
         $cantidadProductos = Acciones::cantidadProductos();
+        $cantidadProductos = intval($cantidadProductos);
 
         echo '
         <div class="contenedor-fluido p-0 nav-bar">
@@ -25,7 +26,7 @@ class Servicio extends Plantilla
                         <a href="Contacto.php" class="nav-item nav-link text-uppercase">Contacto</a>
                         <a href="Servicio.php" class="nav-item nav-link text-uppercase">
                             <i class="fas fa-shopping-cart"></i>
-                            <span class="badge">' . $cantidadProductos . '</span>
+                            <span class="badge">' . htmlspecialchars($cantidadProductos) . '</span>
                         </a>
                         <a href="cerrar.php" class="nav-item nav-link text-uppercase"><i class="far fa-user"></i></a>
                     </div>
