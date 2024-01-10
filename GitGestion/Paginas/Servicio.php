@@ -9,7 +9,7 @@
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>Servicio</title>
+        <title>Carrito</title>
         
         <link href="../Recursos/Imagenes/Logos/blanco.ico" rel="icon">
 
