@@ -199,13 +199,15 @@ class Admin extends Plantilla
             $opcion = $_POST["opcion"];
             switch ($opcion) {
                 case 1:
-                    $habilitado=$_POST['habilitadoE'];
-                    $codigo=$_POST['codigo_valor'];
-
-                    $conexion = Conexion::getInstance()->getConexion();
-                    $consulta = "UPDATE testimonios SET Hab_Tes='$habilitado' WHERE Cod_Tes='$codigo'";
-                    $resultado = $conexion->prepare($consulta);
-                    $resultado->execute();
+                    $habilitado = $_POST['habilitadoE'];
+                    if ($habilitado === "Habilitado" || $habilitado === "Deshabilidato") {
+                        $codigo = $_POST['codigo_valor'];
+                        
+                        $conexion = Conexion::getInstance()->getConexion();
+                        $consulta = "UPDATE testimonios SET Hab_Tes='$habilitado' WHERE Cod_Tes='$codigo'";
+                        $resultado = $conexion->prepare($consulta);
+                        $resultado->execute();
+                    }
                     header("location:Admin.php");
                     break;
                 case 2:            
