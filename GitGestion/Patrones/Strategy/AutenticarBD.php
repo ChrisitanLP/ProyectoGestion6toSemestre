@@ -29,7 +29,6 @@
                     $_SESSION['rol'] = $data['rol'];
                     $_SESSION['correo'] = $data['email'];
                 }else {
-                    // Si la contraseña no coincide
                     header("Location: error.php?error=contrasena");
                     exit();
                 }

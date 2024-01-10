@@ -22,10 +22,9 @@
         
 
         public function closeSession() {
-            session_regenerate_id(); // Prevenir secuestro de sesión
             Sesion::getInstance()->cerrarSesion();
             header('Location: ' . htmlspecialchars('Logeo.php', ENT_QUOTES, 'UTF-8'));
-            exit(); // Asegúrate de llamar a exit después de una redirección
+            exit(); 
         }
         
     }

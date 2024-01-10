@@ -14,12 +14,12 @@ document.addEventListener("DOMContentLoaded", function () {
     const validarPassword2 = () => {
         if (inputPassword1.value !== inputPassword2.value) {
             // Contraseñas diferentes
-            console.log("Las contraseñas no coinciden");
+            //console.log("Las contraseñas no coinciden");
             // Puedes realizar otras acciones, como mostrar un mensaje de error
             document.getElementById('msgUserExist').textContent = "Las contraseñas no coinciden";
         } else {
             // Contraseñas iguales
-            console.log("Las contraseñas coinciden");
+            //console.log("Las contraseñas coinciden");
             // Puedes realizar otras acciones, como limpiar el mensaje de error
             document.getElementById('msgUserExist').textContent = "";
         }
@@ -37,11 +37,11 @@ document.addEventListener("DOMContentLoaded", function () {
 
         if (inputPassword1.value !== inputPassword2.value) {
             // Contraseñas diferentes, evita que se envíe el formulario
-            console.log("Las contraseñas no coinciden");
+            //console.log("Las contraseñas no coinciden");
             document.getElementById('msgUserExist').textContent = "Las contraseñas no coinciden";
         } else {
             // Contraseñas iguales, puedes enviar el formulario
-            console.log("Las contraseñas coinciden");
+            //console.log("Las contraseñas coinciden");
             document.getElementById('msgUserExist').textContent = "";
 
             // Aquí puedes agregar código para enviar el formulario utilizando AJAX u otra lógica necesaria

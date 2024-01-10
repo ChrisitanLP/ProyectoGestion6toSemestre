@@ -1,0 +1,15 @@
+{
+    "name": "wolfly/git-gestion",
+    "description": "Sistema de venta de Cerveza Artesanal",
+    "type": "project",
+    "require": {
+        "phpunit/phpunit": "^10.5"
+    },
+    "license": "propietary",
+    "autoload": {
+        "psr-4": {
+            "Wolfly\\GitGestion\\": "src/"
+        }
+    },
+    "minimum-stability": "stable"
+}

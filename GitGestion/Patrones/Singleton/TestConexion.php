@@ -1,7 +1,8 @@
 <?php
     use PHPUnit\Framework\TestCase;
     require 'Conexion.php'; // Asegúrate de importar la clase que deseas probar
-
+    require 'Sesion.php';
+    
     class TestConexion extends PHPUnit\Framework\TestCase {
 
         public function testConexionSingleton() {
