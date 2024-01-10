@@ -380,7 +380,7 @@ class Admin extends Plantilla
                         <td class="mdl-data-table__cell">
                             <center>
                                 <button class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect button--colored-teal editar">
-                                    <i class="material-icons">create</i>Editar</button>
+                                    <i class="material-icons">create</i>Estado</button>
                                 <button class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect button--colored-red eliminar" >
                                     <i class="material-icons">cancel</i>Eliminar
                                 </button>
