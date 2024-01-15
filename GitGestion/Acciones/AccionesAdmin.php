@@ -185,7 +185,7 @@ class Acciones
         $consulta->execute();
 
         if ($consulta->fetch()) {
-            header("location:../Paginas/error.php");
+            header("location:../Paginas/error.php?error=username");
             exit;
         } else {
             // Preparar consulta para insertar
@@ -211,7 +211,7 @@ class Acciones
         $consulta->execute();
 
         if ($consulta->fetch()) {
-            header("location:../Paginas/error.php");
+            header("location:../Paginas/error.php?error=username");
             exit;
         } else {
             $consulta = "INSERT INTO usuarios (usuario, clave, email, telefono, rol) VALUES(?, ?, ?, ?, ?)";

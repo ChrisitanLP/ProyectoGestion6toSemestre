@@ -18,7 +18,9 @@
                         $errorMessage .= "Usuario no encontrado.</p></center>";
                     } elseif ($_GET['error'] == 'contrasena') {
                         $errorMessage .= "Contraseña incorrecta.</p></center>";
-                    } else {
+                    } elseif ($_GET['error'] == 'username') {
+                        $errorMessage .= "Usuario ya registrado.</p></center>";
+                    }else {
                         $errorMessage .= "Error desconocido.</p></center>";
                     }
                     echo $errorMessage;
