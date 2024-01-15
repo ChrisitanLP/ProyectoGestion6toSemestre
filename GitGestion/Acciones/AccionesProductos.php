@@ -232,8 +232,8 @@
             }
         
             $subtotal = self::$total;
-            $iva = $subtotal * 0.12;
-            $precioTotal = ($subtotal + $iva);
+            $iva = number_format($subtotal * 0.12, 2, '.', '');
+            $precioTotal = number_format($subtotal + $iva, 2, '.', '');
         
             if ($precioTotal == 0) {
                 return '<p>No hay productos en el carrito.</p>';

@@ -80,7 +80,9 @@ class Contacto extends Plantilla
                 </div>
                 <div class="row">
                     <div class="col-md-6">
-                        <iframe style="width: 100%; height: 443px;" src="https://www.google.com/maps/place/Avenida+Gonzalo+D%C3%A1valos+%26+Avenida+La+Prensa,+Riobamba/@-1.6562941,-78.6597947,1126m/data=!3m2!1e3!4b1!4m6!3m5!1s0x91d307f6222a0d31:0x264957ddcdb51073!8m2!3d-1.6562941!4d-78.6572198!16s%2Fg%2F11ljmmxzqm?hl=es-419&entry=ttu" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>   
+                    <iframe style="width: 100%; height: 443px;"
+                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3001156.4288297426!2d-78.01371936852176!3d42.72876761954724!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x4ccc4bf0f123a5a9%3A0xddcfc6c1de189567!2sNew%20York%2C%20USA!5e0!3m2!1sen!2sbd!4v1603794290143!5m2!1sen!2sbd"
+                    frameborder="0" style="border:0;" allowfullscreen="" aria-hidden="false" tabindex="0"></iframe>   
                     </div>
                     <div class="col-md-6 pb-5">
                         <div class="contact-form">
@@ -116,7 +118,7 @@ class Contacto extends Plantilla
                                     <input type="hidden" name="opcion" value="11">
                                     <p class="help-block text-danger"></p>
                                 </div>
-                                <input type="hidden" name="csrf_token" value="'.$_SESSION['csrf_token'].'">
+                                <input type="hidden" name="csrf_token" value="' . $_SESSION['csrf_token'] . '">
 
 
                                 <div class="container-contact">
@@ -161,7 +163,7 @@ class Contacto extends Plantilla
         </script>
 
         ';
-                    
+
     }
     public function crearFooter()
     {
