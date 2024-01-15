@@ -203,7 +203,7 @@ class Productos extends Plantilla
                             type: "POST",
                             data: { producto_val: producto_val, opcion: opcion },
                             success: function (resultado) {
-                                window.location.href = "../Paginas/Usuarios.php";
+                                window.location.href = "../Paginas/Productos.php";
                             }
                         });
                     }
@@ -253,6 +253,48 @@ class Productos extends Plantilla
                         type: "POST",
                         data: {
                             productoE : productoE, marcaE : marcaE, gradoE : gradoE, ibuE : ibuE, ingrediente1E : ingrediente1E, ingrediente2E : ingrediente2E, ingrediente3E : ingrediente3E, precioE: precioE, descripcionE : descripcionE, amargoE : amargoE, cuerpoE : cuerpoE, imagenE : imagenE, producto_valor : producto_valor, opcion:opcion
+                        },
+                        success: function (resultado) {
+                            window.location.href = "../Paginas/Productos.php";
+                        }
+                    });
+                });
+
+                $("#imagenI").on("change", function() {
+                    // Obtén el primer archivo seleccionado
+                    var archivo = $(this)[0].files[0];
+                    
+                    // Verifica si hay un archivo seleccionado
+                    if (archivo) {
+                        // Obtén el nombre del archivo
+                        var nombreArchivo = archivo.name;
+                        $(".file-upload-info").text(nombreArchivo);
+                    } else {
+                        $(".file-upload-info").text("No hay archivo seleccionado");
+                    }
+                });
+
+                $("#formAgregar").submit(function (e) {
+                    e.preventDefault(); 
+                    productoI = $("#productoI").val();
+                    marcaI = $("#marcaI").val();
+                    gradoI = $("#gradoI").val();
+                    ibuI = $("#ibuI").val();
+                    ingrediente1I = $("#ingrediente1I").val();
+                    ingrediente2I = $("#ingrediente2I").val();
+                    ingrediente3I = $("#ingrediente3I").val();
+                    precioI = parseFloat($("#precioI").val());
+                    descripcionI = $("#descripcionI").val();
+                    amargoI = $("#amargoI").val();
+                    cuerpoI = $("#cuerpoI").val();
+                    imagenI=$("#imagenI").val();
+                    opcion=8;
+                    
+                    $.ajax({
+                        url: "../Acciones/Rest.php",
+                        type: "POST",
+                        data: {
+                            productoI : productoI, marcaI : marcaI, gradoI : gradoI, ibuI : ibuI, ingrediente1I : ingrediente1I, ingrediente2I : ingrediente2I, ingrediente3I : ingrediente3I, precioI: precioI, descripcionI : descripcionI, amargoI : amargoI, cuerpoI : cuerpoI, imagenI : imagenI, opcion:opcion
                         },
                         success: function (resultado) {
                             window.location.href = "../Paginas/Productos.php";
@@ -378,7 +420,8 @@ class Productos extends Plantilla
                         </div> 
                         <div class="modal-body">
                             <form role="form" action="../Acciones/Rest.php" method="post" class="registration-form" enctype="multipart/form-data">
-                                <div class="form-group">
+                            <form role="form" id="formAgregar" class="registration-form" enctype="multipart/form-data">    
+                            <div class="form-group">
                                     <label class="sr-only" for="form-first-name">Producto: </label>
                                     <input type="text" name="productoI" placeholder="Nombre Producto..." class="form-first-name form-control" id="form-first-name" required>
                                 </div>
@@ -435,8 +478,8 @@ class Productos extends Plantilla
                                 <div class="form-group">
                                     <label class="sr-only" for="form">Imagen Producto:  </label>
                                     <div class="file-input-container">
-                                        <input type="file" name="imagenI" title="seleccionar fichero" id="importData" accept=".jpg, .jpeg, .png, .jfif, .svg">
-                                        <label class="file-upload-btn" for="importData">Subir Archivo</label>
+                                        <input type="file" name="imagenI" title="seleccionar fichero" id="imagenI" accept=".jpg, .jpeg, .png, .jfif, .svg" required>
+                                        <label class="file-upload-btn" for="imagenI">Subir Archivo</label>
                                         <div class="file-upload-info">No hay archivo seleccionado</div>
                                         <input type="hidden" name="opcion" value="8">
                                         <input type="hidden" name="csrf_token" value="'.$_SESSION['csrf_token'].'">
