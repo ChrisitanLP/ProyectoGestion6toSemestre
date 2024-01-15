@@ -98,20 +98,13 @@ switch ($accion) {
                         $amargo = filter_input(INPUT_POST, 'amargoI', FILTER_SANITIZE_STRING);
                         $cuerpo = filter_input(INPUT_POST, 'cuerpoI', FILTER_SANITIZE_STRING);
 
-                        $ruta = "../Recursos/Imagenes/Productos/";
-                        $rutaD = "Recursos/Imagenes/Productos/";
+                        $ruta = "Recursos/Imagenes/Productos/";
+
+                        // Obtén el nombre del archivo directamente desde el formulario
                         $nombreImagen = basename($_FILES['imagenI']['name']);
 
                         $imagen = $ruta . $nombreImagen;
-                        $imagenF = $rutaD . $nombreImagen;
-                        if (!file_exists($ruta)) {
-                            mkdir($ruta, 0777, true);
-                        }
-                        if (move_uploaded_file($_FILES['imagenI']['tmp_name'], $imagen)) {
-                            Acciones::InsertarProductos($producto, $marca, $grado, $ibu, $ingrediente1, $ingrediente2, $ingrediente3, $amargo, $cuerpo, $precio, $descripcion, $imagenF);
-                        } else {
-                            die("Error al mover la imagen");
-                        }
+                        Acciones::InsertarProductos($producto, $marca, $grado, $ibu, $ingrediente1, $ingrediente2, $ingrediente3, $amargo, $cuerpo, $precio, $descripcion, $imagen);
                     }
                 }
                 break;
