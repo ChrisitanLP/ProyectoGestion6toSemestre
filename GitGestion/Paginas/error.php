@@ -9,7 +9,7 @@
     <div class="main">  	
 		<input type="checkbox" id="chk" aria-hidden="true">
 		<div class="signup">
-			<form  action="Logeo.php">
+			<form  action="../Paginas/Usuarios.php">
 				<label for="chk" aria-hidden="true">Error<br>Algo ha ido mal</label>
                 <?php
                 if (isset($_GET['error'])) {

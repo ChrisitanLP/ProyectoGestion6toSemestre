@@ -170,6 +170,7 @@ class Usuarios extends Plantilla
 
 
                         $("#claveE").val(clave_valor);
+                        $("#claveEConfirmar").val(clave_valor);
                         $("#emailE").val(email_valor);
                         $("#telefonoE").val(telefono_valor);
                         $("#rolE").val(rol_valor);
@@ -233,7 +234,9 @@ class Usuarios extends Plantilla
                         emailE = $("#emailE").val();
                         telefonoE = $("#telefonoE").val();
                         rolE = $("#rolE").val();
-
+                        if (claveE !== "" && claveE !== $("#claveEConfirmar").val()) {
+                            return;
+                        }
                         opcion=2;
                         $.ajax({
                             url: "../Acciones/Rest.php",
@@ -258,12 +261,20 @@ class Usuarios extends Plantilla
                             <button type="button" class="btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
                         </div> 
                         <div class="modal-body">
-                            <form role="form" id="formEditar" class="registration-form">
-                                <div class="form-group">
-                                    <label class="sr-only" for="form-first-name">Clave: </label>
-                                    <input type="text" name="claveE"  class="form-first-name form-control" id="claveE" required>
+                            <form role="form" id="formEditar" class="registration-form">      
+                                <div class="password-container">
+                                    <div class="form-group">
+                                        <label class="sr-only" for="form-first-name">Clave: </label>
+                                        <input type="text" name="claveE"  class="form-first-name form-control" id="claveE" required>
+                                    </div>
+                                    <br>
+                                    <div class="form-group">
+                                        <label class="sr-only" for="form-first-name">Confirmar Clave: </label>
+                                        <input type="text" name="claveIConfirmar" placeholder="Confirmar Clave..." class="form-first-name form-control" required id="claveEConfirmar" >
+                                    </div>
                                 </div>
-                                <br>
+                                <center><p id="msgUserExistE" style="color:white"></p></center>
+
                                 <div class="form-group">
                                     <label class="sr-only" for="form-last-name">Email: </label>
                                     <input type="email" name="emailE"  class="form-last-name form-control" id="emailE" required>
@@ -274,9 +285,14 @@ class Usuarios extends Plantilla
                                     <input type="tel" name="telefonoE" class="form-email form-control" id="telefonoE" required>
                                 </div>
                                 <br>
+                                
                                 <div class="form-group">
-                                    <label class="sr-only" for="form-email">Rol: </label>
-                                    <input type="text" name="rolE" class="form-email form-control" id="rolE" required>
+                                    <label class="sr-only" for="form-first-name">Rol:</label>
+                                    <select name="rolE" class="form-control" id="rolE" required>
+                                        <option value="">Seleccione un rol...</option>
+                                        <option value="cliente">Cliente</option>
+                                        <option value="admin">Admin</option>
+                                    </select>
                                 </div>
                                 <br>
                                 <div class="modal-footer">
@@ -298,17 +314,24 @@ class Usuarios extends Plantilla
                             <button type="button" class="btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
                         </div> 
                         <div class="modal-body">
-                            <form role="form" action="../Acciones/Rest.php" method="post" class="registration-form">
+                            <form id="register" role="form" action="../Acciones/Rest.php" method="post" class="registration-form">
                                 <div class="form-group">
                                     <label class="sr-only" for="form-first-name">Usuario:</label>
                                     <input type="text" name="usuarioI" placeholder="Usuario..." class="form-first-name form-control" id="usuario" required>
                                 </div>
                                 <br>
-                                <div class="form-group">
-                                    <label class="sr-only" for="form-first-name">Clave: </label>
-                                    <input type="text" name="claveI" placeholder="Clave..." class="form-first-name form-control" id="clave" required>
+                                <div class="password-container">
+                                    <div class="form-group">
+                                        <label class="sr-only" for="form-first-name">Clave: </label>
+                                        <input type="text" name="claveI" placeholder="Clave..." class="form-first-name form-control" required id="contrasena">
+                                    </div>
+                                    <br>
+                                    <div class="form-group">
+                                        <label class="sr-only" for="form-first-name">Confirmar Clave: </label>
+                                        <input type="text" name="claveIConfirmar" placeholder="Confirmar Clave..." class="form-first-name form-control" required id="rcontrasena" >
+                                    </div>
                                 </div>
-                                <br>
+                                <center><p id="msgUserExist" style="color:white"></p></center>
                                 <div class="form-group">
                                     <label class="sr-only" for="form-last-name">Email: </label>
                                     <input type="email" name="emailI" placeholder="Email..." class="form-last-name form-control" id="email" required>
@@ -321,8 +344,6 @@ class Usuarios extends Plantilla
                                     <input type="hidden" name="csrf_token" value="'.$_SESSION['csrf_token'].'">
                                     </div>
                                 <br>
-
-
                                 <div class="modal-footer">
                                     <input type="button" class="btn btn-warning" data-bs-dismiss="modal" aria-label="Close" value=" Cancelar ">
                                     <input type="submit" class="btn btn-success" value=" Agregar Usuario ">
@@ -333,8 +354,85 @@ class Usuarios extends Plantilla
                 </div>
             </div>
 
+            //Editar
+            <script>
+                document.addEventListener("DOMContentLoaded", function () {
+                    const inputTelefono = document.getElementById("telefonoE");
+                    const inputPassword1 = document.getElementById("claveE");
+                    const inputPassword2 = document.getElementById("claveEConfirmar");
+                    const form = document.getElementById("formEditar");
+
+                    const validarTelefono = () => {
+                        inputTelefono.value = inputTelefono.value.replace(/\D/g, "").slice(0, 10);
+                    };
+                    
+                    const validarPassword2 = () => {
+                        if (inputPassword1.value !== inputPassword2.value) {
+                            document.getElementById("msgUserExistE").textContent = "Las contraseñas no coinciden";
+                        } else {
+                            document.getElementById("msgUserExistE").textContent = "";
+                        }
+                    };
+
+                    inputTelefono.addEventListener("input", validarTelefono);
+                    inputPassword1.addEventListener("keyup", validarPassword2);
+                    inputPassword2.addEventListener("keyup", validarPassword2);
+                    inputPassword1.addEventListener("blur", validarPassword2);
+                    inputPassword2.addEventListener("blur", validarPassword2);
+
+                    form.addEventListener("submit", function (e) {
+                        e.preventDefault();
+                        if (inputPassword1.value !== inputPassword2.value) {
+                            document.getElementById("msgUserExistE").textContent = "Las contraseñas no coinciden";
+                        } else {
+                            document.getElementById("msgUserExistE").textContent = "";
+                            form.submit();
+                        }
+                    });
+                });
+            </script>
+
+            //Agregar
+            <script>
+                document.addEventListener("DOMContentLoaded", function () {
+                    const inputTelefono = document.getElementById("telefono");
+                    const inputPassword1 = document.getElementById("contrasena");
+                    const inputPassword2 = document.getElementById("rcontrasena");
+                    const form = document.getElementById("register");
+
+                    const validarTelefono = () => {
+                        inputTelefono.value = inputTelefono.value.replace(/\D/g, "").slice(0, 10);
+                    };
+                    
+                    const validarPassword2 = () => {
+                        if (inputPassword1.value !== inputPassword2.value) {
+                            document.getElementById("msgUserExist").textContent = "Las contraseñas no coinciden";
+                        } else {
+                            document.getElementById("msgUserExist").textContent = "";
+                        }
+                    };
+
+                    inputTelefono.addEventListener("input", validarTelefono);
+                    inputPassword1.addEventListener("keyup", validarPassword2);
+                    inputPassword2.addEventListener("keyup", validarPassword2);
+                    inputPassword1.addEventListener("blur", validarPassword2);
+                    inputPassword2.addEventListener("blur", validarPassword2);
+
+                    form.addEventListener("submit", function (e) {
+                        e.preventDefault();
+                        if (inputPassword1.value !== inputPassword2.value) {
+                            document.getElementById("msgUserExist").textContent = "Las contraseñas no coinciden";
+                        } else {
+                            document.getElementById("msgUserExist").textContent = "";
+                            form.submit();
+                        }
+                    });
+                });
+            </script>
+
             <script>
                 document.getElementById("formAgregarUsuario").addEventListener("submit", function (e) {
+                    console.log("funco");
                     const usuarioInput = document.getElementById("usuario");
                     const claveInput = document.getElementById("clave");
                     const emailInput = document.getElementById("email");

@@ -275,8 +275,11 @@ class Compras extends Plantilla
                         <div class="modal-body">
                             <form role="form" id="formEditar" class="registration-form">
                                 <div class="form-group">
-                                    <label class="sr-only" for="form-first-name">Usuario: </label>
-                                    <input type="text" name="usuarioE"  class="form-first-name form-control" id="usuarioE" required>
+                                    <label class="sr-only" for="form-first-name">Cliente:</label>
+                                    <select name="usuarioE" class="form-control" id="usuarioE" required>
+                                        <option value="">Seleccione un cliente...</option>
+                                        '.$clientesOptions.'
+                                    </select>
                                 </div>
                                 <br>
                                 <div class="form-group">

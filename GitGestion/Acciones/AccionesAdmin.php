@@ -205,11 +205,20 @@ class Acciones
     {
         $rol = 'cliente';
         $conexion = Conexion::getInstance()->getConexion();
-        $consulta = "INSERT INTO usuarios (usuario, clave, email, telefono, rol) VALUES(?, ?, ?, ?, ?)";
-        $resultado = $conexion->prepare($consulta);
 
-        $resultado->execute([$usuario, $contrasena, $email, $telefono, $rol]);
-        header("location:../Paginas/Usuarios.php");
+        $consulta = $conexion->prepare("SELECT * FROM usuarios WHERE usuario = :usuario");
+        $consulta->bindParam(':usuario', $usuario);
+        $consulta->execute();
+
+        if ($consulta->fetch()) {
+            header("location:../Paginas/error.php");
+            exit;
+        } else {
+            $consulta = "INSERT INTO usuarios (usuario, clave, email, telefono, rol) VALUES(?, ?, ?, ?, ?)";
+            $resultado = $conexion->prepare($consulta);
+            $resultado->execute([$usuario, $contrasena, $email, $telefono, $rol]);
+            header("location:../Paginas/Usuarios.php");
+        }
     }
 
     public static function ActualizarUsuario($usuario, $contrasena, $email, $telefono, $rol)
@@ -260,7 +269,7 @@ class Acciones
     }
 
     public static function InsertarProductos($producto, $marca, $grado, $ibu, $ingrediente1, $ingrediente2, $ingrediente3, $amargo, $cuerpo, $precio, $descripcion, $imagen)
-    { 
+    {
         $conexion = Conexion::getInstance()->getConexion();
         $consulta = "INSERT INTO productos (Nom_Pro, Mar_Pro, Gra_Alc_Pro, IBU, Car_1_Pro, Car_2_Pro, Car_3_Pro, Ama_Pro, Cue_Pro, Pre_Pro, Des_Pro, Rut_Pro) VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
         $resultado = $conexion->prepare($consulta);
@@ -291,7 +300,7 @@ class Acciones
         $habilitado = "Deshabilitado";
 
         $conexion = Conexion::getInstance()->getConexion();
-        
+
         $consulta = "INSERT INTO testimonios (Usu_Tes, Ema_Tes, Mot_Tes, Men_Tes, Hab_Tes, Cal_Mot) VALUES(:usuario, :email, :motivo, :mensaje, :habilitado, :calificacion)";
         $resultado = $conexion->prepare($consulta);
 
@@ -301,7 +310,7 @@ class Acciones
         $resultado->bindParam(':mensaje', $mensaje, PDO::PARAM_STR);
         $resultado->bindParam(':habilitado', $habilitado, PDO::PARAM_STR);
         $resultado->bindParam(':calificacion', $calificacion, PDO::PARAM_INT);
-        
+
         $resultado->execute();
         header("location:../Paginas/Contacto.php");
     }
