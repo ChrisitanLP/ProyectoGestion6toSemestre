@@ -53,7 +53,7 @@ GitGestion/
 
 1. Clona el repositorio:
 ```bash
-git clone [URL del repositorio]
+git clone https://github.com/ChrisitanLP/ProyectoGestion6toSemestre.git
 ```
 
 2. Configura un servidor web local (Apache/XAMPP/WAMP)
